@@ -1,0 +1,70 @@
+<p>JSON adalah format teks standar untuk bertukar data antarprogram, sedangkan <code>Date</code> adalah alat bawaan untuk bekerja dengan tanggal dan waktu. Keduanya sangat sering muncul pada aplikasi nyata.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Mengubah object menjadi JSON dan sebaliknya.</li>
+<li>Menangani JSON yang tidak valid.</li>
+<li>Membuat dan memformat tanggal dengan <code>Date</code>.</li>
+</ul>
+<h2>1. Apa Itu JSON?</h2>
+<p>JSON (JavaScript Object Notation) mirip object JavaScript, tetapi seluruhnya berupa <strong>teks</strong>, nama property wajib memakai tanda kutip ganda, dan tidak boleh berisi fungsi.</p>
+<pre><code class="language-javascript">const produk = { nama: "Buku", harga: 25000, stok: [1, 2, 3] };
+
+const teks = JSON.stringify(produk);
+console.log(teks);        // '{"nama":"Buku","harga":25000,"stok":[1,2,3]}'
+console.log(typeof teks); // "string"
+
+const kembali = JSON.parse(teks);
+console.log(kembali.nama); // "Buku"
+</code></pre>
+<ul>
+<li><code>JSON.stringify</code>: object menjadi teks JSON.</li>
+<li><code>JSON.parse</code>: teks JSON menjadi object.</li>
+</ul>
+<h2>2. Menangani JSON yang Rusak</h2>
+<pre><code class="language-javascript">try {
+  const data = JSON.parse("{nama: 'Buku'}"); // bukan JSON valid
+} catch (error) {
+  console.log("JSON tidak valid:", error.message);
+}
+</code></pre>
+<p>Selalu bungkus <code>JSON.parse</code> dengan <code>try...catch</code> bila datanya berasal dari luar program.</p>
+<h2>3. Tanggal dengan Date</h2>
+<pre><code class="language-javascript">const sekarang = new Date();
+console.log(sekarang.getFullYear());  // 2026
+console.log(sekarang.getMonth());     // 0-11 (0 = Januari!)
+console.log(sekarang.getDate());      // tanggal 1-31
+console.log(sekarang.getDay());       // 0-6 (0 = Minggu)
+
+const lahir = new Date(2000, 4, 17);  // 17 Mei 2000 (bulan dimulai dari 0)
+const iso = new Date("2026-08-17");   // dari teks format ISO
+</code></pre>
+<h2>4. Memformat Tanggal</h2>
+<pre><code class="language-javascript">const t = new Date("2026-08-17T10:30:00");
+
+console.log(t.toLocaleDateString("id-ID", {
+  weekday: "long", day: "numeric", month: "long", year: "numeric",
+})); // "Senin, 17 Agustus 2026"
+
+console.log(t.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }));
+console.log(t.toISOString()); // format standar untuk dikirim ke server
+</code></pre>
+<h2>5. Menghitung dengan Tanggal</h2>
+<pre><code class="language-javascript">const mulai = new Date("2026-01-01");
+const akhir = new Date("2026-03-01");
+
+const selisihMs = akhir - mulai;                       // dalam milidetik
+const hari = selisihMs / (1000 * 60 * 60 * 24);
+console.log(hari); // 59
+
+console.log(Date.now()); // milidetik sejak 1 Januari 1970
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Lupa bahwa <code>getMonth()</code> dimulai dari 0.</li>
+<li>Menulis JSON dengan tanda kutip tunggal atau koma di akhir.</li>
+<li>Menyimpan <code>Date</code> lewat JSON lalu lupa bahwa hasilnya menjadi teks.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Ubah array daftar siswa menjadi JSON lalu kembalikan. Kemudian buat fungsi yang menampilkan sisa hari menuju tanggal ulang tahun Anda.</p>
+<h2>Rangkuman</h2>
+<p><code>JSON.stringify</code> dan <code>JSON.parse</code> mengubah data menjadi teks dan sebaliknya (gunakan <code>try/catch</code> saat parsing). <code>Date</code> membuat, menghitung, dan memformat tanggal; ingat bulan dimulai dari 0.</p>

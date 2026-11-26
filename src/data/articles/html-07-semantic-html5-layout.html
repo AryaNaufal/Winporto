@@ -1,0 +1,70 @@
+<p>Elemen semantik menjelaskan <strong>fungsi suatu bagian</strong>, bukan tampilannya. Browser tidak otomatis membuat <code>header</code> terlihat menarik; CSS tetap diperlukan. Keuntungannya adalah kode lebih mudah dipahami oleh developer dan teknologi bantu.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Memilih elemen semantik berdasarkan arti.</li>
+<li>Menyusun kerangka halaman sederhana.</li>
+<li>Menghindari penggunaan <code>div</code> untuk semua bagian.</li>
+</ul>
+<h2>1. Elemen Utama</h2>
+<ul>
+<li><code>header</code>: pembuka halaman atau sebuah bagian.</li>
+<li><code>nav</code>: kelompok link navigasi utama.</li>
+<li><code>main</code>: konten utama yang unik pada halaman.</li>
+<li><code>section</code>: kelompok konten bertema, biasanya memiliki heading.</li>
+<li><code>article</code>: konten mandiri yang tetap masuk akal jika dibagikan terpisah.</li>
+<li><code>aside</code>: informasi tambahan yang berkaitan secara tidak langsung.</li>
+<li><code>footer</code>: informasi penutup halaman atau bagian.</li>
+</ul>
+<h2>2. Contoh Struktur Halaman</h2>
+<pre><code class="language-html">&lt;header&gt;
+  &lt;a href=&quot;index.html&quot;&gt;Belajar Web&lt;/a&gt;
+  &lt;nav aria-label=&quot;Navigasi utama&quot;&gt;
+    &lt;a href=&quot;html.html&quot;&gt;HTML&lt;/a&gt;
+    &lt;a href=&quot;css.html&quot;&gt;CSS&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;h1&gt;Artikel Terbaru&lt;/h1&gt;
+
+    &lt;article&gt;
+      &lt;h2&gt;Belajar HTML Semantik&lt;/h2&gt;
+      &lt;p&gt;HTML semantik membuat struktur lebih jelas.&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+
+  &lt;aside&gt;
+    &lt;h2&gt;Materi Terkait&lt;/h2&gt;
+    &lt;a href=&quot;aksesibilitas.html&quot;&gt;Dasar aksesibilitas&lt;/a&gt;
+  &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2026 Belajar Web&lt;/p&gt;
+&lt;/footer&gt;
+</code></pre>
+<p>Satu halaman umumnya hanya memiliki satu <code>main</code>. Namun <code>header</code> dan <code>footer</code> dapat muncul di dalam <code>article</code> atau <code>section</code> jika bagian tersebut membutuhkannya.</p>
+<h2>3. <code>section</code> atau <code>div</code>?</h2>
+<p>Gunakan <code>section</code> jika konten mempunyai tema yang dapat diberi heading.</p>
+<pre><code class="language-html">&lt;section&gt;
+  &lt;h2&gt;Pertanyaan Umum&lt;/h2&gt;
+  &lt;p&gt;Jawaban untuk pertanyaan yang sering ditanyakan.&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+<p>Gunakan <code>div</code> jika Anda hanya membutuhkan pembungkus untuk CSS atau JavaScript dan tidak ada makna khusus.</p>
+<pre><code class="language-html">&lt;div class=&quot;kartu-grid&quot;&gt;
+  &lt;!-- beberapa kartu --&gt;
+&lt;/div&gt;
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menganggap semua pembungkus harus menjadi <code>section</code>.</li>
+<li>Membuat <code>section</code> tanpa heading.</li>
+<li>Menggunakan beberapa <code>main</code> yang terlihat bersamaan.</li>
+<li>Memilih elemen berdasarkan nama class CSS, bukan maknanya.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Ambil halaman yang seluruhnya memakai <code>div</code>. Identifikasi navigasi, konten utama, artikel mandiri, informasi tambahan, dan footer, lalu ganti dengan elemen semantik yang sesuai.</p>
+<h2>Rangkuman</h2>
+<p>Semantik adalah tentang arti. Mulailah dari struktur konten, kemudian pilih elemen yang paling menjelaskan fungsi setiap bagian. Gunakan <code>div</code> jika tidak ada elemen semantik yang tepat.</p>

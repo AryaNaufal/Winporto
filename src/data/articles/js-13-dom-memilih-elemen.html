@@ -1,0 +1,61 @@
+<p>Inilah titik di mana JavaScript benar-benar bertemu halaman web. <strong>DOM</strong> (Document Object Model) adalah representasi halaman HTML sebagai pohon object yang dapat dibaca dan diubah oleh JavaScript.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Memahami DOM sebagai pohon elemen.</li>
+<li>Memilih elemen dengan <code>querySelector</code> dan <code>querySelectorAll</code>.</li>
+<li>Menelusuri elemen di sekitarnya.</li>
+</ul>
+<h2>1. Contoh HTML yang Dipakai</h2>
+<pre><code class="language-html">&lt;h1 id="judul"&gt;Daftar Tugas&lt;/h1&gt;
+&lt;ul class="daftar"&gt;
+  &lt;li class="item"&gt;Belajar HTML&lt;/li&gt;
+  &lt;li class="item selesai"&gt;Belajar CSS&lt;/li&gt;
+  &lt;li class="item"&gt;Belajar JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;
+</code></pre>
+<p>Browser mengubah HTML ini menjadi pohon: <code>document</code> memiliki <code>h1</code> dan <code>ul</code>, lalu <code>ul</code> memiliki tiga <code>li</code>.</p>
+<h2>2. Memilih Satu Elemen</h2>
+<pre><code class="language-javascript">const judul = document.querySelector("#judul");      // berdasarkan id
+const pertama = document.querySelector(".item");     // elemen .item PERTAMA
+const daftar = document.getElementById("judul");     // cara lain berdasarkan id
+
+console.log(judul.textContent);   // "Daftar Tugas"
+console.log(pertama.textContent); // "Belajar HTML"
+</code></pre>
+<p><code>querySelector</code> menerima selector CSS apa pun, sehingga pengetahuan CSS Anda langsung terpakai. Jika tidak ada yang cocok, hasilnya <code>null</code>.</p>
+<h2>3. Memilih Banyak Elemen</h2>
+<pre><code class="language-javascript">const semuaItem = document.querySelectorAll(".item");
+
+console.log(semuaItem.length); // 3
+
+semuaItem.forEach((item, indeks) =&gt; {
+  console.log(indeks + 1, item.textContent);
+});
+
+const arr = [...semuaItem];   // ubah menjadi array bila perlu map/filter
+</code></pre>
+<h2>4. Menelusuri Pohon</h2>
+<pre><code class="language-javascript">const daftar2 = document.querySelector(".daftar");
+
+console.log(daftar2.children);               // semua anak elemen
+console.log(daftar2.firstElementChild);      // anak pertama
+console.log(daftar2.lastElementChild);       // anak terakhir
+console.log(daftar2.parentElement);          // induk (body)
+
+const item = document.querySelector(".item");
+console.log(item.nextElementSibling);        // saudara berikutnya
+console.log(item.closest(".daftar"));        // leluhur terdekat yang cocok
+</code></pre>
+<h2>5. Jangan Lupa defer</h2>
+<p>Jika skrip berjalan sebelum elemennya dibuat, <code>querySelector</code> mengembalikan <code>null</code>. Pasang <code>defer</code> atau letakkan skrip di akhir <code>&lt;body&gt;</code>.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Lupa tanda <code>#</code> atau <code>.</code> pada selector.</li>
+<li>Menjalankan skrip sebelum HTML dimuat sehingga hasilnya <code>null</code>.</li>
+<li>Memakai <code>querySelector</code> padahal butuh semua elemen (pakai <code>querySelectorAll</code>).</li>
+</ul>
+<h2>Latihan</h2>
+<p>Gunakan HTML di atas. Cetak teks setiap <code>li</code> ke Console, lalu temukan <code>li</code> yang punya class <code>selesai</code> dan cetak teks saudara sebelumnya.</p>
+<h2>Rangkuman</h2>
+<p>DOM adalah pohon elemen halaman. <code>querySelector</code> memilih satu elemen, <code>querySelectorAll</code> memilih semuanya, dan properti seperti <code>children</code> dan <code>parentElement</code> membantu menelusuri.</p>

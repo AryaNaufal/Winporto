@@ -1,0 +1,66 @@
+<p>Array adalah daftar nilai berurutan dalam satu variabel. Daftar belanja, daftar nilai ujian, atau daftar produk semuanya cocok disimpan dalam array.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Membuat array dan mengakses isinya lewat indeks.</li>
+<li>Menambah dan menghapus item.</li>
+<li>Menyalin array dan membongkar isinya dengan destructuring.</li>
+</ul>
+<h2>1. Membuat dan Mengakses Array</h2>
+<pre><code class="language-javascript">const buah = ["apel", "jeruk", "mangga"];
+
+console.log(buah[0]);          // "apel" (indeks mulai dari 0)
+console.log(buah[2]);          // "mangga"
+console.log(buah.length);      // 3
+console.log(buah[buah.length - 1]); // item terakhir
+console.log(buah.at(-1));      // juga item terakhir
+
+buah[1] = "pisang";            // mengganti isi
+console.log(buah);
+</code></pre>
+<p>Array yang dideklarasikan dengan <code>const</code> tetap boleh diubah isinya; yang tidak boleh hanyalah mengganti variabelnya dengan array lain.</p>
+<h2>2. Menambah dan Menghapus</h2>
+<pre><code class="language-javascript">const antrean = ["Ani", "Budi"];
+
+antrean.push("Citra");     // tambah di akhir  -> Ani, Budi, Citra
+antrean.unshift("Dewi");   // tambah di awal   -> Dewi, Ani, Budi, Citra
+const keluar = antrean.shift(); // ambil dari awal -> "Dewi"
+const terakhir = antrean.pop(); // ambil dari akhir -> "Citra"
+
+console.log(antrean, keluar, terakhir);
+</code></pre>
+<h2>3. Mencari dan Memotong</h2>
+<pre><code class="language-javascript">const angka = [10, 20, 30, 40, 50];
+
+console.log(angka.includes(30));   // true
+console.log(angka.indexOf(40));    // 3 (-1 jika tidak ada)
+console.log(angka.slice(1, 3));    // [20, 30] (tidak mengubah asli)
+console.log(angka.join(" - "));    // "10 - 20 - 30 - 40 - 50"
+
+angka.splice(1, 2);                // hapus 2 item mulai indeks 1 (MENGUBAH asli)
+console.log(angka);                // [10, 40, 50]
+</code></pre>
+<h2>4. Menyalin dan Menggabung dengan Spread</h2>
+<pre><code class="language-javascript">const a = [1, 2];
+const b = [3, 4];
+
+const gabung = [...a, ...b];   // [1, 2, 3, 4]
+const salinan = [...a];        // salinan baru
+
+salinan.push(99);
+console.log(a);                // [1, 2] (tidak ikut berubah)
+</code></pre>
+<p><code>const salinan = a</code> <em>tidak</em> membuat salinan; kedua variabel menunjuk array yang sama.</p>
+<h2>5. Destructuring Array</h2>
+<pre><code class="language-javascript">const [pertama, kedua, ...sisa] = ["a", "b", "c", "d"];
+console.log(pertama, kedua, sisa); // a b ["c", "d"]
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Mengira indeks mulai dari 1.</li>
+<li>Menyalin dengan <code>=</code> lalu heran saat array asli ikut berubah.</li>
+<li>Mengakses indeks di luar jangkauan sehingga mendapat <code>undefined</code>.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat array berisi lima nama. Tambahkan satu nama di akhir, hapus nama pertama, lalu cetak tiap nama dengan <code>for...of</code>. Kemudian buat salinannya dan urutkan kebalikan secara manual.</p>
+<h2>Rangkuman</h2>
+<p>Array menyimpan daftar berindeks. <code>push/pop</code> bekerja di akhir, <code>unshift/shift</code> di awal, <code>slice</code> tidak mengubah array, <code>splice</code> mengubahnya, dan spread membuat salinan.</p>

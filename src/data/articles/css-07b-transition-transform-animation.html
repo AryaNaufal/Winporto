@@ -1,0 +1,103 @@
+<p>Gerakan dapat menunjukkan bahwa tombol sedang aktif atau kartu dapat diklik. Gerakan yang baik bersifat singkat dan memiliki tujuan.</p>
+<h2>1. Demo Transition, Transform, dan Animation</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      color: #334155;
+      background-color: #f8fafc;
+    }
+
+    .daftar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .kartu {
+      width: 220px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgb(15 23 42 / 10%);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .kartu:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 28px rgb(15 23 42 / 18%);
+    }
+
+    .tombol {
+      padding: 12px 18px;
+      color: white;
+      background-color: #0f766e;
+      border: 0;
+      border-radius: 8px;
+      transition: background-color 200ms ease, transform 200ms ease;
+    }
+
+    .tombol:hover {
+      background-color: #115e59;
+      transform: translateY(-2px);
+    }
+
+    @keyframes berputar {
+      to { transform: rotate(360deg); }
+    }
+
+    .pemuat {
+      width: 36px;
+      height: 36px;
+      border: 5px solid #cbd5e1;
+      border-top-color: #0f766e;
+      border-radius: 50%;
+      animation: berputar 800ms linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .kartu,
+      .tombol {
+        transition: none;
+      }
+
+      .pemuat {
+        animation: none;
+      }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Gerakan CSS&lt;/h1&gt;
+  &lt;div class=&quot;daftar&quot;&gt;
+    &lt;article class=&quot;kartu&quot;&gt;
+      &lt;h2&gt;Kartu Interaktif&lt;/h2&gt;
+      &lt;p&gt;Arahkan mouse untuk melihat transform.&lt;/p&gt;
+    &lt;/article&gt;
+    &lt;button class=&quot;tombol&quot;&gt;Simpan&lt;/button&gt;
+    &lt;div class=&quot;pemuat&quot; aria-label=&quot;Sedang memuat&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><code>transition</code> menghaluskan perubahan keadaan. <code>transform</code> dapat memindahkan, memperbesar, atau memutar elemen tanpa mengubah alur dokumen. <code>@keyframes</code> membuat rangkaian animasi seperti indikator pemuat.</p>
+<p>Hindari <code>transition: all</code> karena browser dapat menganimasikan property yang tidak Anda inginkan. Untuk interaksi sederhana, durasi sekitar 150–300 milidetik biasanya terasa responsif.</p>
+<h2>2. Menghormati Preferensi Pengguna</h2>
+<p>Media query <code>prefers-reduced-motion</code> pada contoh mematikan gerakan ketika pengguna meminta pengurangan animasi melalui sistem operasinya.</p>
+<h2>Kesalahan yang Sering Terjadi</h2>
+<ul>
+<li>Menganimasikan terlalu banyak elemen sekaligus.</li>
+<li>Menggunakan durasi beberapa detik untuk interaksi sederhana.</li>
+<li>Membuat animasi berulang tanpa tujuan.</li>
+<li>Menggerakkan konten penting sehingga sulit dibaca.</li>
+<li>Mengabaikan <code>prefers-reduced-motion</code>.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Ubah arah gerak kartu dan kecepatan pemuat. Tambahkan <code>rotate(2deg)</code> pada hover, lalu uji apakah gerakannya masih nyaman.</p>
+<h2>Ringkasan</h2>
+<p><code>transition</code> menghaluskan perubahan, <code>transform</code> mengubah tampilan kotak, dan <code>@keyframes</code> membuat animasi. Gunakan gerakan secara singkat, terarah, dan ramah aksesibilitas.</p>

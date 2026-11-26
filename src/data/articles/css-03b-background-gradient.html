@@ -1,0 +1,109 @@
+<p>Background berada di belakang konten dan padding elemen. Ia dapat berupa warna, gambar, atau gradient.</p>
+<h2>1. Gambar Latar dan Overlay</h2>
+<p>Contoh berikut memakai gambar CC0 yang dapat langsung dimuat di sandbox.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .hero {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      color: white;
+      text-align: center;
+      background-image:
+        linear-gradient(rgb(15 23 42 / 70%), rgb(15 23 42 / 70%)),
+        url(&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/responsive-images/elva-800w.jpg&quot;);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .hero h1 {
+      max-width: 600px;
+      font-size: 2.5rem;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;section class=&quot;hero&quot;&gt;
+    &lt;div&gt;
+      &lt;h1&gt;Belajar Background Image&lt;/h1&gt;
+      &lt;p&gt;Overlay gelap membantu teks putih tetap terbaca.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><code>cover</code> memperbesar gambar hingga area tertutup, tetapi sebagian sisi gambar dapat terpotong. Jika seluruh gambar harus terlihat, pertimbangkan <code>contain</code> atau elemen <code>img</code>. Gambar yang membawa informasi penting sebaiknya tetap menjadi <code>img</code> dengan <code>alt</code>.</p>
+<h2>2. Linear dan Radial Gradient</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 24px;
+      background-color: #f8fafc;
+    }
+
+    .daftar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .kotak {
+      min-height: 180px;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      border-radius: 16px;
+      font-weight: 700;
+    }
+
+    .linear {
+      color: white;
+      background: linear-gradient(135deg, #0f766e, #2563eb);
+    }
+
+    .radial {
+      color: #78350f;
+      background: radial-gradient(circle at top, #fef3c7, #ffffff 65%);
+      border: 1px solid #fde68a;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;daftar&quot;&gt;
+    &lt;div class=&quot;kotak linear&quot;&gt;Linear gradient&lt;/div&gt;
+    &lt;div class=&quot;kotak radial&quot;&gt;Radial gradient&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Sudut <code>135deg</code> menentukan arah linear gradient. Radial gradient menyebar dari titik pusat. Gunakan keduanya dengan lembut agar konten tetap menjadi fokus.</p>
+<p>Gambar pada contoh berasal dari <a href="https://github.com/mdn/learning-area">MDN Learning Area</a> yang menggunakan <a href="https://github.com/mdn/learning-area/blob/main/LICENSE">lisensi CC0 1.0</a>.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menaruh informasi penting dalam background tanpa alternatif teks.</li>
+<li>Menggunakan file gambar terlalu besar.</li>
+<li>Menganggap <code>cover</code> tidak pernah memotong gambar.</li>
+<li>Menambahkan gradient berlebihan hingga teks sulit dibaca.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Ubah arah gradient, warna overlay, dan posisi background pada contoh. Kecilkan viewport untuk mengamati bagian gambar yang terpotong oleh <code>cover</code>.</p>
+<h2>Rangkuman</h2>
+<p>Background cocok untuk dekorasi. <code>background-position</code> mengatur posisi, <code>background-size</code> mengatur ukuran, dan beberapa background dapat ditumpuk untuk membuat overlay.</p>

@@ -1,0 +1,110 @@
+<p>Desain responsif berarti halaman tetap mudah dibaca dan digunakan pada berbagai ukuran layar. Tujuannya bukan membuat tampilan identik, melainkan memastikan isi dan tindakan utama tetap nyaman.</p>
+<h2>1. Demo Mobile-First</h2>
+<p>Ubah pilihan viewport sandbox antara Mobile, Tablet, dan Desktop untuk melihat perubahannya.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;style&gt;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #334155;
+      background-color: #f8fafc;
+    }
+
+    .container {
+      width: min(100% - 32px, 1100px);
+      margin-inline: auto;
+    }
+
+    .navigasi {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-block: 20px;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .daftar-produk {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding-block: 24px;
+    }
+
+    .produk {
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+    }
+
+    @media (min-width: 700px) {
+      .navigasi,
+      .menu {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .navigasi {
+        justify-content: space-between;
+      }
+
+      .daftar-produk {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .daftar-produk {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav class=&quot;container navigasi&quot;&gt;
+    &lt;strong&gt;Belajar CSS&lt;/strong&gt;
+    &lt;div class=&quot;menu&quot;&gt;&lt;span&gt;Materi&lt;/span&gt;&lt;span&gt;Tentang&lt;/span&gt;&lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;container&quot;&gt;
+    &lt;h1&gt;Daftar Kelas&lt;/h1&gt;
+    &lt;section class=&quot;daftar-produk&quot;&gt;
+      &lt;article class=&quot;produk&quot;&gt;&lt;h2&gt;HTML&lt;/h2&gt;&lt;p&gt;Struktur halaman.&lt;/p&gt;&lt;/article&gt;
+      &lt;article class=&quot;produk&quot;&gt;&lt;h2&gt;CSS&lt;/h2&gt;&lt;p&gt;Tampilan halaman.&lt;/p&gt;&lt;/article&gt;
+      &lt;article class=&quot;produk&quot;&gt;&lt;h2&gt;JavaScript&lt;/h2&gt;&lt;p&gt;Interaksi halaman.&lt;/p&gt;&lt;/article&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2>2. Cara Kerja Mobile-First</h2>
+<p>Gaya dasar memakai satu kolom dan navigasi vertikal. Saat ruang minimal <code>700px</code>, layout menjadi dua kolom dan navigasi menjadi baris. Pada <code>1000px</code>, kartu menjadi tiga kolom.</p>
+<p>Meta viewport membuat lebar halaman mengikuti perangkat. Container fleksibel menyisakan jarak <code>16px</code> di kedua sisi dan tidak melebihi <code>1100px</code>.</p>
+<h2>3. Memilih Breakpoint</h2>
+<p>Tidak ada angka breakpoint yang wajib untuk semua project. Sempitkan browser dan perhatikan kapan isi mulai berdesakan. Letakkan breakpoint berdasarkan kebutuhan isi, bukan nama perangkat.</p>
+<h2>4. Menguji Tampilan</h2>
+<p>Uji sekitar <code>320px</code>, <code>768px</code>, <code>1024px</code>, dan beberapa ukuran di antaranya. Periksa scroll horizontal, teks terpotong, tombol tertutup, dan area klik terlalu kecil. Uji juga zoom browser 200%.</p>
+<h2>Kesalahan yang Sering Terjadi</h2>
+<ul>
+<li>Menulis ukuran tetap besar pada konten utama.</li>
+<li>Membuat breakpoint berdasarkan satu model perangkat.</li>
+<li>Menggunakan terlalu banyak media query untuk memperbaiki CSS yang tidak fleksibel.</li>
+<li>Menyembunyikan informasi penting pada layar kecil.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Ubah breakpoint pertama menjadi <code>600px</code> dan kedua menjadi <code>900px</code>. Tambahkan kartu keempat lalu periksa tampilan pada ketiga pilihan viewport sandbox.</p>
+<h2>Ringkasan</h2>
+<p>Mulailah dengan meta viewport dan ukuran fleksibel. Tulis gaya dasar untuk layar kecil, lalu tambahkan perubahan dengan <code>@media (min-width: ...)</code> ketika konten membutuhkan lebih banyak ruang.</p>

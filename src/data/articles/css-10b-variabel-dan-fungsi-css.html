@@ -1,0 +1,102 @@
+<p>Custom properties, sering disebut variabel CSS, menyimpan nilai yang dapat digunakan kembali. Fungsi CSS membantu menghitung dan membatasi ukuran secara fleksibel.</p>
+<h2>1. Demo Variabel dan Fungsi CSS</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    :root {
+      --warna-utama: #0f766e;
+      --warna-teks: #0f172a;
+      --warna-latar: #f1f5f9;
+      --jarak-kecil: 8px;
+      --jarak-sedang: 16px;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--warna-teks);
+      background-color: var(--warna-latar);
+    }
+
+    .header {
+      min-height: calc(45vh - 32px);
+      display: grid;
+      place-items: center;
+      padding: var(--jarak-sedang);
+      color: white;
+      background-color: var(--warna-utama);
+    }
+
+    .judul {
+      font-size: clamp(2rem, 6vw, 4rem);
+      text-align: center;
+    }
+
+    .container {
+      width: min(100% - 32px, 900px);
+      margin-inline: auto;
+      padding-block: 32px;
+    }
+
+    .kartu {
+      --warna-aksen: #2563eb;
+      padding: var(--jarak-sedang);
+      background-color: white;
+      border-left: 5px solid var(--warna-aksen);
+      border-radius: var(--radius);
+    }
+
+    .kartu-peringatan {
+      --warna-aksen: #dc2626;
+      margin-top: var(--jarak-sedang);
+    }
+
+    .label {
+      color: var(--warna-label, #475569);
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header class=&quot;header&quot;&gt;&lt;h1 class=&quot;judul&quot;&gt;Variabel CSS&lt;/h1&gt;&lt;/header&gt;
+  &lt;main class=&quot;container&quot;&gt;
+    &lt;article class=&quot;kartu&quot;&gt;
+      &lt;h2&gt;Kartu Informasi&lt;/h2&gt;
+      &lt;p class=&quot;label&quot;&gt;Menggunakan warna aksen lokal berwarna biru.&lt;/p&gt;
+    &lt;/article&gt;
+    &lt;article class=&quot;kartu kartu-peringatan&quot;&gt;
+      &lt;h2&gt;Kartu Peringatan&lt;/h2&gt;
+      &lt;p class=&quot;label&quot;&gt;Variabel aksennya ditimpa menjadi merah.&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2>2. Membuat dan Menggunakan Variabel</h2>
+<p>Nama custom property diawali <code>--</code> dan digunakan dengan <code>var()</code>. Variabel pada <code>:root</code> tersedia secara global. Variabel <code>--warna-aksen</code> pada kartu mempunyai scope lokal dan dapat ditimpa oleh <code>.kartu-peringatan</code>.</p>
+<p><code>var(--warna-label, #475569)</code> memiliki fallback yang dipakai jika <code>--warna-label</code> tidak ditemukan.</p>
+<h2>3. Fungsi Ukuran</h2>
+<ul>
+<li><code>calc(45vh - 32px)</code> menggabungkan satuan dan operasi hitung.</li>
+<li><code>min(100% - 32px, 900px)</code> memilih nilai terkecil.</li>
+<li><code>max(240px, 25%)</code> dapat menjaga lebar minimum.</li>
+<li><code>clamp(2rem, 6vw, 4rem)</code> menjaga ukuran antara batas minimum dan maksimum.</li>
+</ul>
+<p>Berikan spasi di sekitar operator pengurangan di dalam <code>calc()</code>.</p>
+<h2>Kesalahan yang Sering Terjadi</h2>
+<ul>
+<li>Menulis nama variabel tanpa awalan <code>--</code>.</li>
+<li>Lupa membungkus penggunaan variabel dengan <code>var()</code>.</li>
+<li>Membuat terlalu banyak variabel untuk nilai yang hanya digunakan sekali.</li>
+<li>Menggunakan <code>clamp()</code> tanpa batas yang masuk akal.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Ubah <code>--warna-utama</code> dan <code>--radius</code> di <code>:root</code>. Buat kartu ketiga dengan variabel aksen ungu, lalu ubah batas minimum dan maksimum judul.</p>
+<h2>Ringkasan</h2>
+<p>Custom properties menyimpan nilai yang dapat digunakan kembali. <code>calc()</code> menghitung nilai, <code>min()</code> dan <code>max()</code> memilih batas, sedangkan <code>clamp()</code> menjaga nilai di antara minimum dan maksimum.</p>

@@ -1,0 +1,42 @@
+<p>Satu file gambar besar untuk semua perangkat memang mudah, tetapi pengguna ponsel dapat mengunduh data yang tidak diperlukan. HTML menyediakan cara agar browser memilih gambar paling sesuai.</p>
+<h2>1. Memilih Ukuran dengan <code>srcset</code></h2>
+<pre><code class="language-html">&lt;img
+  src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/responsive-images/elva-fairy-800w.jpg&quot;
+  srcset=&quot;
+    https://mdn.github.io/learning-area/html/multimedia-and-embedding/responsive-images/elva-fairy-320w.jpg 320w,
+    https://mdn.github.io/learning-area/html/multimedia-and-embedding/responsive-images/elva-fairy-480w.jpg 480w,
+    https://mdn.github.io/learning-area/html/multimedia-and-embedding/responsive-images/elva-fairy-640w.jpg 640w,
+    https://mdn.github.io/learning-area/html/multimedia-and-embedding/responsive-images/elva-fairy-800w.jpg 800w
+  &quot;
+  sizes=&quot;(max-width: 600px) 100vw, 800px&quot;
+  alt=&quot;Anak perempuan memakai kostum peri&quot;
+&gt;
+</code></pre>
+<p>Angka <code>320w</code>, <code>480w</code>, <code>640w</code>, dan <code>800w</code> menyatakan lebar asli setiap file. <code>sizes</code> menjelaskan perkiraan lebar gambar pada layout. Browser kemudian mempertimbangkan ukuran layar dan kepadatan piksel.</p>
+<h2>2. Mengubah Komposisi dengan <code>picture</code></h2>
+<pre><code class="language-html">&lt;picture&gt;
+  &lt;source
+    media=&quot;(max-width: 600px)&quot;
+    srcset=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/responsive-images/elva-480w-close-portrait.jpg&quot;
+  &gt;
+  &lt;img
+    src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/responsive-images/elva-800w.jpg&quot;
+    alt=&quot;Seorang ayah berdiri sambil menggendong putrinya&quot;
+  &gt;
+&lt;/picture&gt;
+</code></pre>
+<p>Pada viewport maksimal <code>600px</code>, browser memakai gambar portrait yang lebih dekat pada subjek. Pada layar lebih lebar, browser memakai gambar landscape dari elemen <code>img</code>.</p>
+<p>Teknik ini disebut <em>art direction</em>. Elemen <code>img</code> tetap wajib karena membawa <code>alt</code>, ukuran, dan gambar fallback. Gunakan teknik ini hanya jika gambar lebar tidak terbaca dengan baik pada layar kecil.</p>
+<h2>3. Sumber Aset Contoh</h2>
+<p>Semua URL contoh berasal dari <a href="https://github.com/mdn/learning-area">MDN Learning Area</a> yang menggunakan <a href="https://github.com/mdn/learning-area/blob/main/LICENSE">lisensi CC0 1.0</a>. Karena setiap file benar-benar tersedia dalam ukuran berbeda, Anda dapat langsung mencoba pemilihan gambar melalui Network panel DevTools.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menggunakan <code>srcset</code> tetapi semua file sebenarnya berukuran sama.</li>
+<li>Menghapus <code>src</code> fallback.</li>
+<li>Menaruh <code>alt</code> pada <code>source</code>; <code>alt</code> harus berada pada <code>img</code>.</li>
+<li>Menebak <code>sizes</code> tanpa memahami lebar gambar pada layout.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Siapkan satu gambar dalam tiga ukuran. Terapkan <code>srcset</code>, kecilkan jendela browser, lalu periksa file yang dipilih melalui Network panel DevTools.</p>
+<h2>Rangkuman</h2>
+<p><code>srcset</code> membantu memilih ukuran, sedangkan <code>picture</code> membantu memilih komposisi. Keduanya dapat menghemat data tanpa mengorbankan kualitas gambar.</p>

@@ -1,0 +1,15 @@
+---
+import type { AppDef } from '../data/apps';
+
+interface Props {
+  app: AppDef;
+}
+const { app } = Astro.props;
+---
+
+<li>
+  <button type="button" class="desktop-icon" data-app={app.id} title="Double-click to open">
+    <img src={app.icon} alt="" width="48" height="48" />
+    <span>{app.label}</span>
+  </button>
+</li>

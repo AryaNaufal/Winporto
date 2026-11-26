@@ -1,0 +1,91 @@
+<p>Pseudo-class memilih elemen berdasarkan keadaan, sedangkan pseudo-element memilih atau membuat bagian virtual dari elemen.</p>
+<h2>1. Demo Interaksi dan Dekorasi</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 32px;
+      color: #334155;
+    }
+
+    .judul::after {
+      content: &quot;&quot;;
+      display: block;
+      width: 48px;
+      height: 4px;
+      margin-top: 8px;
+      background-color: #14b8a6;
+    }
+
+    .tombol {
+      display: inline-block;
+      padding: 12px 18px;
+      color: white;
+      background-color: #0f766e;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .tombol::after {
+      content: &quot; →&quot;;
+      display: inline-block;
+      transition: transform 180ms ease;
+    }
+
+    .tombol:hover {
+      background-color: #115e59;
+    }
+
+    .tombol:hover::after {
+      transform: translateX(4px);
+    }
+
+    .tombol:focus-visible {
+      outline: 3px solid #2dd4bf;
+      outline-offset: 3px;
+    }
+
+    input:checked {
+      accent-color: #0f766e;
+    }
+
+    li:first-child {
+      font-weight: 700;
+    }
+
+    li:nth-child(even) {
+      background-color: #f1f5f9;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1 class=&quot;judul&quot;&gt;Pseudo-Class dan Pseudo-Element&lt;/h1&gt;
+  &lt;a class=&quot;tombol&quot; href=&quot;#contoh&quot;&gt;Lihat contoh&lt;/a&gt;
+
+  &lt;p&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Tandai materi selesai&lt;/label&gt;&lt;/p&gt;
+
+  &lt;ol id=&quot;contoh&quot;&gt;
+    &lt;li&gt;Item pertama dibuat tebal.&lt;/li&gt;
+    &lt;li&gt;Item genap memiliki background.&lt;/li&gt;
+    &lt;li&gt;Item ketiga tampil biasa.&lt;/li&gt;
+    &lt;li&gt;Item genap memiliki background.&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><code>:hover</code>, <code>:focus-visible</code>, <code>:checked</code>, dan <code>:first-child</code> adalah pseudo-class. <code>::before</code> dan <code>::after</code> adalah pseudo-element. Properti <code>content</code> wajib tersedia untuk keduanya, walaupun nilainya berupa teks kosong.</p>
+<p>Jangan menghapus <code>outline</code> tanpa menyediakan pengganti yang terlihat. Informasi penting juga sebaiknya tetap ditulis di HTML, bukan hanya melalui <code>content</code>.</p>
+<h2>Kesalahan yang Sering Terjadi</h2>
+<ul>
+<li>Menulis <code>button hover</code> tanpa tanda titik dua.</li>
+<li>Hanya menyediakan efek <code>:hover</code> dan melupakan <code>:focus-visible</code>.</li>
+<li>Menaruh kalimat penting melalui <code>content</code>.</li>
+<li>Membuat selector terlalu panjang sehingga sulit dirawat.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Arahkan mouse ke tombol, lalu gunakan tombol Tab untuk memfokuskannya. Ubah jarak gerak panah dan tambahkan gaya untuk <code>button:disabled</code>.</p>
+<h2>Ringkasan</h2>
+<p>Pseudo-class memilih keadaan elemen, misalnya <code>:hover</code> dan <code>:checked</code>. Pseudo-element membuat bagian virtual, misalnya <code>::before</code> dan <code>::after</code>.</p>

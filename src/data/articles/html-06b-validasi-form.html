@@ -1,0 +1,62 @@
+<p>Setelah struktur form dipahami, kita dapat membantu pengguna memasukkan data dalam format yang benar. Browser memiliki validasi dasar yang dapat dipakai tanpa JavaScript.</p>
+<h2>1. Pilih Tipe Input yang Sesuai</h2>
+<pre><code class="language-html">&lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
+&lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot;&gt;
+
+&lt;label for=&quot;sandi&quot;&gt;Kata sandi&lt;/label&gt;
+&lt;input type=&quot;password&quot; id=&quot;sandi&quot; name=&quot;sandi&quot;&gt;
+
+&lt;label for=&quot;lahir&quot;&gt;Tanggal lahir&lt;/label&gt;
+&lt;input type=&quot;date&quot; id=&quot;lahir&quot; name=&quot;lahir&quot;&gt;
+
+&lt;label for=&quot;jumlah&quot;&gt;Jumlah tiket&lt;/label&gt;
+&lt;input type=&quot;number&quot; id=&quot;jumlah&quot; name=&quot;jumlah&quot; min=&quot;1&quot; max=&quot;10&quot;&gt;
+</code></pre>
+<p>Tipe yang tepat dapat menampilkan keyboard yang lebih sesuai di ponsel dan memberikan pemeriksaan format dasar.</p>
+<h2>2. Validasi Bawaan</h2>
+<pre><code class="language-html">&lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+&lt;input
+  type=&quot;text&quot;
+  id=&quot;username&quot;
+  name=&quot;username&quot;
+  required
+  minlength=&quot;3&quot;
+  maxlength=&quot;20&quot;
+  aria-describedby=&quot;bantuan-username&quot;
+&gt;
+&lt;small id=&quot;bantuan-username&quot;&gt;Gunakan 3–20 karakter.&lt;/small&gt;
+</code></pre>
+<ul>
+<li><code>required</code> mewajibkan nilai.</li>
+<li><code>minlength</code> dan <code>maxlength</code> mengatur panjang teks.</li>
+<li><code>min</code> dan <code>max</code> mengatur rentang angka atau tanggal.</li>
+<li><code>pattern</code> menerima pola ekspresi reguler, tetapi sebaiknya tidak dipakai sebelum Anda memahami polanya.</li>
+</ul>
+<p>Pesan bantuan harus tetap terlihat. Jangan hanya menjelaskan aturan melalui placeholder.</p>
+<h2>3. Validasi Browser Bukan Keamanan Server</h2>
+<p>Pengguna teknis dapat melewati validasi HTML. Karena itu, server <strong>harus memeriksa ulang semua data</strong>. Validasi browser bertujuan memperbaiki pengalaman pengguna, bukan menjadi pertahanan keamanan utama.</p>
+<h2>4. Contoh Form Pendaftaran</h2>
+<pre><code class="language-html">&lt;form action=&quot;/daftar&quot; method=&quot;post&quot;&gt;
+  &lt;label for=&quot;nama&quot;&gt;Nama&lt;/label&gt;
+  &lt;input id=&quot;nama&quot; name=&quot;nama&quot; required minlength=&quot;2&quot;&gt;
+
+  &lt;label for=&quot;email-daftar&quot;&gt;Email&lt;/label&gt;
+  &lt;input type=&quot;email&quot; id=&quot;email-daftar&quot; name=&quot;email&quot; required&gt;
+
+  &lt;label for=&quot;umur&quot;&gt;Umur&lt;/label&gt;
+  &lt;input type=&quot;number&quot; id=&quot;umur&quot; name=&quot;umur&quot; min=&quot;13&quot; max=&quot;100&quot;&gt;
+
+  &lt;button type=&quot;submit&quot;&gt;Daftar&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menggunakan <code>type=&quot;text&quot;</code> untuk semua jenis data.</li>
+<li>Membatasi pengguna dengan <code>maxlength</code> tanpa menjelaskan batasnya.</li>
+<li>Menganggap atribut <code>required</code> cukup untuk keamanan.</li>
+<li>Memberikan pesan kesalahan hanya melalui warna merah.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Tambahkan validasi pada form kontak: nama minimal dua karakter, email wajib dan harus berformat email, serta pesan minimal sepuluh karakter.</p>
+<h2>Rangkuman</h2>
+<p>Tipe input dan atribut validasi membantu pengguna, tetapi server tetap wajib memvalidasi data. Selalu berikan label dan petunjuk yang jelas.</p>

@@ -1,0 +1,54 @@
+<p>Teks (string) dan angka (number) adalah data yang paling sering Anda olah. JavaScript menyediakan banyak alat bawaan untuk keduanya.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Menggabungkan teks dengan template literal.</li>
+<li>Memakai method string yang umum.</li>
+<li>Membulatkan dan mengonversi angka, serta memakai <code>Math</code>.</li>
+</ul>
+<h2>1. Template Literal</h2>
+<p>Gunakan tanda backtick <code>`</code> dan <code>${}</code> untuk menyisipkan nilai ke dalam teks.</p>
+<pre><code class="language-javascript">const nama = "Sinta";
+const poin = 80;
+
+console.log("Halo, " + nama + "! Poin: " + poin);   // cara lama
+console.log(`Halo, ${nama}! Poin: ${poin + 5}`);     // cara modern
+</code></pre>
+<h2>2. Method String</h2>
+<pre><code class="language-javascript">const kalimat = "  Belajar JavaScript  ";
+
+console.log(kalimat.length);                 // 22
+console.log(kalimat.trim());                 // "Belajar JavaScript"
+console.log(kalimat.toUpperCase());          // "  BELAJAR JAVASCRIPT  "
+console.log(kalimat.includes("Java"));       // true
+console.log(kalimat.trim().slice(0, 7));     // "Belajar"
+console.log(kalimat.trim().split(" "));      // ["Belajar", "JavaScript"]
+console.log(kalimat.replace("Java", "Type")); // "  Belajar TypeScript  "
+</code></pre>
+<p>String bersifat <em>immutable</em>: method di atas tidak mengubah string asli, melainkan menghasilkan string baru.</p>
+<h2>3. Bekerja dengan Angka</h2>
+<pre><code class="language-javascript">console.log(parseInt("42px"));     // 42
+console.log(parseFloat("3.14abc")); // 3.14
+console.log((3.14159).toFixed(2));  // "3.14" (hasilnya teks)
+console.log(Number.isNaN(Number("abc"))); // true
+</code></pre>
+<h2>4. Objek Math</h2>
+<pre><code class="language-javascript">console.log(Math.round(4.6));  // 5
+console.log(Math.floor(4.9));  // 4
+console.log(Math.ceil(4.1));   // 5
+console.log(Math.max(3, 9, 5)); // 9
+console.log(Math.min(3, 9, 5)); // 3
+
+// Angka acak 1 sampai 6 (seperti dadu)
+const dadu = Math.floor(Math.random() * 6) + 1;
+console.log(dadu);
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Memakai tanda kutip biasa dan berharap <code>${}</code> bekerja; harus backtick.</li>
+<li>Menganggap <code>toUpperCase()</code> mengubah variabel aslinya.</li>
+<li>Lupa bahwa <code>0.1 + 0.2</code> tidak persis <code>0.3</code> pada semua bahasa pemrograman yang memakai floating point.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Dari <code>"  jAvAsCrIpT  "</code>, buat tulisan rapi <code>"Javascript"</code> (huruf pertama besar, sisanya kecil) dengan <code>trim</code>, <code>slice</code>, <code>toUpperCase</code>, dan <code>toLowerCase</code>. Lalu buat generator angka acak 1 sampai 100.</p>
+<h2>Rangkuman</h2>
+<p>Template literal memudahkan menyusun teks. Method string menghasilkan nilai baru, bukan mengubah yang lama. <code>Math</code> membantu membulatkan, mencari nilai terbesar, dan membuat angka acak.</p>

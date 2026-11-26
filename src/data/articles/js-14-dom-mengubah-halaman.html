@@ -1,0 +1,70 @@
+<p>Setelah elemen terpilih, Anda dapat mengubah teks, atribut, class, bahkan membuat elemen baru dari nol. Inilah cara aplikasi web memperbarui tampilan tanpa memuat ulang halaman.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Mengubah teks dan atribut elemen.</li>
+<li>Mengatur class dan gaya dengan aman.</li>
+<li>Membuat, menambah, dan menghapus elemen.</li>
+</ul>
+<h2>1. Mengubah Teks</h2>
+<pre><code class="language-javascript">const judul = document.querySelector("#judul");
+
+judul.textContent = "Tugas Hari Ini";        // aman: dianggap teks biasa
+// judul.innerHTML = "&lt;em&gt;Tugas&lt;/em&gt;";   // menafsirkan HTML (hati-hati!)
+</code></pre>
+<p>Pakai <code>textContent</code> sebagai pilihan utama. <code>innerHTML</code> yang diisi teks dari pengguna dapat membuka celah keamanan <strong>XSS</strong>, karena skrip jahat bisa ikut dijalankan.</p>
+<h2>2. Atribut</h2>
+<pre><code class="language-javascript">const gambar = document.querySelector("img");
+gambar.setAttribute("alt", "Foto profil");
+gambar.src = "foto-baru.jpg";
+console.log(gambar.getAttribute("alt"));
+
+const tombol = document.querySelector("button");
+tombol.disabled = true;           // nonaktifkan tombol
+tombol.dataset.id = "42";         // menulis data-id="42"
+</code></pre>
+<h2>3. Class dan Gaya</h2>
+<pre><code class="language-javascript">const kotak = document.querySelector(".kotak");
+
+kotak.classList.add("aktif");
+kotak.classList.remove("tersembunyi");
+kotak.classList.toggle("gelap");              // tambah jika belum ada, hapus jika ada
+console.log(kotak.classList.contains("aktif"));
+
+kotak.style.backgroundColor = "teal";         // gaya langsung (jarang dipakai)
+</code></pre>
+<p>Lebih baik menyiapkan gaya di CSS lalu mengganti <code>class</code> dengan JavaScript, bukan menulis banyak <code>style</code> langsung.</p>
+<h2>4. Membuat dan Menambah Elemen</h2>
+<pre><code class="language-javascript">const daftar = document.querySelector(".daftar");
+
+const itemBaru = document.createElement("li");
+itemBaru.textContent = "Belajar DOM";
+itemBaru.classList.add("item");
+
+daftar.append(itemBaru);     // tambah di akhir
+daftar.prepend(itemBaru);    // tambah di awal (memindahkan elemen yang sama)
+</code></pre>
+<h2>5. Menghapus Elemen</h2>
+<pre><code class="language-javascript">const target = document.querySelector(".item.selesai");
+target.remove();
+</code></pre>
+<h2>6. Menampilkan Data dari Array</h2>
+<pre><code class="language-javascript">const tugas = ["Belajar HTML", "Belajar CSS", "Belajar JavaScript"];
+const daftar2 = document.querySelector(".daftar");
+
+daftar2.innerHTML = "";               // kosongkan dulu
+tugas.forEach((teks) =&gt; {
+  const li = document.createElement("li");
+  li.textContent = teks;
+  daftar2.append(li);
+});
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Memakai <code>innerHTML</code> untuk data dari pengguna.</li>
+<li>Membuat elemen tetapi lupa menambahkannya ke halaman dengan <code>append</code>.</li>
+<li>Mengakses properti dari hasil <code>null</code> karena selector salah.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Dari array <code>["Apel", "Jeruk", "Mangga"]</code>, tampilkan daftar <code>&lt;li&gt;</code> ke dalam <code>&lt;ul&gt;</code>. Tambahkan satu item baru dan beri class <code>baru</code> pada item tersebut.</p>
+<h2>Rangkuman</h2>
+<p>Gunakan <code>textContent</code> untuk teks, <code>classList</code> untuk mengatur tampilan, serta <code>createElement</code>, <code>append</code>, dan <code>remove</code> untuk mengubah struktur halaman.</p>

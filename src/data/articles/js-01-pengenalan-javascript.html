@@ -1,0 +1,51 @@
+<p>JavaScript adalah bahasa pemrograman yang membuat halaman web <strong>hidup dan interaktif</strong>. HTML menyusun isi halaman, CSS mengatur tampilannya, sedangkan JavaScript mengatur <em>perilakunya</em>: menanggapi klik, memeriksa form, menampilkan data, dan banyak lagi.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Memahami peran JavaScript dibanding HTML dan CSS.</li>
+<li>Menjalankan JavaScript pertama di halaman web.</li>
+<li>Memakai Console browser untuk melihat hasil dan error.</li>
+</ul>
+<h2>1. JavaScript Pertama</h2>
+<p>Kode JavaScript ditulis di dalam elemen <code>&lt;script&gt;</code>. Letakkan di akhir <code>&lt;body&gt;</code> agar HTML sudah dimuat lebih dulu.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;JavaScript Pertama&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Halo Dunia&lt;/h1&gt;
+  &lt;script&gt;
+    console.log("Halo dari JavaScript!");
+    alert("Selamat datang!");
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><code>console.log()</code> menulis pesan ke Console, sedangkan <code>alert()</code> menampilkan kotak dialog. Console jauh lebih berguna untuk belajar dan memeriksa program.</p>
+<h2>2. File JavaScript Terpisah</h2>
+<p>Untuk project sungguhan, simpan kode di file <code>.js</code> lalu hubungkan dengan <code>src</code>. Atribut <code>defer</code> membuat browser menjalankan skrip setelah HTML selesai dibaca, sehingga skrip boleh diletakkan di <code>&lt;head&gt;</code>.</p>
+<pre><code class="language-html">&lt;script src="app.js" defer&gt;&lt;/script&gt;
+</code></pre>
+<pre><code class="language-javascript">// app.js
+console.log("File app.js berhasil dimuat");
+</code></pre>
+<h2>3. Membuka Console Browser</h2>
+<p>Tekan <code>F12</code> (atau klik kanan lalu <strong>Inspect</strong>), kemudian buka tab <strong>Console</strong>. Pesan dari <code>console.log</code> dan pesan error muncul di sini. Anda juga dapat mengetik kode langsung, misalnya <code>2 + 3</code>, lalu menekan Enter.</p>
+<h2>4. Komentar dan Titik Koma</h2>
+<pre><code class="language-javascript">// Komentar satu baris
+/* Komentar
+   beberapa baris */
+console.log("Baris ini dijalankan"); // titik koma mengakhiri perintah
+</code></pre>
+<p>Titik koma di akhir perintah dianjurkan agar konsisten. Yang terpenting, pilih satu gaya dan gunakan terus.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Lupa menutup tanda kutip atau kurung.</li>
+<li>Salah menulis huruf besar-kecil: <code>Console.log</code> tidak sama dengan <code>console.log</code>.</li>
+<li>Salah nama file pada <code>src</code>, sehingga skrip tidak dimuat (periksa tab Console atau Network).</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat file <code>index.html</code> dan <code>app.js</code>. Tampilkan nama Anda di Console dengan <code>console.log</code>, lalu sengaja hapus satu tanda kutip dan baca pesan error yang muncul.</p>
+<h2>Rangkuman</h2>
+<p>JavaScript menambahkan perilaku pada halaman. Jalankan lewat <code>&lt;script&gt;</code>, lebih baik lewat file terpisah dengan <code>defer</code>, dan gunakan Console untuk melihat hasil serta error.</p>

@@ -1,0 +1,66 @@
+<p>Program yang berguna perlu mengambil keputusan: jika kondisi tertentu terpenuhi, lakukan A; jika tidak, lakukan B. Inilah percabangan.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Menulis <code>if</code>, <code>else if</code>, dan <code>else</code>.</li>
+<li>Memahami nilai truthy dan falsy.</li>
+<li>Memakai <code>switch</code> dan operator ternary.</li>
+</ul>
+<h2>1. if, else if, else</h2>
+<pre><code class="language-javascript">const nilai = 78;
+
+if (nilai &gt;= 85) {
+  console.log("Sangat baik");
+} else if (nilai &gt;= 70) {
+  console.log("Baik");
+} else {
+  console.log("Perlu belajar lagi");
+}
+</code></pre>
+<p>JavaScript memeriksa kondisi dari atas ke bawah dan menjalankan blok <strong>pertama</strong> yang benar, lalu melewati sisanya.</p>
+<h2>2. Truthy dan Falsy</h2>
+<p>Dalam kondisi <code>if</code>, nilai non-boolean diperlakukan sebagai benar atau salah. Nilai <strong>falsy</strong> hanya: <code>false</code>, <code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code>, dan <code>NaN</code>. Selain itu <strong>truthy</strong>.</p>
+<pre><code class="language-javascript">const nama = "";
+
+if (nama) {
+  console.log("Halo, " + nama);
+} else {
+  console.log("Nama belum diisi");  // string kosong dianggap falsy
+}
+</code></pre>
+<h2>3. switch</h2>
+<p>Cocok bila satu nilai dibandingkan dengan banyak kemungkinan.</p>
+<pre><code class="language-javascript">const hari = 3;
+let namaHari;
+
+switch (hari) {
+  case 1:
+    namaHari = "Senin";
+    break;
+  case 2:
+    namaHari = "Selasa";
+    break;
+  case 3:
+    namaHari = "Rabu";
+    break;
+  default:
+    namaHari = "Tidak dikenal";
+}
+console.log(namaHari);
+</code></pre>
+<p><code>break</code> menghentikan switch. Tanpanya, program akan terus "jatuh" ke case berikutnya.</p>
+<h2>4. Operator Ternary</h2>
+<pre><code class="language-javascript">const umur = 17;
+const status = umur &gt;= 17 ? "Boleh membuat KTP" : "Belum boleh";
+console.log(status);
+</code></pre>
+<p>Bentuknya <code>kondisi ? nilaiJikaBenar : nilaiJikaSalah</code>. Gunakan untuk keputusan sederhana; untuk logika panjang, <code>if</code> lebih mudah dibaca.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Memakai <code>=</code> di dalam kondisi: <code>if (x = 5)</code>.</li>
+<li>Lupa <code>break</code> pada <code>switch</code>.</li>
+<li>Menyusun urutan <code>else if</code> yang salah sehingga kondisi yang lebih luas menutupi yang sempit.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat program yang menerima angka bulan (1 sampai 12) dan mencetak nama musimnya dengan <code>switch</code>. Lalu buat pengecek bilangan genap atau ganjil dengan ternary.</p>
+<h2>Rangkuman</h2>
+<p><code>if/else</code> memilih satu jalur eksekusi, <code>switch</code> membandingkan satu nilai dengan banyak case, dan ternary meringkas keputusan sederhana. Ingat enam nilai falsy.</p>

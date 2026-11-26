@@ -1,0 +1,81 @@
+<p><code>iframe</code> menampilkan halaman lain di dalam sebuah halaman. Contohnya adalah peta, video, atau demonstrasi kode. Karena memuat dokumen terpisah, iframe perlu dipakai dengan hati-hati.</p>
+<h2>1. Iframe Dasar</h2>
+<pre><code class="language-html">&lt;iframe
+  src=&quot;contoh.html&quot;
+  title=&quot;Contoh halaman profil&quot;
+  width=&quot;800&quot;
+  height=&quot;450&quot;
+  loading=&quot;lazy&quot;
+&gt;&lt;/iframe&gt;
+</code></pre>
+<ul>
+<li><code>src</code> adalah halaman yang dimuat.</li>
+<li><code>title</code> menjelaskan isi iframe kepada pengguna pembaca layar.</li>
+<li><code>loading=&quot;lazy&quot;</code> menunda pemuatan sampai iframe mendekati layar.</li>
+</ul>
+<h2>2. Menyematkan Halaman Demo Video</h2>
+<p>Jika penyedia konten memberikan halaman embed resmi, masukkan URL halaman tersebut pada <code>src</code>. Contoh berikut memakai halaman demo video CC0 dari MDN.</p>
+<pre><code class="language-html">&lt;iframe
+  width=&quot;560&quot;
+  height=&quot;315&quot;
+  src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/multiple-video-formats.html&quot;
+  title=&quot;Demo pemutar video HTML dari MDN&quot;
+  allowfullscreen
+&gt;&lt;/iframe&gt;
+</code></pre>
+<p>Untuk layanan lain, atribut <code>allow</code> dapat memberikan izin fitur tertentu. Berikan hanya izin yang memang dibutuhkan.</p>
+<p>Halaman demo dan media di dalamnya berasal dari <a href="https://github.com/mdn/learning-area">MDN Learning Area</a> yang menggunakan <a href="https://github.com/mdn/learning-area/blob/main/LICENSE">lisensi CC0 1.0</a>.</p>
+<h2>3. Atribut <code>sandbox</code></h2>
+<pre><code class="language-html">&lt;iframe
+  src=&quot;demo.html&quot;
+  title=&quot;Demo kode pengguna&quot;
+  sandbox=&quot;allow-scripts&quot;
+&gt;&lt;/iframe&gt;
+</code></pre>
+<p>Tanpa nilai tambahan, <code>sandbox</code> menerapkan banyak pembatasan. <code>allow-scripts</code> mengizinkan JavaScript tetapi tetap mempertahankan pembatasan lain. Jangan menambahkan izin secara acak hanya untuk menghilangkan error.</p>
+<p>Kombinasi <code>allow-scripts</code> dan <code>allow-same-origin</code> pada konten dari origin yang sama dapat sangat mengurangi perlindungan sandbox. Untuk kode tidak tepercaya, gunakan isolasi yang dirancang khusus.</p>
+<h2>4. Layout Responsif</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Iframe Responsif&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: Arial, sans-serif;
+    }
+
+    .embed {
+      display: block;
+      width: 100%;
+      max-width: 800px;
+      margin-inline: auto;
+      aspect-ratio: 16 / 9;
+      border: 0;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;iframe
+    class=&quot;embed&quot;
+    src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/multiple-video-formats.html&quot;
+    title=&quot;Demo video responsif dari MDN&quot;
+    loading=&quot;lazy&quot;
+  &gt;&lt;/iframe&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Tidak memberikan <code>title</code>.</li>
+<li>Memberikan terlalu banyak izin melalui <code>allow</code> atau <code>sandbox</code>.</li>
+<li>Memasang banyak iframe berat tanpa lazy loading.</li>
+<li>Menganggap semua website mengizinkan dirinya ditampilkan dalam iframe.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat iframe untuk halaman lokal. Tambahkan <code>title</code>, <code>loading=&quot;lazy&quot;</code>, class responsif, dan sandbox paling ketat yang masih memungkinkan demo bekerja.</p>
+<h2>Rangkuman</h2>
+<p>Iframe berguna untuk konten terpisah, tetapi membawa biaya performa, privasi, dan keamanan. Mulailah dari izin paling sedikit dan selalu beri judul yang jelas.</p>

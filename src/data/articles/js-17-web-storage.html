@@ -1,0 +1,76 @@
+<p>Variabel JavaScript hilang saat halaman dimuat ulang. Web Storage menyimpan data kecil di browser pengguna sehingga tetap ada, misalnya pilihan tema atau isi daftar tugas.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Menyimpan, membaca, dan menghapus data dengan <code>localStorage</code>.</li>
+<li>Menyimpan array dan object lewat JSON.</li>
+<li>Mengetahui batas dan risiko penyimpanan di browser.</li>
+</ul>
+<h2>1. localStorage Dasar</h2>
+<pre><code class="language-javascript">localStorage.setItem("tema", "gelap");
+
+console.log(localStorage.getItem("tema"));    // "gelap"
+console.log(localStorage.getItem("tidakada")); // null
+
+localStorage.removeItem("tema");
+localStorage.clear();   // hapus SEMUA data situs ini
+</code></pre>
+<p>Data tetap ada walau tab ditutup dan browser dibuka kembali. <code>sessionStorage</code> memiliki cara pakai yang sama, tetapi datanya hilang ketika tab ditutup.</p>
+<h2>2. Menyimpan Array dan Object</h2>
+<p>Storage hanya menerima <strong>teks</strong>, sehingga data lain harus diubah dengan JSON.</p>
+<pre><code class="language-javascript">const tugas = [{ teks: "Belajar JS", selesai: false }];
+
+localStorage.setItem("tugas", JSON.stringify(tugas));
+
+const tersimpan = JSON.parse(localStorage.getItem("tugas")) ?? [];
+console.log(tersimpan);
+</code></pre>
+<p>Tanda <code>?? []</code> memberi array kosong ketika belum ada data tersimpan.</p>
+<h2>3. Fungsi Pembantu yang Aman</h2>
+<p>Storage dapat gagal (mode privat, diblokir, atau penuh), dan data bisa rusak. Bungkus dengan <code>try...catch</code>.</p>
+<pre><code class="language-javascript">function muat(kunci, cadangan) {
+  try {
+    const teks = localStorage.getItem(kunci);
+    return teks === null ? cadangan : JSON.parse(teks);
+  } catch {
+    return cadangan;
+  }
+}
+
+function simpan(kunci, nilai) {
+  try {
+    localStorage.setItem(kunci, JSON.stringify(nilai));
+  } catch {
+    console.warn("Tidak dapat menyimpan data");
+  }
+}
+
+const tema = muat("tema", "terang");
+simpan("tema", "gelap");
+</code></pre>
+<h2>4. Contoh: Mode Gelap yang Diingat</h2>
+<pre><code class="language-javascript">const tombol = document.querySelector("#tema");
+
+if (muat("tema", "terang") === "gelap") document.body.classList.add("gelap");
+
+tombol.addEventListener("click", () =&gt; {
+  const gelap = document.body.classList.toggle("gelap");
+  simpan("tema", gelap ? "gelap" : "terang");
+});
+</code></pre>
+<h2>5. Batas dan Keamanan</h2>
+<ul>
+<li>Kapasitas sekitar 5 MB per situs.</li>
+<li>Sifatnya sinkron, jadi jangan menyimpan data yang sangat besar.</li>
+<li><strong>Jangan</strong> menyimpan kata sandi, token rahasia, atau data pribadi sensitif: skrip lain di halaman dapat membacanya.</li>
+<li>Pengguna dapat menghapus atau mengubah isinya kapan saja.</li>
+</ul>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menyimpan object langsung dan mendapat <code>"[object Object]"</code>.</li>
+<li>Lupa <code>JSON.parse</code> saat membaca sehingga mendapat teks, bukan array.</li>
+<li>Tidak menangani kasus data belum ada (<code>null</code>).</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat catatan sederhana yang menyimpan isi <code>textarea</code> ke <code>localStorage</code> setiap kali pengguna mengetik, dan memulihkannya saat halaman dibuka lagi.</p>
+<h2>Rangkuman</h2>
+<p><code>localStorage</code> menyimpan teks yang bertahan setelah halaman ditutup. Gunakan JSON untuk data kompleks, bungkus dengan <code>try/catch</code>, dan jangan simpan data rahasia.</p>

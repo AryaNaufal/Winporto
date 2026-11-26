@@ -1,0 +1,80 @@
+<p>Setelah memahami gambar, sekarang kita mempelajari media yang dapat diputar. Browser menyediakan pemutar audio dan video bawaan sehingga kita tidak perlu membuat kontrol dari nol.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Memasang audio dan video dengan kontrol.</li>
+<li>Menyediakan beberapa format melalui <code>source</code>.</li>
+<li>Menambahkan poster dan caption.</li>
+<li>Memahami alasan autoplay sebaiknya dihindari.</li>
+</ul>
+<h2>1. Memasang Audio</h2>
+<pre><code class="language-html">&lt;audio controls&gt;
+  &lt;source
+    src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/viper.mp3&quot;
+    type=&quot;audio/mpeg&quot;
+  &gt;
+  &lt;source
+    src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/viper.ogg&quot;
+    type=&quot;audio/ogg&quot;
+  &gt;
+  Browser Anda tidak mendukung pemutar audio.
+&lt;/audio&gt;
+</code></pre>
+<p>Atribut <code>controls</code> menampilkan tombol putar, jeda, volume, dan durasi. Browser memilih <code>source</code> pertama yang formatnya didukung. Teks terakhir menjadi fallback.</p>
+<h2>2. Memasang Video</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Contoh Video&lt;/title&gt;
+  &lt;style&gt;
+    video {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;video
+    controls
+    width=&quot;640&quot;
+    poster=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/poster.png&quot;
+  &gt;
+    &lt;source
+      src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/rabbit320.mp4&quot;
+      type=&quot;video/mp4&quot;
+    &gt;
+    &lt;source
+      src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/rabbit320.webm&quot;
+      type=&quot;video/webm&quot;
+    &gt;
+    Browser Anda tidak mendukung pemutar video.
+  &lt;/video&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><code>poster</code> ditampilkan sebelum video diputar. Internal CSS pada dokumen yang sama memakai <code>max-width: 100%</code> agar video tidak keluar dari layar.</p>
+<h2>3. Caption untuk Aksesibilitas</h2>
+<pre><code class="language-html">&lt;video controls&gt;
+  &lt;source
+    src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/rabbit320.mp4&quot;
+    type=&quot;video/mp4&quot;
+  &gt;
+  &lt;track
+    src=&quot;caption-id.vtt&quot;
+    kind=&quot;captions&quot;
+    srclang=&quot;id&quot;
+    label=&quot;Bahasa Indonesia&quot;
+    default
+  &gt;
+&lt;/video&gt;
+</code></pre>
+<p>Caption membantu pengguna yang tidak dapat mendengar audio, berada di tempat ramai, atau belum memahami pelafalan pembicara.</p>
+<p><code>caption-id.vtt</code> tetap berupa nama file contoh karena caption harus dibuat sesuai isi dan bahasa video Anda. File audio, video, dan poster berasal dari <a href="https://github.com/mdn/learning-area">MDN Learning Area</a> yang menggunakan <a href="https://github.com/mdn/learning-area/blob/main/LICENSE">lisensi CC0 1.0</a>.</p>
+<h2>Hindari Autoplay Bersuara</h2>
+<p>Video yang tiba-tiba bersuara mengganggu pengguna dan sering diblokir browser. Jika autoplay benar-benar diperlukan untuk video dekoratif, biasanya video harus <code>muted</code>, tetapi tetap pertimbangkan konsumsi data.</p>
+<h2>Latihan</h2>
+<p>Buat satu pemutar video dengan <code>controls</code>, dua <code>source</code>, sebuah <code>poster</code>, dan fallback. Tambahkan CSS agar lebarnya responsif.</p>
+<h2>Rangkuman</h2>
+<p>Gunakan elemen media bawaan, sediakan format yang sesuai, dan jangan melupakan caption. Media yang baik harus bisa dikontrol pengguna.</p>

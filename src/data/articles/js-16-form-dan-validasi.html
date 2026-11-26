@@ -1,0 +1,89 @@
+<p>Form adalah cara utama pengguna memberi data. JavaScript membantu membaca isinya, memeriksanya, dan memberi umpan balik yang jelas sebelum data dikirim.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Membaca nilai input dan <code>FormData</code>.</li>
+<li>Membuat validasi sendiri dengan pesan error yang jelas.</li>
+<li>Membuat pesan error yang aksesibel.</li>
+</ul>
+<h2>1. HTML Form</h2>
+<pre><code class="language-html">&lt;form id="daftar" novalidate&gt;
+  &lt;label for="email"&gt;Email&lt;/label&gt;
+  &lt;input id="email" name="email" type="email" aria-describedby="email-error"&gt;
+  &lt;p id="email-error" role="alert"&gt;&lt;/p&gt;
+
+  &lt;label for="umur"&gt;Umur&lt;/label&gt;
+  &lt;input id="umur" name="umur" type="number"&gt;
+  &lt;p id="umur-error" role="alert"&gt;&lt;/p&gt;
+
+  &lt;label&gt;&lt;input type="checkbox" name="setuju"&gt; Saya setuju&lt;/label&gt;
+  &lt;button type="submit"&gt;Kirim&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p><code>novalidate</code> mematikan pop-up validasi bawaan agar Anda dapat menampilkan pesan sendiri.</p>
+<h2>2. Membaca Nilai</h2>
+<pre><code class="language-javascript">const form = document.querySelector("#daftar");
+
+form.addEventListener("submit", (event) =&gt; {
+  event.preventDefault();
+
+  const data = new FormData(form);
+  const email = data.get("email").trim();
+  const umur = Number(data.get("umur"));
+  const setuju = data.get("setuju") === "on";
+
+  console.log({ email, umur, setuju });
+  // Object.fromEntries(data) mengubah semuanya jadi object sekaligus
+});
+</code></pre>
+<p>Nilai <code>input</code> selalu berupa teks, sehingga angka perlu diubah dengan <code>Number()</code>.</p>
+<h2>3. Validasi Sendiri</h2>
+<pre><code class="language-javascript">function validasi({ email, umur }) {
+  const error = {};
+  if (!email.includes("@")) error.email = "Email harus memuat tanda @.";
+  if (!Number.isInteger(umur) || umur &lt; 17) error.umur = "Umur minimal 17 tahun.";
+  return error;
+}
+
+function tampilkanError(error) {
+  document.querySelector("#email-error").textContent = error.email ?? "";
+  document.querySelector("#umur-error").textContent = error.umur ?? "";
+}
+</code></pre>
+<h2>4. Menyatukan</h2>
+<pre><code class="language-javascript">form.addEventListener("submit", (event) =&gt; {
+  event.preventDefault();
+  const data = new FormData(form);
+  const nilai = {
+    email: data.get("email").trim(),
+    umur: Number(data.get("umur")),
+  };
+
+  const error = validasi(nilai);
+  tampilkanError(error);
+
+  if (Object.keys(error).length === 0) {
+    console.log("Data valid, siap dikirim:", nilai);
+    form.reset();
+  } else {
+    // pindahkan fokus ke kolom pertama yang salah
+    form.querySelector(`[name="${Object.keys(error)[0]}"]`).focus();
+  }
+});
+</code></pre>
+<h2>5. Tips Aksesibilitas</h2>
+<ul>
+<li>Setiap input wajib punya <code>&lt;label&gt;</code>.</li>
+<li>Hubungkan pesan error dengan <code>aria-describedby</code> dan beri <code>role="alert"</code>.</li>
+<li>Tulis pesan error yang menjelaskan cara memperbaikinya, bukan hanya "Salah".</li>
+<li>Validasi di JavaScript hanya kemudahan; server tetap wajib memeriksa ulang data.</li>
+</ul>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Lupa <code>preventDefault()</code> sehingga halaman memuat ulang.</li>
+<li>Menjumlahkan nilai input tanpa mengubahnya menjadi angka.</li>
+<li>Hanya memvalidasi di sisi browser.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Tambahkan kolom kata sandi dengan syarat minimal 8 karakter dan harus memuat angka. Tampilkan pesan error di bawah kolomnya, dan kosongkan pesan saat input diperbaiki.</p>
+<h2>Rangkuman</h2>
+<p>Gunakan event <code>submit</code>, <code>FormData</code>, dan fungsi validasi sendiri. Tampilkan error yang jelas dan aksesibel, serta ingat bahwa validasi sungguhan tetap harus dilakukan di server.</p>

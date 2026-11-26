@@ -1,0 +1,61 @@
+<p>Form memungkinkan pengguna mengirim informasi, misalnya saat mencari produk, masuk ke akun, atau mengisi formulir kontak.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Membuat struktur form sederhana.</li>
+<li>Menghubungkan <code>label</code> dengan <code>input</code>.</li>
+<li>Memahami fungsi <code>name</code>, <code>type</code>, dan <code>button</code>.</li>
+<li>Menggunakan <code>textarea</code> serta <code>select</code>.</li>
+</ul>
+<h2>1. Form Pertama</h2>
+<pre><code class="language-html">&lt;form action=&quot;/kirim&quot; method=&quot;post&quot;&gt;
+  &lt;label for=&quot;nama&quot;&gt;Nama lengkap&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;nama&quot; name=&quot;nama&quot;&gt;
+
+  &lt;button type=&quot;submit&quot;&gt;Kirim&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p><code>action</code> menentukan tujuan pengiriman data. <code>method=&quot;post&quot;</code> biasanya digunakan ketika data dikirim untuk diproses atau disimpan. Pada latihan lokal, tombol belum benar-benar menyimpan apa pun karena kita belum membuat server.</p>
+<h2>2. Hubungan Label dan Input</h2>
+<p>Nilai <code>for</code> pada label harus sama dengan <code>id</code> input.</p>
+<pre><code class="language-html">&lt;label for=&quot;email&quot;&gt;Alamat email&lt;/label&gt;
+&lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot;&gt;
+</code></pre>
+<p>Pengguna dapat mengklik label untuk memfokuskan input. Hubungan ini juga penting bagi pembaca layar. Placeholder bukan pengganti label karena menghilang ketika pengguna mulai mengetik.</p>
+<h2>3. Mengapa <code>name</code> Penting?</h2>
+<p>Saat form dikirim, browser mengirim pasangan nama dan nilai. Jika pengguna mengisi “Ayu”, data sederhananya menyerupai <code>nama=Ayu</code>. Input tanpa <code>name</code> biasanya tidak ikut terkirim.</p>
+<h2>4. Pilihan dan Pesan Panjang</h2>
+<pre><code class="language-html">&lt;label for=&quot;topik&quot;&gt;Topik&lt;/label&gt;
+&lt;select id=&quot;topik&quot; name=&quot;topik&quot;&gt;
+  &lt;option value=&quot;html&quot;&gt;HTML&lt;/option&gt;
+  &lt;option value=&quot;css&quot;&gt;CSS&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;label for=&quot;pesan&quot;&gt;Pesan&lt;/label&gt;
+&lt;textarea id=&quot;pesan&quot; name=&quot;pesan&quot; rows=&quot;5&quot;&gt;&lt;/textarea&gt;
+</code></pre>
+<p>Teks yang terlihat pada <code>option</code> boleh berbeda dari <code>value</code> yang dikirim.</p>
+<h2>5. Radio dan Checkbox</h2>
+<p>Radio dalam satu kelompok menggunakan <code>name</code> yang sama.</p>
+<pre><code class="language-html">&lt;fieldset&gt;
+  &lt;legend&gt;Pilih level&lt;/legend&gt;
+  &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;level&quot; value=&quot;pemula&quot;&gt; Pemula&lt;/label&gt;
+  &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;level&quot; value=&quot;lanjut&quot;&gt; Lanjut&lt;/label&gt;
+&lt;/fieldset&gt;
+
+&lt;label&gt;
+  &lt;input type=&quot;checkbox&quot; name=&quot;newsletter&quot;&gt;
+  Kirim newsletter mingguan
+&lt;/label&gt;
+</code></pre>
+<p><code>fieldset</code> dan <code>legend</code> menjelaskan hubungan beberapa kontrol.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menggunakan placeholder tanpa label.</li>
+<li>Memberikan <code>id</code> yang sama pada beberapa input.</li>
+<li>Lupa atribut <code>name</code>.</li>
+<li>Menganggap form HTML otomatis menyimpan data tanpa server.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat form kontak berisi nama, email, topik, pesan, pilihan newsletter, dan tombol kirim. Pastikan semua kontrol memiliki label.</p>
+<h2>Rangkuman</h2>
+<p>Form mengumpulkan data melalui kontrol yang memiliki label dan <code>name</code>. HTML mendefinisikan struktur dan perilaku dasar; validasi lebih lanjut dibahas pada pelajaran HTML 9.</p>

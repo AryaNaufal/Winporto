@@ -1,0 +1,98 @@
+<p>Setiap elemen HTML mempunyai cara tampil bawaan. Judul dan paragraf biasanya memenuhi satu baris, sedangkan tautan dapat berada di tengah kalimat. Perilaku ini diatur oleh property <code>display</code>.</p>
+<h2>1. Membandingkan Block, Inline, dan Inline-Block</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 24px;
+      color: #334155;
+    }
+
+    .bagian {
+      margin-bottom: 28px;
+      padding: 16px;
+      border: 1px dashed #94a3b8;
+    }
+
+    .block {
+      display: block;
+      width: 220px;
+      margin-block: 8px;
+      padding: 10px;
+      color: white;
+      background-color: #2563eb;
+    }
+
+    .inline {
+      display: inline;
+      width: 220px;
+      padding: 4px;
+      color: #991b1b;
+      background-color: #fee2e2;
+    }
+
+    .inline-block {
+      display: inline-block;
+      width: 140px;
+      margin: 4px;
+      padding: 10px;
+      color: white;
+      text-align: center;
+      background-color: #0f766e;
+      border-radius: 8px;
+    }
+
+    .tidak-ada {
+      display: none;
+    }
+
+    .tidak-terlihat {
+      visibility: hidden;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;section class=&quot;bagian&quot;&gt;
+    &lt;h2&gt;Block&lt;/h2&gt;
+    &lt;span class=&quot;block&quot;&gt;Block pertama&lt;/span&gt;
+    &lt;span class=&quot;block&quot;&gt;Block kedua&lt;/span&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;bagian&quot;&gt;
+    &lt;h2&gt;Inline&lt;/h2&gt;
+    &lt;p&gt;Teks ini memiliki &lt;span class=&quot;inline&quot;&gt;elemen inline&lt;/span&gt; di tengah kalimat.&lt;/p&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;bagian&quot;&gt;
+    &lt;h2&gt;Inline-block&lt;/h2&gt;
+    &lt;a class=&quot;inline-block&quot; href=&quot;#&quot;&gt;Beranda&lt;/a&gt;
+    &lt;a class=&quot;inline-block tidak-ada&quot; href=&quot;#&quot;&gt;Artikel&lt;/a&gt;
+    &lt;a class=&quot;inline-block&quot; href=&quot;#&quot;&gt;Kontak&lt;/a&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;bagian&quot;&gt;
+    &lt;span&gt;Awal&lt;/span&gt;
+    &lt;span class=&quot;tidak-terlihat&quot;&gt;Ruang ini tetap ada&lt;/span&gt;
+    &lt;span&gt;Akhir&lt;/span&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Elemen block memulai baris baru dan dapat diatur ukurannya. Elemen inline mengalir bersama teks; <code>width</code> dan <code>height</code> tidak bekerja seperti pada block. <code>inline-block</code> dapat berjajar sekaligus menerima ukuran dan padding.</p>
+<h2>2. Menyembunyikan Elemen</h2>
+<p>Pada contoh, tautan Artikel memakai <code>display: none</code>, sehingga elemen dan ruangnya hilang. Teks tersembunyi di bagian terakhir memakai <code>visibility: hidden</code>, sehingga ruangnya masih dipertahankan.</p>
+<p>Menyembunyikan informasi penting dapat membuatnya tidak dapat diakses pengguna. Gunakan kedua nilai tersebut dengan sengaja.</p>
+<h2>Kesalahan yang Sering Terjadi</h2>
+<ul>
+<li>Memberi <code>width</code> pada elemen inline lalu bingung karena ukurannya tidak berubah.</li>
+<li>Menganggap elemen block selalu selebar layar; lebarnya mengikuti ruang induk.</li>
+<li>Menggunakan <code>display: none</code> hanya untuk membuat elemen transparan.</li>
+<li>Memakai <code>display</code> biasa untuk layout kompleks yang lebih cocok memakai Flexbox atau Grid.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Tampilkan kembali tautan Artikel, lalu ubah semua tautan menjadi <code>block</code> dan bandingkan susunannya. Ubah <code>visibility: hidden</code> menjadi <code>display: none</code> untuk melihat perbedaan ruang.</p>
+<h2>Ringkasan</h2>
+<p><code>block</code> memulai baris baru, <code>inline</code> mengalir bersama teks, dan <code>inline-block</code> menggabungkan sebagian sifat keduanya. <code>display: none</code> menghilangkan elemen beserta ruangnya.</p>

@@ -1,0 +1,51 @@
+<p>Meta tags berada di dalam <code>head</code> dan memberikan informasi tentang halaman. Sebagian informasi dibaca browser, mesin pencari, atau layanan lain, tetapi tidak tampil sebagai konten utama.</p>
+<h2>1. Metadata Wajib</h2>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Belajar HTML untuk Pemula | Belajar Web&lt;/title&gt;
+&lt;/head&gt;
+</code></pre>
+<p><code>charset</code> membantu karakter seperti é atau emoji ditampilkan dengan benar. <code>viewport</code> membuat ukuran halaman mengikuti perangkat. <code>title</code> biasanya tampil pada tab browser dan dapat digunakan sebagai judul hasil pencarian.</p>
+<h2>2. Meta Description</h2>
+<pre><code class="language-html">&lt;meta
+  name=&quot;description&quot;
+  content=&quot;Pelajari HTML dari nol melalui penjelasan sederhana, contoh kode, dan latihan untuk pemula.&quot;
+&gt;
+</code></pre>
+<p>Description merangkum isi halaman. Mesin pencari dapat menggunakannya sebagai cuplikan, tetapi tidak selalu. Tulis ringkasan yang spesifik, bukan daftar kata kunci.</p>
+<h2>3. Canonical dan Robots</h2>
+<pre><code class="language-html">&lt;link rel=&quot;canonical&quot; href=&quot;https://example.com/belajar-html&quot;&gt;
+&lt;meta name=&quot;robots&quot; content=&quot;index, follow&quot;&gt;
+</code></pre>
+<p>Canonical menunjukkan URL utama ketika konten serupa tersedia melalui beberapa alamat. Robots memberikan arahan pengindeksan, tetapi bukan mekanisme keamanan. Halaman rahasia tetap membutuhkan autentikasi.</p>
+<h2>4. HTML yang Membantu SEO</h2>
+<p>SEO bukan sekadar meta tags. Konten yang jelas jauh lebih penting:</p>
+<ul>
+<li>gunakan satu judul utama yang menjelaskan halaman;</li>
+<li>susun <code>h2</code> dan <code>h3</code> secara logis;</li>
+<li>tulis link yang menjelaskan tujuan;</li>
+<li>tambahkan <code>alt</code> pada gambar informatif;</li>
+<li>gunakan elemen semantik;</li>
+<li>berikan isi yang benar-benar menjawab kebutuhan pembaca.</li>
+</ul>
+<pre><code class="language-html">&lt;main&gt;
+  &lt;article&gt;
+    &lt;h1&gt;Cara Membuat Dokumen HTML&lt;/h1&gt;
+    &lt;p&gt;Panduan ini menjelaskan struktur dasar HTML.&lt;/p&gt;
+    &lt;h2&gt;Menulis Bagian Head&lt;/h2&gt;
+    &lt;p&gt;Bagian head menyimpan metadata halaman.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menulis title yang sama untuk semua halaman.</li>
+<li>Memenuhi description dengan pengulangan kata kunci.</li>
+<li>Mengira <code>noindex</code> dapat melindungi halaman admin.</li>
+<li>Mengabaikan kualitas dan struktur konten.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat metadata untuk halaman kursus HTML: title yang unik, description yang menjelaskan manfaat, viewport, charset, dan canonical.</p>
+<h2>Rangkuman</h2>
+<p>Metadata membantu browser dan mesin pencari memahami halaman, tetapi SEO yang sehat dimulai dari konten berguna dan struktur HTML yang jelas. Social card dibahas terpisah pada pelajaran HTML 15.</p>

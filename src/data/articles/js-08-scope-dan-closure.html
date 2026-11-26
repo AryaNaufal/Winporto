@@ -1,0 +1,71 @@
+<p>Scope menentukan <strong>di bagian mana</strong> sebuah variabel dapat dipakai. Memahaminya mencegah banyak bug aneh, seperti variabel yang "tiba-tiba tidak ditemukan".</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Membedakan global scope, function scope, dan block scope.</li>
+<li>Memahami hoisting secara sederhana.</li>
+<li>Mengenal closure lewat contoh penghitung.</li>
+</ul>
+<h2>1. Global, Function, dan Block Scope</h2>
+<pre><code class="language-javascript">const global = "Terlihat di mana saja";
+
+function tes() {
+  const lokal = "Hanya terlihat di dalam fungsi";
+  console.log(global, lokal);
+}
+tes();
+// console.log(lokal);  // Error: lokal is not defined
+
+if (true) {
+  let dalamBlok = "Hanya di dalam blok if";
+  const juga = "Begitu juga const";
+}
+// console.log(dalamBlok); // Error
+</code></pre>
+<p><code>let</code> dan <code>const</code> mengikuti <strong>block scope</strong>: hidup hanya di dalam <code>{ }</code> tempat dibuat. Aturan sederhananya, variabel dapat dilihat di tempat ia dibuat dan di dalam blok yang ada di bawahnya.</p>
+<h2>2. Shadowing</h2>
+<pre><code class="language-javascript">const nama = "Luar";
+
+function cetak() {
+  const nama = "Dalam";  // variabel baru yang "menutupi" yang luar
+  console.log(nama);     // Dalam
+}
+cetak();
+console.log(nama);       // Luar
+</code></pre>
+<h2>3. Hoisting</h2>
+<p>Deklarasi fungsi biasa dapat dipanggil sebelum ditulis, tetapi variabel <code>let</code>/<code>const</code> tidak dapat dipakai sebelum baris deklarasinya.</p>
+<pre><code class="language-javascript">halo();                // berfungsi
+function halo() { console.log("Halo"); }
+
+// console.log(angka); // Error: Cannot access 'angka' before initialization
+let angka = 5;
+</code></pre>
+<p>Praktik terbaik: deklarasikan variabel di atas sebelum dipakai, dan jangan bergantung pada hoisting.</p>
+<h2>4. Closure</h2>
+<p>Closure terjadi ketika fungsi "mengingat" variabel dari tempat ia dibuat, meskipun fungsi luar sudah selesai berjalan.</p>
+<pre><code class="language-javascript">function buatPenghitung() {
+  let jumlah = 0;
+  return function () {
+    jumlah++;
+    return jumlah;
+  };
+}
+
+const hitungA = buatPenghitung();
+console.log(hitungA()); // 1
+console.log(hitungA()); // 2
+
+const hitungB = buatPenghitung();
+console.log(hitungB()); // 1 (penghitung lain, terpisah)
+</code></pre>
+<p>Variabel <code>jumlah</code> tidak dapat diubah dari luar, kecuali lewat fungsi yang dikembalikan. Pola ini sering dipakai untuk menyembunyikan data.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Memakai variabel di luar blok tempat ia dideklarasikan.</li>
+<li>Membuat banyak variabel global sehingga saling bertabrakan.</li>
+<li>Memakai <code>var</code> yang cakupannya fungsi, bukan blok.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat fungsi <code>buatAkun(saldoAwal)</code> yang mengembalikan fungsi <code>setor(jumlah)</code> dan mencetak saldo terbaru. Pastikan saldo tidak dapat diubah langsung dari luar.</p>
+<h2>Rangkuman</h2>
+<p>Variabel <code>let</code>/<code>const</code> hidup di dalam blok tempat ia dibuat. Hindari variabel global. Closure memungkinkan fungsi menyimpan data pribadi dari lingkup tempat ia lahir.</p>

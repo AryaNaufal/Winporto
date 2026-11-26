@@ -1,0 +1,51 @@
+<p>Aksesibilitas berarti membuat website dapat digunakan oleh lebih banyak orang, termasuk pengguna keyboard, pembaca layar, gangguan penglihatan, atau keterbatasan motorik. Ini bukan fitur tambahan yang dikerjakan paling akhir.</p>
+<h2>1. Mulai dari HTML Semantik</h2>
+<p>Gunakan elemen sesuai fungsi.</p>
+<pre><code class="language-html">&lt;!-- Benar untuk sebuah aksi --&gt;
+&lt;button type=&quot;button&quot;&gt;Buka menu&lt;/button&gt;
+
+&lt;!-- Benar untuk navigasi --&gt;
+&lt;a href=&quot;profil.html&quot;&gt;Lihat profil&lt;/a&gt;
+</code></pre>
+<p>Jangan membuat tombol dari <code>div</code> hanya karena mudah diberi CSS. Elemen <code>button</code> sudah dapat difokuskan dan diaktifkan dengan keyboard.</p>
+<h2>2. Bahasa dan Heading</h2>
+<pre><code class="language-html">&lt;html lang=&quot;id&quot;&gt;
+</code></pre>
+<p>Bahasa membantu pembaca layar memilih pelafalan. Susun heading tanpa melompat berdasarkan ukuran visual.</p>
+<h2>3. Nama yang Dapat Diakses</h2>
+<p>Gambar informatif membutuhkan <code>alt</code>; input membutuhkan <code>label</code>; iframe membutuhkan <code>title</code>.</p>
+<pre><code class="language-html">&lt;label for=&quot;cari&quot;&gt;Cari artikel&lt;/label&gt;
+&lt;input type=&quot;search&quot; id=&quot;cari&quot; name=&quot;q&quot;&gt;
+</code></pre>
+<p>Jika tombol hanya menampilkan ikon, berikan nama.</p>
+<pre><code class="language-html">&lt;button type=&quot;button&quot; aria-label=&quot;Tutup dialog&quot;&gt;×&lt;/button&gt;
+</code></pre>
+<p>Gunakan ARIA ketika HTML biasa belum cukup. Aturan praktisnya: elemen HTML semantik lebih baik daripada meniru elemen dengan ARIA.</p>
+<h2>4. Uji dengan Keyboard</h2>
+<p>Coba gunakan halaman tanpa mouse:</p>
+<ol>
+<li>Tekan Tab untuk berpindah kontrol.</li>
+<li>Pastikan fokus terlihat.</li>
+<li>Gunakan Enter atau Space untuk mengaktifkan tombol.</li>
+<li>Pastikan tidak ada bagian yang menjebak fokus.</li>
+</ol>
+<p>Jangan menghapus <code>outline</code> fokus tanpa memberikan pengganti yang jelas.</p>
+<h2>5. Warna Bukan Satu-satunya Petunjuk</h2>
+<p>Pesan kesalahan harus memiliki teks atau ikon bermakna, bukan hanya mengubah border menjadi merah.</p>
+<pre><code class="language-html">&lt;p id=&quot;error-email&quot;&gt;Email harus menggunakan format nama@domain.com.&lt;/p&gt;
+</code></pre>
+<h2>Checklist Awal</h2>
+<ul>
+<li>Setiap halaman memiliki <code>lang</code> dan judul yang jelas.</li>
+<li>Heading membentuk struktur logis.</li>
+<li>Link memiliki teks tujuan.</li>
+<li>Form memiliki label.</li>
+<li>Semua fungsi dapat digunakan dengan keyboard.</li>
+<li>Fokus keyboard terlihat.</li>
+<li>Gambar memiliki <code>alt</code> yang sesuai.</li>
+<li>Video penting memiliki caption.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buka salah satu halaman latihan Anda dan navigasikan hanya dengan keyboard. Catat elemen yang tidak bisa dicapai, tidak memiliki nama jelas, atau tidak menunjukkan fokus.</p>
+<h2>Rangkuman</h2>
+<p>Aksesibilitas dimulai dari HTML yang benar. Gunakan elemen bawaan, sediakan nama yang jelas, dan uji dengan keyboard sebelum menambahkan ARIA yang kompleks.</p>

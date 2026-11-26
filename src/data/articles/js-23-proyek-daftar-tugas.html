@@ -1,0 +1,151 @@
+<p>Saatnya menggabungkan semuanya. Pada pelajaran penutup ini Anda membuat aplikasi <strong>Daftar Tugas</strong> yang bisa menambah, menyelesaikan, dan menghapus tugas, serta menyimpannya di browser.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Menyusun aplikasi kecil dari HTML, CSS, dan JavaScript.</li>
+<li>Memisahkan data (state) dari tampilan.</li>
+<li>Memakai event delegation dan <code>localStorage</code> dalam satu project.</li>
+</ul>
+<h2>1. Rancangan</h2>
+<ul>
+<li>Pengguna mengetik tugas, lalu menekan Enter atau tombol Tambah.</li>
+<li>Klik tugas untuk menandai selesai, tombol Hapus untuk membuangnya.</li>
+<li>Data disimpan di <code>localStorage</code> agar tidak hilang.</li>
+</ul>
+<p>Pola utama: simpan semua data di satu array (<strong>state</strong>), ubah array itu lewat fungsi, lalu panggil <code>render()</code> untuk menggambar ulang tampilan.</p>
+<h2>2. HTML</h2>
+<pre><code class="language-html">&lt;main&gt;
+  &lt;h1&gt;Daftar Tugas&lt;/h1&gt;
+
+  &lt;form id="form"&gt;
+    &lt;label for="teks"&gt;Tugas baru&lt;/label&gt;
+    &lt;input id="teks" autocomplete="off" required&gt;
+    &lt;button type="submit"&gt;Tambah&lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;p id="info" aria-live="polite"&gt;&lt;/p&gt;
+  &lt;ul id="daftar"&gt;&lt;/ul&gt;
+&lt;/main&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;
+</code></pre>
+<h2>3. CSS Secukupnya</h2>
+<pre><code class="language-css">li { display: flex; gap: 8px; align-items: center; padding: 6px 0; }
+li.selesai span { text-decoration: line-through; color: #64748b; }
+li span { flex: 1; cursor: pointer; }
+</code></pre>
+<h2>4. JavaScript: State dan Penyimpanan</h2>
+<pre><code class="language-javascript">const KUNCI = "daftar-tugas";
+
+function muat() {
+  try {
+    return JSON.parse(localStorage.getItem(KUNCI)) ?? [];
+  } catch {
+    return [];
+  }
+}
+
+function simpan() {
+  try {
+    localStorage.setItem(KUNCI, JSON.stringify(tugas));
+  } catch {
+    /* penyimpanan tidak tersedia: aplikasi tetap berjalan */
+  }
+}
+
+let tugas = muat();   // [{ id, teks, selesai }]
+</code></pre>
+<h2>5. JavaScript: Mengubah Data</h2>
+<pre><code class="language-javascript">function tambah(teks) {
+  tugas.push({ id: Date.now(), teks, selesai: false });
+  perbarui();
+}
+
+function toggle(id) {
+  const t = tugas.find((item) =&gt; item.id === id);
+  if (t) t.selesai = !t.selesai;
+  perbarui();
+}
+
+function hapus(id) {
+  tugas = tugas.filter((item) =&gt; item.id !== id);
+  perbarui();
+}
+
+function perbarui() {
+  simpan();
+  render();
+}
+</code></pre>
+<h2>6. JavaScript: Tampilan</h2>
+<pre><code class="language-javascript">const daftar = document.querySelector("#daftar");
+const info = document.querySelector("#info");
+
+function render() {
+  daftar.innerHTML = "";
+
+  tugas.forEach((t) =&gt; {
+    const li = document.createElement("li");
+    li.dataset.id = t.id;
+    li.classList.toggle("selesai", t.selesai);
+
+    const span = document.createElement("span");
+    span.textContent = t.teks;
+
+    const tombol = document.createElement("button");
+    tombol.type = "button";
+    tombol.textContent = "Hapus";
+    tombol.dataset.aksi = "hapus";
+    tombol.setAttribute("aria-label", `Hapus tugas: ${t.teks}`);
+
+    li.append(span, tombol);
+    daftar.append(li);
+  });
+
+  const sisa = tugas.filter((t) =&gt; !t.selesai).length;
+  info.textContent = tugas.length
+    ? `${sisa} dari ${tugas.length} tugas belum selesai`
+    : "Belum ada tugas. Tambahkan yang pertama!";
+}
+</code></pre>
+<h2>7. JavaScript: Event</h2>
+<pre><code class="language-javascript">const form = document.querySelector("#form");
+const input = document.querySelector("#teks");
+
+form.addEventListener("submit", (event) =&gt; {
+  event.preventDefault();
+  const teks = input.value.trim();
+  if (!teks) return;
+  tambah(teks);
+  input.value = "";
+  input.focus();
+});
+
+// Event delegation: satu listener untuk semua item
+daftar.addEventListener("click", (event) =&gt; {
+  const li = event.target.closest("li");
+  if (!li) return;
+  const id = Number(li.dataset.id);
+
+  if (event.target.dataset.aksi === "hapus") hapus(id);
+  else toggle(id);
+});
+
+render();
+</code></pre>
+<h2>8. Ide Pengembangan</h2>
+<ul>
+<li>Tombol filter: Semua, Aktif, Selesai.</li>
+<li>Edit teks tugas dengan klik dua kali.</li>
+<li>Pecah kode menjadi module (<code>storage.js</code>, <code>ui.js</code>, <code>main.js</code>).</li>
+<li>Ambil tugas awal dari API dengan <code>fetch</code>.</li>
+<li>Tampilkan tanggal pembuatan dengan <code>Date</code>.</li>
+</ul>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Mengubah tampilan tetapi lupa mengubah data (atau sebaliknya). Selalu ubah state, lalu <code>render()</code>.</li>
+<li>Lupa mengubah <code>dataset.id</code> yang berupa teks menjadi angka.</li>
+<li>Memakai <code>innerHTML</code> untuk teks buatan pengguna.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Tambahkan tombol "Hapus yang selesai" yang membuang semua tugas bertanda selesai, lalu tambahkan filter Aktif dan Selesai.</p>
+<h2>Rangkuman</h2>
+<p>Aplikasi yang rapi punya data (state), fungsi yang mengubahnya, dan satu fungsi <code>render()</code> untuk menampilkannya. Dengan DOM, event, array, dan <code>localStorage</code>, Anda sudah bisa membuat aplikasi nyata. Selamat, Anda telah menyelesaikan seri JavaScript!</p>

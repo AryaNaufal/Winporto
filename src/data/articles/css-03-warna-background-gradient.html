@@ -1,0 +1,112 @@
+<p>Warna digunakan pada teks, border, latar, ikon, dan banyak bagian lain. Tujuannya bukan menghafal kode warna, tetapi memahami format dan memilih warna yang tetap terbaca.</p>
+<h2>1. Format Warna dalam Satu Contoh</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 24px;
+      color: #1e293b;
+      background-color: rgb(248 250 252);
+    }
+
+    .daftar-warna {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .warna {
+      padding: 20px;
+      color: white;
+      border-radius: 10px;
+    }
+
+    .named { background-color: teal; }
+    .hex { background-color: #2563eb; }
+    .rgb { background-color: rgb(147 51 234); }
+    .hsl { background-color: hsl(24 95% 53%); }
+
+    .transparan {
+      margin-top: 16px;
+      padding: 20px;
+      color: #0f172a;
+      background-color: rgb(20 184 166 / 25%);
+      border: 2px solid rgb(20 184 166 / 70%);
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Format Warna CSS&lt;/h1&gt;
+  &lt;div class=&quot;daftar-warna&quot;&gt;
+    &lt;div class=&quot;warna named&quot;&gt;Named color&lt;/div&gt;
+    &lt;div class=&quot;warna hex&quot;&gt;HEX&lt;/div&gt;
+    &lt;div class=&quot;warna rgb&quot;&gt;RGB&lt;/div&gt;
+    &lt;div class=&quot;warna hsl&quot;&gt;HSL&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;transparan&quot;&gt;Kotak ini menggunakan transparansi alpha.&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>Named color mudah dibaca tetapi pilihannya terbatas.</li>
+<li>HEX memakai format <code>#RRGGBB</code>.</li>
+<li>RGB menulis nilai merah, hijau, dan biru.</li>
+<li>HSL menulis hue, saturation, dan lightness.</li>
+<li>Alpha mengatur tingkat transparansi.</li>
+</ul>
+<p>HSL nyaman ketika Anda ingin membuat warna hover yang lebih gelap dengan mengubah nilai lightness.</p>
+<h2>2. <code>currentColor</code> dan Keadaan Hover</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 32px;
+    }
+
+    .tautan {
+      display: inline-block;
+      padding: 10px 16px;
+      color: hsl(173 80% 32%);
+      border: 2px solid currentColor;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .tautan:hover {
+      color: hsl(173 80% 24%);
+      background-color: hsl(173 80% 94%);
+    }
+
+    .error {
+      margin-top: 20px;
+      padding: 12px;
+      color: #991b1b;
+      border-left: 4px solid currentColor;
+      background-color: #fef2f2;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a class=&quot;tautan&quot; href=&quot;#&quot;&gt;Pelajari lebih lanjut&lt;/a&gt;
+  &lt;p class=&quot;error&quot;&gt;&lt;strong&gt;Error:&lt;/strong&gt; Email tidak valid.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><code>currentColor</code> mengambil nilai <code>color</code> elemen saat ini sehingga border mengikuti warna teks. Pesan error juga memakai kata “Error”, bukan warna merah saja, agar maknanya tetap jelas.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Memilih teks abu-abu terlalu muda di atas latar putih.</li>
+<li>Menggunakan warna sebagai satu-satunya penanda keadaan.</li>
+<li>Memakai alpha tanpa memeriksa warna di belakangnya.</li>
+<li>Mencampur terlalu banyak format warna tanpa alasan.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Jalankan contoh pertama, lalu buat satu kotak baru menggunakan HEX. Tambahkan keadaan hover menggunakan HSL dan pastikan teks tetap mudah dibaca.</p>
+<h2>Rangkuman</h2>
+<p>CSS menyediakan beberapa format warna yang sama-sama valid. Pilih format yang mudah dipelihara, gunakan alpha dengan sadar, dan selalu prioritaskan kontras. Background dan gradient dibahas pada pelajaran CSS 9.</p>

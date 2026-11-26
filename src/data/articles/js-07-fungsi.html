@@ -1,0 +1,65 @@
+<p>Fungsi adalah blok kode yang diberi nama dan dapat dipakai berulang kali. Dengan fungsi, program Anda lebih rapi, mudah diuji, dan tidak penuh salinan kode.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Membuat dan memanggil fungsi.</li>
+<li>Memakai parameter, nilai default, dan <code>return</code>.</li>
+<li>Menulis arrow function.</li>
+</ul>
+<h2>1. Membuat dan Memanggil Fungsi</h2>
+<pre><code class="language-javascript">function sapa(nama) {
+  console.log("Halo, " + nama + "!");
+}
+
+sapa("Sinta");   // Halo, Sinta!
+sapa("Budi");    // Halo, Budi!
+</code></pre>
+<p><code>nama</code> adalah <strong>parameter</strong> (penampung), sedangkan <code>"Sinta"</code> adalah <strong>argumen</strong> (nilai yang dikirim).</p>
+<h2>2. return</h2>
+<pre><code class="language-javascript">function hitungLuas(panjang, lebar) {
+  return panjang * lebar;
+}
+
+const luas = hitungLuas(5, 3);
+console.log(luas); // 15
+</code></pre>
+<p><code>return</code> mengirim nilai kembali ke pemanggil dan menghentikan fungsi. Fungsi tanpa <code>return</code> menghasilkan <code>undefined</code>.</p>
+<h2>3. Nilai Default Parameter</h2>
+<pre><code class="language-javascript">function salam(nama = "Teman") {
+  return `Halo, ${nama}!`;
+}
+
+console.log(salam());        // Halo, Teman!
+console.log(salam("Sinta")); // Halo, Sinta!
+</code></pre>
+<h2>4. Function Expression dan Arrow Function</h2>
+<pre><code class="language-javascript">// function expression
+const kali = function (a, b) {
+  return a * b;
+};
+
+// arrow function
+const tambah = (a, b) =&gt; a + b;
+const kuadrat = (x) =&gt; x * x;
+const sapaSingkat = () =&gt; "Halo!";
+
+console.log(kali(2, 3), tambah(2, 3), kuadrat(4), sapaSingkat());
+</code></pre>
+<p>Bila badan arrow function hanya satu ekspresi, <code>return</code> boleh dihilangkan. Jika memakai kurung kurawal <code>{ }</code>, Anda harus menulis <code>return</code> secara eksplisit.</p>
+<h2>5. Fungsi sebagai Nilai</h2>
+<p>Fungsi dapat disimpan di variabel dan dikirim ke fungsi lain. Ini disebut <strong>callback</strong> dan akan sangat sering dipakai pada event dan array.</p>
+<pre><code class="language-javascript">function ulangi(kali, aksi) {
+  for (let i = 0; i &lt; kali; i++) aksi(i);
+}
+
+ulangi(3, (i) =&gt; console.log("Aksi ke-" + i));
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Lupa memanggil fungsi (<code>sapa</code> tanpa tanda kurung hanya menyebut fungsinya).</li>
+<li>Lupa <code>return</code> sehingga hasilnya <code>undefined</code>.</li>
+<li>Membuat fungsi yang melakukan terlalu banyak hal. Satu fungsi sebaiknya satu tugas.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat fungsi <code>hitungDiskon(harga, persen)</code> yang mengembalikan harga akhir, lalu tulis ulang sebagai arrow function. Buat juga fungsi <code>apakahGenap(angka)</code> yang mengembalikan boolean.</p>
+<h2>Rangkuman</h2>
+<p>Fungsi menerima parameter dan dapat mengembalikan nilai dengan <code>return</code>. Arrow function adalah penulisan ringkas, dan fungsi bisa diperlakukan sebagai nilai biasa.</p>

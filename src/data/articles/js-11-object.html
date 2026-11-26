@@ -1,0 +1,80 @@
+<p>Object menyimpan data berpasangan <strong>nama: nilai</strong>. Jika array cocok untuk daftar, object cocok untuk menggambarkan satu benda, misalnya seorang pengguna atau sebuah produk.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Membuat object dan mengakses propertinya.</li>
+<li>Menambah, mengubah, dan menghapus property.</li>
+<li>Memakai destructuring, spread, dan optional chaining.</li>
+</ul>
+<h2>1. Membuat dan Mengakses Object</h2>
+<pre><code class="language-javascript">const pengguna = {
+  nama: "Sinta",
+  umur: 20,
+  aktif: true,
+};
+
+console.log(pengguna.nama);        // notasi titik
+console.log(pengguna["umur"]);     // notasi kurung
+
+const kunci = "aktif";
+console.log(pengguna[kunci]);      // kurung berguna untuk nama dinamis
+</code></pre>
+<h2>2. Mengubah Object</h2>
+<pre><code class="language-javascript">pengguna.umur = 21;          // ubah
+pengguna.kota = "Jakarta";   // tambah
+delete pengguna.aktif;       // hapus
+console.log(pengguna);
+</code></pre>
+<h2>3. Method di Dalam Object</h2>
+<pre><code class="language-javascript">const kucing = {
+  nama: "Mimi",
+  bersuara() {
+    return `${this.nama} berkata meong`;
+  },
+};
+
+console.log(kucing.bersuara());
+</code></pre>
+<p>Di dalam method, <code>this</code> menunjuk ke object pemiliknya. Hindari arrow function untuk method object karena <code>this</code>-nya berbeda.</p>
+<h2>4. Mengambil Kunci, Nilai, dan Pasangan</h2>
+<pre><code class="language-javascript">const produk = { nama: "Buku", harga: 25000 };
+
+console.log(Object.keys(produk));    // ["nama", "harga"]
+console.log(Object.values(produk));  // ["Buku", 25000]
+
+for (const [kunci, nilai] of Object.entries(produk)) {
+  console.log(`${kunci}: ${nilai}`);
+}
+</code></pre>
+<h2>5. Destructuring dan Spread</h2>
+<pre><code class="language-javascript">const { nama, harga } = produk;           // ambil beberapa property
+const { nama: judul } = produk;           // ganti nama variabel
+const diskon = { ...produk, harga: 20000 }; // salinan dengan perubahan
+
+console.log(nama, harga, judul, diskon);
+</code></pre>
+<h2>6. Optional Chaining</h2>
+<pre><code class="language-javascript">const user = { profil: { alamat: { kota: "Bandung" } } };
+const tamu = {};
+
+console.log(user.profil.alamat.kota);   // "Bandung"
+console.log(tamu.profil?.alamat?.kota); // undefined (tanpa error)
+console.log(tamu.profil?.alamat?.kota ?? "Tidak diketahui");
+</code></pre>
+<p><code>?.</code> berhenti dengan aman bila bagian di depannya <code>null</code> atau <code>undefined</code>, sedangkan <code>??</code> memberi nilai cadangan.</p>
+<h2>7. Array berisi Object</h2>
+<pre><code class="language-javascript">const siswa = [
+  { nama: "Ani", nilai: 90 },
+  { nama: "Budi", nilai: 70 },
+];
+console.log(siswa.filter((s) =&gt; s.nilai &gt;= 80).map((s) =&gt; s.nama)); // ["Ani"]
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Membaca property yang tidak ada lalu mengaksesnya lebih dalam (error: <em>cannot read properties of undefined</em>).</li>
+<li>Menyalin object dengan <code>=</code>, padahal hanya menyalin referensi.</li>
+<li>Memakai arrow function untuk method yang butuh <code>this</code>.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat object <code>buku</code> berisi judul, penulis, dan tahun. Tambahkan method <code>info()</code> yang mengembalikan kalimat ringkas. Lalu buat salinan dengan tahun yang berbeda memakai spread.</p>
+<h2>Rangkuman</h2>
+<p>Object menyimpan data berpasangan nama dan nilai. Akses dengan titik atau kurung, bongkar dengan destructuring, salin dengan spread, dan akses aman dengan <code>?.</code>.</p>

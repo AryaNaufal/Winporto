@@ -1,0 +1,66 @@
+<p>Tabel digunakan untuk data yang mempunyai hubungan baris dan kolom. Tabel bukan alat untuk menyusun layout halaman.</p>
+<h2>1. Struktur Dasar</h2>
+<pre><code class="language-html">&lt;table&gt;
+  &lt;caption&gt;Jadwal Kelas Web Dasar&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope=&quot;col&quot;&gt;Hari&lt;/th&gt;
+      &lt;th scope=&quot;col&quot;&gt;Materi&lt;/th&gt;
+      &lt;th scope=&quot;col&quot;&gt;Durasi&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Senin&lt;/td&gt;
+      &lt;td&gt;HTML&lt;/td&gt;
+      &lt;td&gt;90 menit&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Rabu&lt;/td&gt;
+      &lt;td&gt;CSS&lt;/td&gt;
+      &lt;td&gt;90 menit&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+<ul>
+<li><code>caption</code> menjelaskan tujuan tabel.</li>
+<li><code>thead</code> membungkus kelompok kepala tabel.</li>
+<li><code>tbody</code> membungkus data utama.</li>
+<li><code>tr</code> adalah satu baris.</li>
+<li><code>th</code> adalah sel judul dan <code>td</code> adalah sel data.</li>
+<li><code>scope=&quot;col&quot;</code> menjelaskan bahwa header berlaku untuk kolom.</li>
+</ul>
+<h2>2. Header Baris</h2>
+<pre><code class="language-html">&lt;table&gt;
+  &lt;caption&gt;Nilai Siswa&lt;/caption&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope=&quot;row&quot;&gt;Ayu&lt;/th&gt;
+      &lt;td&gt;90&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th scope=&quot;row&quot;&gt;Bima&lt;/th&gt;
+      &lt;td&gt;85&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+<p><code>scope</code> membantu pembaca layar menghubungkan nilai dengan header yang tepat.</p>
+<h2>3. Menggabungkan Sel</h2>
+<p><code>colspan</code> menggabungkan kolom dan <code>rowspan</code> menggabungkan baris. Gunakan seperlunya karena tabel yang terlalu kompleks sulit dibaca di layar kecil.</p>
+<pre><code class="language-html">&lt;tr&gt;
+  &lt;th colspan=&quot;2&quot;&gt;Data Kontak&lt;/th&gt;
+&lt;/tr&gt;
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menggunakan tabel untuk layout dua kolom.</li>
+<li>Mengosongkan <code>caption</code> pada tabel yang kompleks.</li>
+<li>Menggunakan <code>td</code> untuk semua sel termasuk header.</li>
+<li>Membuat tabel sangat lebar tanpa memikirkan layar ponsel.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat tabel daftar produk dengan kolom Nama, Harga, dan Stok. Tambahkan <code>caption</code>, <code>thead</code>, dua baris data, serta <code>scope</code> pada setiap header.</p>
+<h2>Rangkuman</h2>
+<p>Tabel cocok untuk data tabular. Struktur semantik dan atribut <code>scope</code> membuat hubungan data lebih jelas untuk semua pengguna.</p>

@@ -1,0 +1,97 @@
+<p>Class adalah cetak biru untuk membuat banyak object dengan bentuk dan perilaku yang sama. Ini adalah pengantar ke pemrograman berorientasi object (OOP).</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Membuat class dengan constructor dan method.</li>
+<li>Membuat object dari class dengan <code>new</code>.</li>
+<li>Memakai pewarisan, getter, dan field privat.</li>
+</ul>
+<h2>1. Class Pertama</h2>
+<pre><code class="language-javascript">class Produk {
+  constructor(nama, harga) {
+    this.nama = nama;
+    this.harga = harga;
+  }
+
+  info() {
+    return `${this.nama} - Rp${this.harga}`;
+  }
+
+  beriDiskon(persen) {
+    return this.harga - (this.harga * persen) / 100;
+  }
+}
+
+const buku = new Produk("Buku", 25000);
+const pena = new Produk("Pena", 5000);
+
+console.log(buku.info());           // Buku - Rp25000
+console.log(buku.beriDiskon(10));   // 22500
+</code></pre>
+<p><code>constructor</code> berjalan otomatis saat <code>new</code> dipakai. <code>this</code> menunjuk ke object yang sedang dibuat atau dipakai.</p>
+<h2>2. Pewarisan (extends)</h2>
+<pre><code class="language-javascript">class ProdukDigital extends Produk {
+  constructor(nama, harga, ukuranMb) {
+    super(nama, harga);       // panggil constructor induk lebih dulu
+    this.ukuranMb = ukuranMb;
+  }
+
+  info() {
+    return `${super.info()} (${this.ukuranMb} MB)`;
+  }
+}
+
+const ebook = new ProdukDigital("E-book JS", 49000, 12);
+console.log(ebook.info());   // E-book JS - Rp49000 (12 MB)
+</code></pre>
+<p>Class anak mewarisi semua method induk dan boleh menimpanya. Gunakan pewarisan bila hubungannya benar-benar "adalah sebuah" (e-book <em>adalah</em> produk).</p>
+<h2>3. Getter dan Setter</h2>
+<pre><code class="language-javascript">class Lingkaran {
+  constructor(jariJari) {
+    this.jariJari = jariJari;
+  }
+
+  get luas() {
+    return Math.PI * this.jariJari ** 2;
+  }
+}
+
+const l = new Lingkaran(7);
+console.log(l.luas.toFixed(2)); // 153.94 (dipakai seperti property, tanpa kurung)
+</code></pre>
+<h2>4. Field Privat dan Static</h2>
+<pre><code class="language-javascript">class Rekening {
+  #saldo = 0;                      // privat: hanya bisa diakses dari dalam class
+
+  setor(jumlah) {
+    if (jumlah &lt;= 0) throw new Error("Jumlah harus positif");
+    this.#saldo += jumlah;
+  }
+
+  get saldo() {
+    return this.#saldo;
+  }
+
+  static dariAngka(angka) {        // dipanggil lewat nama class
+    const r = new Rekening();
+    r.setor(angka);
+    return r;
+  }
+}
+
+const r = Rekening.dariAngka(1000);
+r.setor(500);
+console.log(r.saldo);   // 1500
+// r.#saldo = 0;        // Error: field privat
+</code></pre>
+<h2>Kapan Memakai Class?</h2>
+<p>Class cocok bila Anda perlu banyak object sejenis yang menyimpan data sekaligus perilakunya. Untuk data sederhana, object biasa dan fungsi sudah cukup; jangan menambah kerumitan yang tidak dibutuhkan.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Lupa <code>new</code> saat membuat object.</li>
+<li>Lupa memanggil <code>super()</code> pada constructor class anak.</li>
+<li>Memakai pewarisan untuk hubungan yang sebenarnya "memiliki", bukan "adalah".</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat class <code>Hewan</code> dengan method <code>bersuara()</code>, lalu class <code>Kucing</code> dan <code>Anjing</code> yang mewarisinya dan menimpa method tersebut.</p>
+<h2>Rangkuman</h2>
+<p>Class membungkus data dan perilaku. <code>constructor</code> menyiapkan object, <code>extends</code> dan <code>super</code> menurunkan perilaku, getter mempermudah akses, dan <code>#</code> menyembunyikan data.</p>

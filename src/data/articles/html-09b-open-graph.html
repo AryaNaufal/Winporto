@@ -1,0 +1,32 @@
+<p>Saat sebuah link dibagikan, aplikasi sosial dapat menampilkan judul, ringkasan, dan gambar. Informasi tersebut biasanya berasal dari protokol Open Graph.</p>
+<h2>1. Metadata Open Graph</h2>
+<pre><code class="language-html">&lt;meta property=&quot;og:type&quot; content=&quot;article&quot;&gt;
+&lt;meta property=&quot;og:title&quot; content=&quot;Belajar HTML untuk Pemula&quot;&gt;
+&lt;meta property=&quot;og:description&quot; content=&quot;Panduan HTML bertahap dengan contoh dan latihan.&quot;&gt;
+&lt;meta property=&quot;og:url&quot; content=&quot;https://example.com/belajar-html&quot;&gt;
+&lt;meta property=&quot;og:image&quot; content=&quot;https://example.com/images/cover-html.jpg&quot;&gt;
+&lt;meta property=&quot;og:image:alt&quot; content=&quot;Ilustrasi struktur dokumen HTML&quot;&gt;
+</code></pre>
+<p>Gunakan URL absolut, terutama untuk <code>og:url</code> dan <code>og:image</code>. Server media sosial tidak mengetahui struktur folder lokal project Anda.</p>
+<h2>2. Metadata Twitter/X</h2>
+<pre><code class="language-html">&lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt;
+&lt;meta name=&quot;twitter:title&quot; content=&quot;Belajar HTML untuk Pemula&quot;&gt;
+&lt;meta name=&quot;twitter:description&quot; content=&quot;Panduan HTML bertahap dengan contoh dan latihan.&quot;&gt;
+&lt;meta name=&quot;twitter:image&quot; content=&quot;https://example.com/images/cover-html.jpg&quot;&gt;
+</code></pre>
+<p>Jika metadata Twitter tidak tersedia, sebagian platform dapat memakai Open Graph sebagai fallback.</p>
+<h2>3. Gambar yang Baik</h2>
+<p>Gunakan gambar yang relevan, dapat diakses publik, dan cukup besar untuk kartu. Jangan memasukkan informasi penting hanya sebagai teks di dalam gambar karena dapat terpotong.</p>
+<h2>4. Menguji Hasil</h2>
+<p>Setelah halaman tersedia secara online, gunakan alat inspeksi milik platform tujuan. Perubahan tidak selalu langsung terlihat karena platform menyimpan cache pratinjau.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menggunakan path relatif seperti <code>/cover.jpg</code> pada metadata yang dibaca layanan luar.</li>
+<li>Gambar membutuhkan login sehingga tidak dapat diambil crawler.</li>
+<li>Judul kartu berbeda jauh dari isi halaman.</li>
+<li>Mengharapkan pembaruan langsung tanpa membersihkan cache platform.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Tambahkan Open Graph lengkap pada halaman artikel latihan. Pastikan title, description, URL, image, dan alt semuanya menggambarkan halaman yang sama.</p>
+<h2>Rangkuman</h2>
+<p>Open Graph mengontrol bagaimana link diperkenalkan saat dibagikan. Metadata yang akurat membantu orang memahami tujuan link sebelum membukanya.</p>

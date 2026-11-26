@@ -1,0 +1,62 @@
+<p>Halaman yang baik memiliki susunan tulisan yang jelas. Pembaca harus dapat membedakan judul utama, subjudul, paragraf, dan kata yang penting hanya dengan melihat strukturnya.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Menggunakan heading sesuai urutan.</li>
+<li>Menulis paragraf dan pemisah konten.</li>
+<li>Memberikan penekanan berdasarkan makna, bukan sekadar tampilan.</li>
+</ul>
+<h2>1. Heading <code>h1</code> sampai <code>h6</code></h2>
+<p>HTML menyediakan enam tingkat heading. <code>h1</code> adalah judul utama, sedangkan <code>h2</code> hingga <code>h6</code> digunakan untuk bagian yang semakin dalam.</p>
+<pre><code class="language-html">&lt;h1&gt;Panduan Merawat Tanaman&lt;/h1&gt;
+
+&lt;h2&gt;Memilih Tanaman&lt;/h2&gt;
+&lt;p&gt;Pilih tanaman yang sesuai dengan kondisi rumah.&lt;/p&gt;
+
+&lt;h2&gt;Perawatan Harian&lt;/h2&gt;
+&lt;h3&gt;Kebutuhan Air&lt;/h3&gt;
+&lt;p&gt;Periksa kelembapan tanah sebelum menyiram.&lt;/p&gt;
+</code></pre>
+<p>Umumnya satu halaman mempunyai satu <code>h1</code>. Setelah <code>h2</code>, gunakan <code>h3</code> untuk subbagian—jangan memilih heading hanya karena ukuran hurufnya terlihat cocok.</p>
+<h2>2. Paragraf dan Pindah Baris</h2>
+<p>Gunakan <code>&lt;p&gt;</code> untuk satu gagasan atau paragraf.</p>
+<pre><code class="language-html">&lt;p&gt;HTML menyusun konten halaman.&lt;/p&gt;
+&lt;p&gt;CSS mengatur tampilan konten tersebut.&lt;/p&gt;
+</code></pre>
+<p>Browser mengabaikan sebagian besar Enter dan spasi tambahan dalam kode. Untuk pindah baris yang memang bagian dari isi, seperti alamat atau puisi, gunakan <code>&lt;br&gt;</code>.</p>
+<pre><code class="language-html">&lt;p&gt;
+  Jalan Merdeka No. 10&lt;br&gt;
+  Bandung, Jawa Barat
+&lt;/p&gt;
+</code></pre>
+<p>Jangan menggunakan banyak <code>&lt;br&gt;</code> untuk membuat jarak. Jarak visual seharusnya diatur dengan CSS.</p>
+<h2>3. Penekanan Teks</h2>
+<pre><code class="language-html">&lt;p&gt;&lt;strong&gt;Penting:&lt;/strong&gt; simpan pekerjaan sebelum menutup aplikasi.&lt;/p&gt;
+&lt;p&gt;Istilah &lt;em&gt;responsive design&lt;/em&gt; berarti desain yang dapat menyesuaikan layar.&lt;/p&gt;
+&lt;p&gt;Promo berlaku sampai &lt;mark&gt;31 Agustus&lt;/mark&gt;.&lt;/p&gt;
+&lt;p&gt;Air membeku pada suhu 0&lt;sup&gt;°&lt;/sup&gt;C.&lt;/p&gt;
+&lt;p&gt;Rumus air adalah H&lt;sub&gt;2&lt;/sub&gt;O.&lt;/p&gt;
+</code></pre>
+<ul>
+<li><code>&lt;strong&gt;</code> menandai informasi sangat penting.</li>
+<li><code>&lt;em&gt;</code> memberi penekanan pada ucapan atau istilah.</li>
+<li><code>&lt;mark&gt;</code> menyorot bagian yang relevan.</li>
+<li><code>&lt;sup&gt;</code> dan <code>&lt;sub&gt;</code> membuat teks atas dan bawah.</li>
+</ul>
+<p>Tag-tag tersebut membawa makna bagi pembaca layar. Untuk sekadar membuat teks tebal atau miring sebagai dekorasi, gunakan CSS.</p>
+<h2>4. Pemisah Bagian</h2>
+<p><code>&lt;hr&gt;</code> menandai perpindahan topik, bukan sekadar menggambar garis.</p>
+<pre><code class="language-html">&lt;p&gt;Bagian pertama membahas HTML.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Bagian berikutnya membahas CSS.&lt;/p&gt;
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Melompati <code>h2</code> langsung ke <code>h4</code> tanpa alasan struktur.</li>
+<li>Menggunakan <code>&lt;h1&gt;</code> untuk semua judul.</li>
+<li>Memakai <code>&lt;br&gt;&lt;br&gt;&lt;br&gt;</code> untuk membuat ruang kosong.</li>
+<li>Memilih <code>&lt;strong&gt;</code> hanya untuk mendapatkan huruf tebal.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat halaman resep yang memiliki satu <code>h1</code>, minimal dua <code>h2</code>, beberapa paragraf, satu informasi penting dengan <code>strong</code>, dan satu istilah dengan <code>em</code>.</p>
+<h2>Rangkuman</h2>
+<p>Heading membentuk kerangka tulisan, paragraf memisahkan gagasan, dan elemen penekanan memberi makna. Struktur yang benar membantu manusia, mesin pencari, dan teknologi pembaca layar memahami artikel Anda.</p>

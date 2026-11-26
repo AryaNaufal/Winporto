@@ -1,0 +1,64 @@
+<p>Selain loop, array punya method yang memproses seluruh isinya secara ringkas: mengubah bentuk, menyaring, mencari, dan menghitung. Method ini adalah pekerjaan sehari-hari developer JavaScript.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Memakai <code>forEach</code>, <code>map</code>, dan <code>filter</code>.</li>
+<li>Memakai <code>find</code>, <code>some</code>, <code>every</code>, dan <code>reduce</code>.</li>
+<li>Mengurutkan array dengan benar.</li>
+</ul>
+<h2>1. forEach</h2>
+<pre><code class="language-javascript">const angka = [1, 2, 3];
+angka.forEach((n) =&gt; console.log(n * 10)); // 10, 20, 30
+</code></pre>
+<p><code>forEach</code> menjalankan fungsi untuk setiap item dan tidak mengembalikan apa pun.</p>
+<h2>2. map: Mengubah Setiap Item</h2>
+<pre><code class="language-javascript">const harga = [10000, 25000, 40000];
+const denganPajak = harga.map((h) =&gt; h * 1.1);
+console.log(denganPajak); // [11000, 27500, 44000]
+</code></pre>
+<p><code>map</code> menghasilkan array <strong>baru</strong> dengan jumlah item yang sama.</p>
+<h2>3. filter: Menyaring Item</h2>
+<pre><code class="language-javascript">const nilai = [55, 80, 67, 92, 40];
+const lulus = nilai.filter((n) =&gt; n &gt;= 60);
+console.log(lulus); // [80, 67, 92]
+</code></pre>
+<h2>4. find, some, every</h2>
+<pre><code class="language-javascript">const produk = [
+  { nama: "Pensil", stok: 0 },
+  { nama: "Buku", stok: 12 },
+  { nama: "Penghapus", stok: 5 },
+];
+
+console.log(produk.find((p) =&gt; p.stok &gt; 10));        // { nama: "Buku", stok: 12 }
+console.log(produk.some((p) =&gt; p.stok === 0));        // true  (ada yang habis)
+console.log(produk.every((p) =&gt; p.stok &gt; 0));         // false (tidak semua tersedia)
+</code></pre>
+<h2>5. reduce: Merangkum Jadi Satu Nilai</h2>
+<pre><code class="language-javascript">const belanja = [15000, 20000, 5000];
+const total = belanja.reduce((jumlah, harga) =&gt; jumlah + harga, 0);
+console.log(total); // 40000
+</code></pre>
+<p>Argumen kedua (<code>0</code>) adalah nilai awal. Pada setiap putaran, hasil dikirim kembali sebagai <code>jumlah</code>.</p>
+<h2>6. sort dan Rantai Method</h2>
+<pre><code class="language-javascript">const skor = [100, 9, 25, 4];
+
+skor.sort();                   // [100, 25, 4, 9]  SALAH: diurutkan sebagai teks
+skor.sort((a, b) =&gt; a - b);    // [4, 9, 25, 100]  urut naik
+skor.sort((a, b) =&gt; b - a);    // [100, 25, 9, 4]  urut turun
+
+// Merangkai method
+const hasil = [1, 2, 3, 4, 5, 6]
+  .filter((n) =&gt; n % 2 === 0)
+  .map((n) =&gt; n * n);
+console.log(hasil); // [4, 16, 36]
+</code></pre>
+<p><code>sort</code> mengubah array aslinya. Untuk menjaga aslinya, salin dulu: <code>[...skor].sort(...)</code>.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Memakai <code>map</code> padahal hanya butuh efek samping (gunakan <code>forEach</code>).</li>
+<li>Lupa menulis <code>return</code> pada arrow function bertanda kurung kurawal.</li>
+<li>Memakai <code>sort()</code> tanpa fungsi pembanding untuk angka.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Dari daftar harga <code>[12000, 8000, 45000, 30000]</code>: ambil harga di atas 10000, beri diskon 10%, lalu jumlahkan semuanya dengan satu rantai method.</p>
+<h2>Rangkuman</h2>
+<p><code>map</code> mengubah, <code>filter</code> menyaring, <code>find</code> mencari satu, <code>some/every</code> memeriksa kondisi, <code>reduce</code> merangkum, dan <code>sort</code> mengurutkan dengan fungsi pembanding.</p>

@@ -1,0 +1,99 @@
+<p>Ukuran CSS dapat bersifat tetap atau mengikuti konteks. Pemilihan unit memengaruhi responsivitas dan aksesibilitas.</p>
+<h2>1. Demo Unit dan Ukuran Fleksibel</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #334155;
+      background-color: #f1f5f9;
+    }
+
+    .hero {
+      min-height: 45vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      text-align: center;
+      background-color: #ccfbf1;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: #0f766e;
+    }
+
+    .container {
+      width: min(100% - 2rem, 72rem);
+      margin-inline: auto;
+      padding-block: 2rem;
+    }
+
+    .kartu {
+      border: 1px solid #cbd5e1;
+      padding: 1.5rem;
+      background-color: white;
+      border-radius: 12px;
+    }
+
+    .tombol {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75em 1.25em;
+      font-size: 1rem;
+      color: white;
+      background-color: #0f766e;
+      border-radius: 8px;
+    }
+
+    .contoh-kode {
+      margin-top: 1rem;
+      padding: 12px;
+      overflow-x: auto;
+      white-space: nowrap;
+      color: #e2e8f0;
+      background-color: #0f172a;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header class=&quot;hero&quot;&gt;
+    &lt;h1&gt;Ukuran Fleksibel&lt;/h1&gt;
+  &lt;/header&gt;
+
+  &lt;main class=&quot;container&quot;&gt;
+    &lt;section class=&quot;kartu&quot;&gt;
+      &lt;h2&gt;px, rem, em, dan viewport&lt;/h2&gt;
+      &lt;p&gt;Lebar container dan ukuran heading menyesuaikan ruang yang tersedia.&lt;/p&gt;
+      &lt;span class=&quot;tombol&quot;&gt;Padding tombol mengikuti ukuran teks&lt;/span&gt;
+      &lt;div class=&quot;contoh-kode&quot;&gt;Baris sangat panjang ini dapat digeser secara horizontal tanpa merusak layout halaman.&lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2>2. Cara Memilih Unit</h2>
+<ul>
+<li><code>px</code> cocok untuk detail kecil seperti border.</li>
+<li><code>rem</code> mengikuti ukuran font root dan cocok untuk font serta spacing global.</li>
+<li><code>em</code> mengikuti ukuran font elemen saat ini, seperti padding tombol.</li>
+<li>Persen biasanya bergantung pada ukuran induk.</li>
+<li><code>vh</code> dan <code>vw</code> bergantung pada viewport.</li>
+</ul>
+<p>Hindari <code>width: 100vw</code> untuk konten biasa karena scrollbar dapat memicu luapan horizontal.</p>
+<h2>3. Batas Ukuran</h2>
+<p>Pada contoh, <code>width: min(100% - 2rem, 72rem)</code> berarti container memakai ruang yang tersedia sambil menyisakan margin, tetapi tidak pernah lebih lebar dari <code>72rem</code>.</p>
+<p><code>clamp(2rem, 5vw, 4rem)</code> menjaga heading tidak lebih kecil dari <code>2rem</code> dan tidak lebih besar dari <code>4rem</code>.</p>
+<h2>4. Overflow</h2>
+<p>Overflow terjadi ketika isi lebih besar daripada kotaknya. <code>overflow-x: auto</code> memberi scrollbar hanya saat diperlukan. Jangan langsung memakai <code>overflow: hidden</code> karena konten penting dapat terpotong.</p>
+<h2>Latihan</h2>
+<p>Kecilkan viewport sampai 360px. Ubah batas container, ukuran minimum dan maksimum heading, serta panjang teks pada <code>.contoh-kode</code>. Amati bagian mana yang fleksibel dan bagian mana yang memiliki batas.</p>
+<h2>Rangkuman</h2>
+<p>Gunakan unit sesuai hubungan yang diinginkan: px untuk detail, rem untuk skala global, em untuk skala lokal, persen untuk induk, dan viewport untuk layar. Batasi ukuran agar layout tetap nyaman.</p>

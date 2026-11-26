@@ -1,0 +1,105 @@
+<p>Flexbox digunakan untuk menyusun elemen dalam <strong>satu arah utama</strong>: sebuah baris atau sebuah kolom. Contoh yang cocok adalah navigasi, kumpulan tombol, dan deretan kartu.</p>
+<h2>1. Demo Flexbox Lengkap</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #334155;
+      background-color: #f8fafc;
+    }
+
+    .navigasi,
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .navigasi {
+      justify-content: space-between;
+      padding: 18px 24px;
+      background-color: #0f172a;
+    }
+
+    .navigasi a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin-inline: auto;
+      padding: 32px 20px;
+    }
+
+    .daftar-kartu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .kartu {
+      flex: 1 1 220px;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+    }
+
+    .kartu a {
+      align-self: flex-start;
+      color: #0f766e;
+      font-weight: 700;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav class=&quot;navigasi&quot;&gt;
+    &lt;a href=&quot;#&quot;&gt;&lt;strong&gt;Belajar CSS&lt;/strong&gt;&lt;/a&gt;
+    &lt;div class=&quot;menu&quot;&gt;
+      &lt;a href=&quot;#materi&quot;&gt;Materi&lt;/a&gt;
+      &lt;a href=&quot;#tentang&quot;&gt;Tentang&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class=&quot;container&quot; id=&quot;materi&quot;&gt;
+    &lt;h1&gt;Materi Front-End&lt;/h1&gt;
+    &lt;div class=&quot;daftar-kartu&quot;&gt;
+      &lt;article class=&quot;kartu&quot;&gt;&lt;h2&gt;HTML&lt;/h2&gt;&lt;a href=&quot;#&quot;&gt;Belajar&lt;/a&gt;&lt;/article&gt;
+      &lt;article class=&quot;kartu&quot;&gt;&lt;h2&gt;CSS&lt;/h2&gt;&lt;a href=&quot;#&quot;&gt;Belajar&lt;/a&gt;&lt;/article&gt;
+      &lt;article class=&quot;kartu&quot;&gt;&lt;h2&gt;JavaScript&lt;/h2&gt;&lt;a href=&quot;#&quot;&gt;Belajar&lt;/a&gt;&lt;/article&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><code>.navigasi</code> dan <code>.daftar-kartu</code> adalah flex container. Anak langsungnya menjadi flex item.</p>
+<h2>2. Main Axis dan Cross Axis</h2>
+<p>Pada <code>flex-direction: row</code>, main axis bergerak mendatar. Pada <code>column</code>, main axis bergerak vertikal. <code>justify-content</code> bekerja pada main axis, sedangkan <code>align-items</code> bekerja pada cross axis.</p>
+<p>Navigasi memakai <code>justify-content: space-between</code> untuk memisahkan logo dan menu. Kartu memakai <code>flex-direction: column</code>, sehingga <code>justify-content</code> mengatur susunan vertikal isinya.</p>
+<h2>3. Gap, Wrap, dan Ukuran Item</h2>
+<p><code>gap</code> memberi jarak konsisten. <code>flex-wrap: wrap</code> mengizinkan kartu pindah baris. <code>flex: 1 1 220px</code> berarti kartu boleh membesar, boleh mengecil, dan memulai perhitungan dari sekitar <code>220px</code>.</p>
+<p>Kecilkan viewport sandbox untuk melihat jumlah kartu per baris berubah otomatis.</p>
+<h2>Kesalahan yang Sering Terjadi</h2>
+<ul>
+<li>Memberi <code>justify-content</code> pada item, padahal property itu milik container.</li>
+<li>Lupa bahwa <code>flex-direction</code> mengubah arti sumbu utama.</li>
+<li>Menggunakan margin pada setiap item padahal <code>gap</code> lebih sederhana.</li>
+<li>Memaksa layout dua dimensi memakai Flexbox padahal Grid lebih tepat.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Ubah <code>flex-direction</code> daftar kartu menjadi <code>column</code>, lalu kembalikan ke <code>row</code>. Ubah nilai dasar <code>220px</code> menjadi <code>300px</code> dan amati kapan kartu pindah baris.</p>
+<h2>Ringkasan</h2>
+<p>Aktifkan Flexbox pada induk dengan <code>display: flex</code>. Gunakan <code>flex-direction</code> untuk arah, <code>justify-content</code> untuk main axis, <code>align-items</code> untuk cross axis, <code>gap</code> untuk jarak, dan <code>flex-wrap</code> untuk pindah baris.</p>

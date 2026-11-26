@@ -1,0 +1,81 @@
+<p>Sebagian pekerjaan membutuhkan waktu: menunggu data dari internet, timer, atau membaca file. JavaScript tidak berhenti menunggu; ia melanjutkan pekerjaan lain, lalu kembali saat hasilnya siap. Inilah pemrograman <strong>asynchronous</strong>.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Memahami perbedaan kode sinkron dan asinkron.</li>
+<li>Memakai <code>setTimeout</code>, Promise, dan <code>async/await</code>.</li>
+<li>Menjalankan beberapa tugas bersamaan dengan <code>Promise.all</code>.</li>
+</ul>
+<h2>1. Sinkron vs Asinkron</h2>
+<pre><code class="language-javascript">console.log("1. Mulai");
+
+setTimeout(() =&gt; {
+  console.log("2. Dari timer (setelah 1 detik)");
+}, 1000);
+
+console.log("3. Selesai");
+// Urutan hasil: 1, 3, 2
+</code></pre>
+<p>Walaupun timer ditulis di tengah, hasilnya muncul terakhir. JavaScript menjalankan satu hal pada satu waktu, tetapi tugas yang menunggu dititipkan ke browser dan dipanggil kembali setelah selesai.</p>
+<h2>2. setTimeout dan setInterval</h2>
+<pre><code class="language-javascript">const id = setInterval(() =&gt; {
+  console.log("Setiap 1 detik");
+}, 1000);
+
+setTimeout(() =&gt; clearInterval(id), 3500);  // hentikan setelah 3,5 detik
+</code></pre>
+<h2>3. Promise</h2>
+<p>Promise adalah "janji" hasil yang akan datang. Statusnya: <em>pending</em> (menunggu), <em>fulfilled</em> (berhasil), atau <em>rejected</em> (gagal).</p>
+<pre><code class="language-javascript">function tunggu(ms) {
+  return new Promise((resolve) =&gt; setTimeout(resolve, ms));
+}
+
+function ambilNama() {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      const berhasil = true;
+      if (berhasil) resolve("Sinta");
+      else reject(new Error("Gagal mengambil data"));
+    }, 500);
+  });
+}
+
+ambilNama()
+  .then((nama) =&gt; console.log("Halo,", nama))
+  .catch((error) =&gt; console.log(error.message))
+  .finally(() =&gt; console.log("Selesai"));
+</code></pre>
+<h2>4. async dan await</h2>
+<p>Cara menulis Promise yang terbaca seperti kode biasa dari atas ke bawah.</p>
+<pre><code class="language-javascript">async function jalankan() {
+  try {
+    console.log("Mengambil...");
+    const nama = await ambilNama();   // tunggu sampai selesai
+    console.log("Halo,", nama);
+    await tunggu(1000);
+    console.log("Satu detik kemudian");
+  } catch (error) {
+    console.log("Gagal:", error.message);
+  }
+}
+
+jalankan();
+</code></pre>
+<p><code>await</code> hanya boleh dipakai di dalam fungsi <code>async</code> (atau di level atas module). Fungsi <code>async</code> selalu mengembalikan Promise.</p>
+<h2>5. Promise.all</h2>
+<pre><code class="language-javascript">async function ambilSemua() {
+  const [a, b] = await Promise.all([ambilNama(), ambilNama()]);
+  console.log(a, b);   // keduanya berjalan bersamaan
+}
+ambilSemua();
+</code></pre>
+<p>Bila tugas tidak saling bergantung, <code>Promise.all</code> jauh lebih cepat daripada <code>await</code> satu per satu.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Lupa <code>await</code> sehingga yang didapat adalah Promise, bukan hasilnya.</li>
+<li>Tidak menangani error (<code>catch</code> atau <code>try/catch</code>).</li>
+<li>Memakai <code>await</code> berurutan untuk tugas yang sebenarnya dapat paralel.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat fungsi <code>hitungMundur(n)</code> yang mencetak angka dari n sampai 1 dengan jeda 1 detik antar angka memakai <code>async/await</code> dan fungsi <code>tunggu</code>.</p>
+<h2>Rangkuman</h2>
+<p>Tugas yang menunggu tidak memblokir program. Promise mewakili hasil di masa depan, <code>async/await</code> membuatnya mudah dibaca, dan <code>Promise.all</code> menjalankan beberapa tugas sekaligus.</p>

@@ -1,0 +1,68 @@
+<p>HTML adalah bahasa yang digunakan untuk <strong>menyusun isi halaman web</strong>. HTML menentukan mana yang menjadi judul, paragraf, gambar, tautan, formulir, dan bagian-bagian lain. HTML bukan bahasa untuk mengatur warna atau posisi; pekerjaan tersebut nanti dilakukan oleh CSS.</p>
+<h2>Tujuan Belajar</h2>
+<p>Setelah menyelesaikan modul ini, Anda dapat:</p>
+<ul>
+<li>menjelaskan fungsi HTML dengan bahasa sederhana;</li>
+<li>membedakan tag, elemen, dan atribut;</li>
+<li>membuat dokumen HTML yang valid;</li>
+<li>membuka hasilnya melalui browser.</li>
+</ul>
+<h2>1. Tag, Elemen, dan Atribut</h2>
+<p>Perhatikan contoh paling kecil berikut:</p>
+<pre><code class="language-html">&lt;p class=&quot;pesan&quot;&gt;Saya sedang belajar HTML.&lt;/p&gt;
+</code></pre>
+<p>Bagian-bagiannya adalah:</p>
+<ul>
+<li><code>&lt;p&gt;</code> merupakan <strong>tag pembuka</strong>;</li>
+<li><code>&lt;/p&gt;</code> merupakan <strong>tag penutup</strong>;</li>
+<li>seluruh baris disebut <strong>elemen paragraf</strong>;</li>
+<li><code>class=&quot;pesan&quot;</code> adalah <strong>atribut</strong>, yaitu informasi tambahan untuk elemen.</li>
+</ul>
+<p>Sebagian besar tag memiliki pasangan pembuka dan penutup. Jangan khawatir jika belum menghafal semuanya. Anda akan mengenalnya melalui latihan.</p>
+<h2>2. Struktur Dokumen HTML</h2>
+<p>Buat file bernama <code>index.html</code>, lalu tulis kode berikut:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Halaman Pertama Saya&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Halo, dunia!&lt;/h1&gt;
+  &lt;p&gt;Saya berhasil membuat halaman HTML.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Fungsi setiap bagian:</p>
+<ul>
+<li><code>&lt;!DOCTYPE html&gt;</code> memberi tahu browser bahwa dokumen memakai HTML5.</li>
+<li><code>&lt;html&gt;</code> membungkus seluruh dokumen. <code>lang=&quot;id&quot;</code> menyatakan bahasa utamanya adalah Bahasa Indonesia.</li>
+<li><code>&lt;head&gt;</code> menyimpan informasi tentang halaman yang tidak menjadi isi utama.</li>
+<li><code>&lt;title&gt;</code> menentukan tulisan pada tab browser.</li>
+<li><code>&lt;body&gt;</code> berisi semua yang terlihat oleh pengunjung.</li>
+</ul>
+<h2>3. Cara Browser Membacanya</h2>
+<p>Browser membaca HTML dari atas ke bawah, membentuk struktur seperti pohon, kemudian menampilkannya sebagai halaman. Karena itu, elemen harus disusun dengan benar.</p>
+<pre><code class="language-html">&lt;article&gt;
+  &lt;h2&gt;Judul Artikel&lt;/h2&gt;
+  &lt;p&gt;Isi artikel.&lt;/p&gt;
+&lt;/article&gt;
+</code></pre>
+<p>Pada contoh tersebut, <code>h2</code> dan <code>p</code> berada <strong>di dalam</strong> <code>article</code>. Hubungan ini disebut <em>nesting</em> atau bersarang.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menyimpan file sebagai <code>index.html.txt</code>.</li>
+<li>Lupa menulis tag penutup.</li>
+<li>Menempatkan isi halaman di luar <code>&lt;body&gt;</code>.</li>
+<li>Menyilangkan tag, misalnya <code>&lt;strong&gt;&lt;em&gt;Teks&lt;/strong&gt;&lt;/em&gt;</code>.</li>
+</ul>
+<h2>Latihan</h2>
+<ol>
+<li>Ubah isi <code>&lt;title&gt;</code> menjadi nama Anda.</li>
+<li>Ganti judul dan paragraf di dalam <code>&lt;body&gt;</code>.</li>
+<li>Tambahkan paragraf kedua.</li>
+<li>Simpan lalu muat ulang browser.</li>
+</ol>
+<h2>Rangkuman</h2>
+<p>HTML menyusun makna dan struktur konten. Sebuah dokumen dasar memiliki <code>DOCTYPE</code>, <code>html</code>, <code>head</code>, dan <code>body</code>. Fokus pertama Anda bukan menghafal tag, melainkan memahami cara elemen disusun dan saling membungkus.</p>

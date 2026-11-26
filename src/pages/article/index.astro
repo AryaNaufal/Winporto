@@ -1,0 +1,32 @@
+---
+import DocLayout from '../../layouts/DocLayout.astro';
+import { articles, type Series } from '../../data/articles';
+import { articlePath } from '../../data/seo';
+import { site } from '../../data/portfolio';
+
+const SERIES: { key: Series; label: string }[] = [
+  { key: 'HTML', label: 'HTML' },
+  { key: 'CSS', label: 'CSS' },
+  { key: 'JS', label: 'JavaScript' },
+];
+const description = `${articles.length} pelajaran HTML, CSS, dan JavaScript berbahasa Indonesia untuk pemula, disusun berurutan dari dasar.`;
+---
+
+<DocLayout title={`Belajar HTML, CSS & JavaScript untuk Pemula | ${site.name}`} description={description} windowTitle="Artikel">
+  <h1>Belajar HTML, CSS, dan JavaScript untuk Pemula</h1>
+  <p>{description}</p>
+  {SERIES.map((s) => (
+    <section>
+      <h2>Seri {s.label}</h2>
+      <ol>
+        {articles.filter((a) => a.series === s.key).map((a) => (
+          <li>
+            <a href={articlePath(a.slug)}>{a.title}</a>
+            <br />
+            <span class="text-muted">{a.description}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))}
+</DocLayout>

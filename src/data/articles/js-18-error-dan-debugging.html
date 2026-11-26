@@ -1,0 +1,74 @@
+<p>Setiap programmer menemui error, termasuk yang berpengalaman. Yang membedakan adalah kemampuan membaca pesan error, mencari penyebabnya, dan menanganinya dengan tenang.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Membaca pesan error di Console.</li>
+<li>Menangani error dengan <code>try...catch</code> dan <code>throw</code>.</li>
+<li>Melacak bug memakai Console dan breakpoint.</li>
+</ul>
+<h2>1. Jenis Error yang Sering Muncul</h2>
+<ul>
+<li><code>SyntaxError</code>: penulisan salah (kurung atau kutip tidak ditutup). Program tidak berjalan sama sekali.</li>
+<li><code>ReferenceError</code>: memakai variabel yang tidak ada (<em>x is not defined</em>).</li>
+<li><code>TypeError</code>: memakai nilai dengan cara yang salah, misalnya <em>Cannot read properties of undefined</em>.</li>
+</ul>
+<p>Baca pesan dari atas: nama error, penjelasan, lalu nama file dan <strong>nomor baris</strong> tempat error terjadi. Klik tautan itu di Console untuk melompat ke kodenya.</p>
+<h2>2. try...catch...finally</h2>
+<pre><code class="language-javascript">try {
+  const data = JSON.parse("bukan json");
+  console.log(data);
+} catch (error) {
+  console.log("Terjadi masalah:", error.message);
+} finally {
+  console.log("Blok ini selalu dijalankan");
+}
+</code></pre>
+<p>Kode di <code>try</code> dijalankan; bila error, loncat ke <code>catch</code>. Blok <code>finally</code> berjalan apa pun hasilnya, cocok untuk membersihkan sesuatu.</p>
+<h2>3. Melempar Error Sendiri</h2>
+<pre><code class="language-javascript">function bagi(a, b) {
+  if (b === 0) {
+    throw new Error("Pembagi tidak boleh nol");
+  }
+  return a / b;
+}
+
+try {
+  console.log(bagi(10, 0));
+} catch (error) {
+  console.log(error.message);
+}
+</code></pre>
+<p>Gunakan <code>throw</code> ketika fungsi menerima masukan yang tidak mungkin diproses. Jangan memakai <code>try/catch</code> untuk menyembunyikan bug yang seharusnya diperbaiki.</p>
+<h2>4. Teknik Debugging</h2>
+<pre><code class="language-javascript">const pesanan = [{ nama: "Kopi", harga: 15000 }, { nama: "Teh", harga: 8000 }];
+
+console.log("pesanan:", pesanan);     // lihat isi variabel
+console.table(pesanan);               // tampilan tabel yang rapi
+console.error("Ini tampil merah");
+console.warn("Ini peringatan");
+
+// debugger;  // jika DevTools terbuka, program berhenti di baris ini
+</code></pre>
+<h2>5. Memakai Breakpoint</h2>
+<ol>
+<li>Buka DevTools (<code>F12</code>) lalu tab <strong>Sources</strong>.</li>
+<li>Klik nomor baris untuk memasang breakpoint.</li>
+<li>Muat ulang halaman; program berhenti di baris tersebut.</li>
+<li>Lihat nilai variabel dan lanjutkan satu langkah demi satu (<em>Step over</em>).</li>
+</ol>
+<h2>Langkah Mencari Bug</h2>
+<ol>
+<li>Baca pesan error dengan teliti.</li>
+<li>Pastikan Anda bisa mengulang bug yang sama.</li>
+<li>Cetak nilai di sekitar baris yang mencurigakan.</li>
+<li>Persempit area masalah, ubah satu hal setiap kali, lalu uji lagi.</li>
+</ol>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Mengabaikan pesan error dan langsung menebak.</li>
+<li>Menulis <code>catch</code> kosong yang membuat error hilang diam-diam.</li>
+<li>Mengubah banyak kode sekaligus sehingga sulit tahu mana yang memperbaiki.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Sengaja buat tiga error (SyntaxError, ReferenceError, TypeError), baca pesan masing-masing, lalu perbaiki. Setelah itu buat fungsi <code>ambilUmur(teks)</code> yang melempar error bila hasilnya bukan angka.</p>
+<h2>Rangkuman</h2>
+<p>Pesan error memberi petunjuk jenis dan lokasi masalah. Tangani dengan <code>try/catch</code>, lempar error dengan <code>throw</code>, dan cari bug secara sistematis memakai <code>console</code> dan breakpoint.</p>

@@ -1,0 +1,89 @@
+<p>HTML menyusun konten, sedangkan CSS mengatur tampilannya. Dengan CSS, kita dapat menentukan warna, ukuran, jarak, dan layout tanpa mengubah makna HTML.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Memahami bentuk sebuah aturan CSS.</li>
+<li>Menulis internal CSS di dalam dokumen HTML.</li>
+<li>Mengenal external dan inline CSS.</li>
+<li>Mendeteksi kesalahan sintaks sederhana.</li>
+</ul>
+<h2>1. Anatomi Aturan CSS</h2>
+<p>Contoh berikut sudah berisi HTML dan internal CSS. Jalankan, kemudian ubah warna atau ukuran judul untuk melihat hasilnya.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;CSS Pertama&lt;/title&gt;
+
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8fafc;
+      padding: 32px;
+    }
+
+    h1 {
+      color: #0f766e;
+      font-size: 32px;
+    }
+
+    p {
+      color: #475569;
+      line-height: 1.6;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;CSS Pertama Saya&lt;/h1&gt;
+  &lt;p&gt;HTML menyimpan konten, CSS mengatur tampilannya.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Cara membaca aturan <code>h1</code>:</p>
+<ul>
+<li><code>h1</code> adalah <strong>selector</strong>, yaitu elemen yang dipilih.</li>
+<li><code>color</code> dan <code>font-size</code> adalah <strong>property</strong>.</li>
+<li><code>#0f766e</code> dan <code>32px</code> adalah <strong>value</strong>.</li>
+<li>Satu pasangan property dan value disebut deklarasi.</li>
+</ul>
+<p>Kurung kurawal membungkus deklarasi. Tanda titik dua memisahkan property dari value, sedangkan titik koma mengakhiri deklarasi.</p>
+<h2>2. Internal CSS</h2>
+<p>Internal CSS ditulis di dalam elemen <code>&lt;style&gt;</code>, biasanya di dalam <code>&lt;head&gt;</code>. Semua contoh interaktif pada seri CSS ini menggunakan cara tersebut agar HTML dan CSS dapat dicoba dalam satu tab sandbox.</p>
+<p>Cara ini cocok untuk belajar dan bereksperimen pada satu halaman. Pada website besar, CSS biasanya dipindahkan ke file terpisah agar dapat digunakan oleh banyak halaman.</p>
+<h2>3. External dan Inline CSS</h2>
+<p>External CSS dihubungkan dengan <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;</code>. Ini merupakan pilihan utama untuk project sungguhan karena satu file CSS dapat dipakai ulang.</p>
+<p>Inline CSS ditulis langsung pada elemen, misalnya <code>&lt;p style=&quot;color: tomato;&quot;&gt;Pesan penting&lt;/p&gt;</code>. Cara ini sulit digunakan ulang dan membuat HTML cepat berantakan, sehingga sebaiknya hanya dipakai untuk kebutuhan khusus.</p>
+<h2>4. Komentar CSS</h2>
+<p>Komentar dapat ditulis di dalam internal CSS.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    /* Warna utama untuk kartu informasi */
+    .kartu {
+      max-width: 320px;
+      padding: 20px;
+      border-left: 5px solid #0f766e;
+      background-color: #ccfbf1;
+      color: #134e4a;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;kartu&quot;&gt;Komentar CSS tidak terlihat di halaman.&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Komentar menjelaskan alasan atau kelompok aturan. Jangan menulis komentar yang sekadar mengulang kode.</p>
+<h2>Cara Memeriksa CSS yang Tidak Bekerja</h2>
+<ol>
+<li>Pastikan selector cocok dengan elemen HTML.</li>
+<li>Periksa ejaan property dan value.</li>
+<li>Pastikan <code>&lt;style&gt;</code> berada di dalam <code>&lt;head&gt;</code>.</li>
+<li>Pastikan kurung kurawal serta titik koma lengkap.</li>
+<li>Periksa apakah aturan lain menimpa aturan Anda.</li>
+</ol>
+<h2>Latihan</h2>
+<p>Jalankan contoh pertama. Ubah warna latar, ukuran judul, dan jarak pada <code>body</code>. Tambahkan satu tombol, lalu buat aturan CSS agar tombol memiliki warna latar dan padding.</p>
+<h2>Rangkuman</h2>
+<p>Aturan CSS terdiri dari selector dan deklarasi. Internal CSS memudahkan eksperimen karena HTML dan CSS berada dalam satu dokumen. Untuk project nyata yang memiliki banyak halaman, external stylesheet tetap lebih mudah dirawat.</p>

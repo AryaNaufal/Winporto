@@ -1,0 +1,91 @@
+<p>Gambar membantu menjelaskan informasi, tetapi gambar yang salah konfigurasi dapat memperlambat halaman dan menyulitkan pengguna pembaca layar.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Menampilkan gambar dengan <code>img</code>.</li>
+<li>Menulis <code>alt</code> yang berguna.</li>
+<li>Mencegah layout bergeser dengan ukuran gambar.</li>
+<li>Menggunakan <code>figure</code> untuk gambar yang memiliki keterangan.</li>
+</ul>
+<h2>1. Elemen <code>img</code></h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Contoh Gambar&lt;/title&gt;
+  &lt;style&gt;
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;img
+    src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg&quot;
+    alt=&quot;Kerangka Tyrannosaurus rex yang dipajang di museum&quot;
+    width=&quot;200&quot;
+    height=&quot;171&quot;
+  &gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><code>img</code> tidak memiliki tag penutup. Atribut pentingnya:</p>
+<ul>
+<li><code>src</code> menunjukkan lokasi file;</li>
+<li><code>alt</code> menjelaskan isi atau fungsi gambar;</li>
+<li><code>width</code> dan <code>height</code> memberi tahu browser perbandingan ukuran sejak awal.</li>
+</ul>
+<p>Ukuran di HTML tidak berarti gambar harus selalu tampil sebesar itu. Internal CSS pada contoh membuatnya mengecil di layar sempit melalui <code>max-width: 100%</code> dan mempertahankan proporsi melalui <code>height: auto</code>.</p>
+<h2>2. Menulis <code>alt</code> yang Tepat</h2>
+<p>Teks alternatif dibaca ketika gambar gagal dimuat dan oleh teknologi pembaca layar.</p>
+<ul>
+<li>Buruk: <code>alt=&quot;gambar&quot;</code></li>
+<li>Lebih baik: <code>alt=&quot;Diagram empat lapisan CSS Box Model&quot;</code></li>
+</ul>
+<p>Jika gambar hanya dekorasi dan tidak membawa informasi, gunakan <code>alt=&quot;&quot;</code>. Jangan menghapus atribut <code>alt</code>, karena pembaca layar dapat membacakan nama file yang tidak berguna.</p>
+<p>Untuk gambar yang berfungsi sebagai link, jelaskan tujuannya:</p>
+<pre><code class="language-html">&lt;a href=&quot;index.html&quot;&gt;
+  &lt;img
+    src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg&quot;
+    alt=&quot;Kembali ke beranda&quot;
+  &gt;
+&lt;/a&gt;
+</code></pre>
+<h2>3. Path Gambar</h2>
+<pre><code class="language-html">&lt;!-- Satu folder dengan file HTML --&gt;
+&lt;img src=&quot;foto.jpg&quot; alt=&quot;Pemandangan gunung&quot;&gt;
+
+&lt;!-- Berada di subfolder images --&gt;
+&lt;img src=&quot;images/foto.jpg&quot; alt=&quot;Pemandangan gunung&quot;&gt;
+
+&lt;!-- Berasal dari root website --&gt;
+&lt;img src=&quot;/images/foto.jpg&quot; alt=&quot;Pemandangan gunung&quot;&gt;
+</code></pre>
+<p>Huruf besar-kecil nama file dapat berpengaruh di server. <code>Foto.jpg</code> dan <code>foto.jpg</code> bisa dianggap berbeda.</p>
+<p>Ketiga path di atas sengaja hanya menggambarkan struktur folder project. Contoh yang dapat dijalankan pada bagian lain memakai URL aset CC0 dari MDN agar gambarnya langsung tampil di sandbox.</p>
+<h2>4. Gambar dengan Keterangan</h2>
+<pre><code class="language-html">&lt;figure&gt;
+  &lt;img
+    src=&quot;https://mdn.github.io/learning-area/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg&quot;
+    alt=&quot;Kerangka Tyrannosaurus rex yang dipajang di museum&quot;
+    width=&quot;200&quot;
+    height=&quot;171&quot;
+  &gt;
+  &lt;figcaption&gt;Kerangka Tyrannosaurus rex di sebuah museum.&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+<p>Gunakan <code>figure</code> ketika gambar dan keterangannya merupakan satu kesatuan. Tidak semua gambar harus dibungkus <code>figure</code>.</p>
+<p>Gambar daring pada contoh berasal dari <a href="https://github.com/mdn/learning-area">MDN Learning Area</a> yang menggunakan <a href="https://github.com/mdn/learning-area/blob/main/LICENSE">lisensi CC0 1.0</a>.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menggunakan gambar berukuran beberapa megabyte untuk thumbnail kecil.</li>
+<li>Mengandalkan nama file sebagai <code>alt</code>.</li>
+<li>Menulis path dari komputer sendiri.</li>
+<li>Mengubah <code>width</code> tanpa menjaga <code>height: auto</code>, sehingga gambar terlihat gepeng.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat galeri berisi tiga gambar. Berikan <code>alt</code> yang berbeda dan bermakna, ukuran asli, serta satu <code>figure</code> dengan <code>figcaption</code>.</p>
+<h2>Rangkuman</h2>
+<p>Gunakan <code>src</code> yang benar, <code>alt</code> yang menjelaskan fungsi, dan ukuran gambar untuk menjaga kestabilan layout. Optimasi gambar responsif akan dibahas pada pelajaran HTML 13.</p>

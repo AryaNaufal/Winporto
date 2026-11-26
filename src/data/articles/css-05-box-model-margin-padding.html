@@ -1,0 +1,71 @@
+<p>Browser memperlakukan setiap elemen sebagai kotak. Dari dalam ke luar, kotak terdiri dari <strong>content</strong>, <strong>padding</strong>, <strong>border</strong>, dan <strong>margin</strong>.</p>
+<h2>1. Melihat Empat Lapisan Box Model</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: Arial, sans-serif;
+      background-color: #e2e8f0;
+    }
+
+    .container {
+      max-width: 720px;
+      margin-inline: auto;
+      padding: 24px;
+      background-color: #cbd5e1;
+    }
+
+    .kartu {
+      width: min(100%, 340px);
+      margin: 24px auto;
+      padding: 24px;
+      border: 4px solid #14b8a6;
+      border-radius: 12px;
+      background-color: #ffffff;
+    }
+
+    .kartu h1 {
+      margin-top: 0;
+      color: #0f766e;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main class=&quot;container&quot;&gt;
+    &lt;article class=&quot;kartu&quot;&gt;
+      &lt;h1&gt;Box Model&lt;/h1&gt;
+      &lt;p&gt;Putih adalah area content dan padding, hijau adalah border, sedangkan ruang di luarnya adalah margin.&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>Content adalah isi, misalnya teks atau gambar.</li>
+<li>Padding adalah ruang di antara content dan border.</li>
+<li>Border adalah garis batas kotak.</li>
+<li>Margin adalah ruang di luar border terhadap elemen lain.</li>
+</ul>
+<p>Padding menerima warna latar elemen, sedangkan margin transparan.</p>
+<h2>2. <code>border-box</code></h2>
+<p>Dengan nilai bawaan <code>content-box</code>, <code>width</code> hanya menghitung content sehingga padding dan border ditambahkan di luar. Aturan <code>box-sizing: border-box</code> pada contoh membuat width sudah mencakup content, padding, dan border.</p>
+<p>Pola berikut umum dipasang di awal stylesheet: <code>*, *::before, *::after { box-sizing: border-box; }</code>.</p>
+<h2>3. Shorthand dan Margin Otomatis</h2>
+<p><code>padding: 8px 16px 24px 32px</code> dibaca dari atas, kanan, bawah, lalu kiri. Dua nilai seperti <code>margin: 16px auto</code> berarti jarak vertikal <code>16px</code> dan margin horizontal otomatis.</p>
+<p><code>margin-inline: auto</code> menengahkan elemen block jika lebarnya lebih kecil dari ruang induk, seperti <code>.container</code> dan <code>.kartu</code> pada contoh.</p>
+<h2>4. Margin Collapse</h2>
+<p>Margin vertikal dua elemen block dapat bergabung, bukan selalu dijumlahkan. Padding, border, Flexbox, dan Grid dapat mengubah perilaku tersebut. Untuk jarak antarelemen dalam Flexbox atau Grid, <code>gap</code> biasanya lebih mudah diprediksi.</p>
+<h2>Debug dengan DevTools</h2>
+<p>Pilih <code>.kartu</code> melalui DevTools lalu lihat diagram Box Model pada panel Computed. Anda dapat melihat content, padding, border, dan margin secara langsung.</p>
+<h2>Latihan</h2>
+<p>Ubah padding, border, dan margin <code>.kartu</code>. Hapus <code>box-sizing: border-box</code>, beri kartu <code>width: 300px</code>, lalu bandingkan lebar akhirnya melalui DevTools.</p>
+<h2>Rangkuman</h2>
+<p>Box Model menjelaskan dari mana ukuran dan jarak elemen berasal. Gunakan <code>border-box</code>, bedakan padding dari margin, dan manfaatkan DevTools ketika ukuran tidak sesuai harapan.</p>

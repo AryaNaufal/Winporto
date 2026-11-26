@@ -1,0 +1,62 @@
+<p>Perulangan menjalankan sekumpulan perintah berkali-kali tanpa Anda menulisnya berulang. Dengan loop, mencetak 1 sampai 1000 sama mudahnya dengan mencetak 1 sampai 3.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Memakai <code>for</code>, <code>while</code>, dan <code>do...while</code>.</li>
+<li>Mengontrol loop dengan <code>break</code> dan <code>continue</code>.</li>
+<li>Mengenal <code>for...of</code> untuk daftar nilai.</li>
+</ul>
+<h2>1. Loop for</h2>
+<pre><code class="language-javascript">for (let i = 1; i &lt;= 5; i++) {
+  console.log("Putaran ke-" + i);
+}
+</code></pre>
+<p>Tiga bagian dalam kurung: <strong>awal</strong> (<code>let i = 1</code>), <strong>syarat lanjut</strong> (<code>i &lt;= 5</code>), dan <strong>langkah</strong> (<code>i++</code>).</p>
+<h2>2. Loop while dan do...while</h2>
+<pre><code class="language-javascript">let hitung = 3;
+while (hitung &gt; 0) {
+  console.log(hitung);
+  hitung--;
+}
+console.log("Selesai!");
+
+// do...while selalu berjalan minimal satu kali
+let n = 10;
+do {
+  console.log("Dijalankan sekali, n =", n);
+} while (n &lt; 5);
+</code></pre>
+<p>Gunakan <code>while</code> ketika Anda tidak tahu berapa kali putaran dibutuhkan. Pastikan ada sesuatu di dalam loop yang akhirnya membuat syarat menjadi salah.</p>
+<h2>3. break dan continue</h2>
+<pre><code class="language-javascript">for (let i = 1; i &lt;= 10; i++) {
+  if (i === 3) continue;  // lewati putaran ini
+  if (i === 6) break;     // hentikan seluruh loop
+  console.log(i);         // 1, 2, 4, 5
+}
+</code></pre>
+<h2>4. for...of</h2>
+<pre><code class="language-javascript">const buah = ["apel", "jeruk", "mangga"];
+
+for (const item of buah) {
+  console.log(item);
+}
+</code></pre>
+<p>Untuk membaca setiap isi daftar, <code>for...of</code> lebih ringkas dan lebih sulit salah dibanding <code>for</code> biasa dengan indeks.</p>
+<h2>5. Loop Bersarang</h2>
+<pre><code class="language-javascript">for (let baris = 1; baris &lt;= 3; baris++) {
+  let teks = "";
+  for (let kolom = 1; kolom &lt;= 3; kolom++) {
+    teks += baris * kolom + " ";
+  }
+  console.log(teks);
+}
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li><strong>Loop tak berhingga</strong>: lupa mengubah variabel yang diperiksa, sehingga halaman macet.</li>
+<li>Off-by-one: memakai <code>&lt;</code> padahal perlu <code>&lt;=</code> (atau sebaliknya).</li>
+<li>Memakai <code>var</code> pada loop, bukan <code>let</code>.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Cetak semua bilangan genap dari 2 sampai 20. Kemudian hitung jumlah angka 1 sampai 100 dengan loop, lalu cetak tabel perkalian 5.</p>
+<h2>Rangkuman</h2>
+<p><code>for</code> untuk jumlah putaran yang pasti, <code>while</code> untuk yang tidak pasti, <code>for...of</code> untuk membaca isi daftar. <code>break</code> keluar dari loop dan <code>continue</code> melewati satu putaran.</p>

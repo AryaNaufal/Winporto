@@ -1,0 +1,30 @@
+---
+/** Static, scrollable page styled as a Windows 98 window (used by article pages). */
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  windowTitle: string;
+  type?: 'website' | 'article';
+  schema?: object[];
+}
+const { windowTitle, ...head } = Astro.props;
+---
+
+<Layout {...head} variant="doc">
+  <div class="doc-window">
+    <div class="titlebar">
+      <img src="/icons/doc.svg" alt="" />
+      <p class="doc-title">{windowTitle}</p>
+      <a class="btn98 icon" href="/" aria-label="Tutup dan kembali ke desktop">×</a>
+    </div>
+    <nav aria-label="Navigasi" class="doc-nav">
+      <a class="btn98" href="/">Desktop</a>
+      <a class="btn98" href="/article">Semua artikel</a>
+    </nav>
+    <div class="field98 doc-body">
+      <slot />
+    </div>
+  </div>
+</Layout>

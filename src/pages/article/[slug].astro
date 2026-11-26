@@ -1,0 +1,53 @@
+---
+import DocLayout from '../../layouts/DocLayout.astro';
+import { articles, loadArticleBody, type ArticleMeta } from '../../data/articles';
+import { articlePath, articleSchemas, isoDate } from '../../data/seo';
+import { profile, site } from '../../data/portfolio';
+
+export function getStaticPaths() {
+  return articles.map((article, i) => ({
+    params: { slug: article.slug },
+    props: { article, prev: articles[i - 1], next: articles[i + 1] },
+  }));
+}
+
+interface Props {
+  article: ArticleMeta;
+  prev?: ArticleMeta;
+  next?: ArticleMeta;
+}
+const { article, prev, next } = Astro.props;
+const body = await loadArticleBody(article.slug);
+---
+
+<DocLayout
+  title={`${article.title} | ${site.name}`}
+  description={article.description}
+  windowTitle={`${article.series === 'JS' ? 'JavaScript' : article.series} - Pelajaran ${article.lesson}`}
+  type="article"
+  schema={articleSchemas(article, Astro.site!)}
+>
+  <article>
+    <h1>{article.title}</h1>
+    <p class="text-muted">
+      Oleh {profile.name} · <time datetime={isoDate(article.date)}>{article.date}</time> · {article.readTime.replace('min read', 'menit baca')} · {article.level}
+    </p>
+    <section class="doc-intro" aria-label="Sebelum mulai">
+      <p><strong>Setelah pelajaran ini kamu bisa:</strong> {article.goal}</p>
+      {article.note && <p><strong>Catatan:</strong> {article.note}</p>}
+      <p><strong>Istilah baru:</strong></p>
+      <ul>
+        {article.terms.map(([term, meaning]) => (
+          <li><code class="chip">{term}</code> — {meaning}</li>
+        ))}
+      </ul>
+    </section>
+    {/* Trusted: HTML authored by the site owner and bundled at build time. */}
+    <div class="article-body" set:html={body} />
+  </article>
+
+  <nav class="doc-pager" aria-label="Pelajaran lain">
+    {prev ? <a href={articlePath(prev.slug)} rel="prev">← {prev.title}</a> : <span />}
+    {next && <a href={articlePath(next.slug)} rel="next">{next.title} →</a>}
+  </nav>
+</DocLayout>

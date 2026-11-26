@@ -1,0 +1,61 @@
+<p>Link menghubungkan satu halaman dengan halaman lain. Tanpa link, setiap dokumen web akan berdiri sendiri dan sulit dijelajahi.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Memahami atribut <code>href</code>.</li>
+<li>Membedakan URL absolut dan relatif.</li>
+<li>Membuat anchor ke bagian tertentu.</li>
+<li>Menulis teks link yang jelas.</li>
+</ul>
+<h2>1. Bentuk Dasar Link</h2>
+<pre><code class="language-html">&lt;a href=&quot;https://developer.mozilla.org&quot;&gt;Belajar dokumentasi web&lt;/a&gt;
+</code></pre>
+<p>Tag <code>&lt;a&gt;</code> disebut <em>anchor</em>. Atribut <code>href</code> berisi tujuan. Teks di antara tag pembuka dan penutup menjadi bagian yang dapat diklik.</p>
+<p>Gunakan teks yang menjelaskan tujuan. “Baca panduan HTML” lebih baik daripada “klik di sini”.</p>
+<h2>2. Link Absolut dan Relatif</h2>
+<p>URL absolut memuat alamat lengkap dan biasanya menuju situs lain.</p>
+<pre><code class="language-html">&lt;a href=&quot;https://example.com/kontak&quot;&gt;Kunjungi halaman kontak Example&lt;/a&gt;
+</code></pre>
+<p>URL relatif digunakan untuk halaman dalam project yang sama.</p>
+<pre><code class="language-html">&lt;nav&gt;
+  &lt;a href=&quot;index.html&quot;&gt;Beranda&lt;/a&gt;
+  &lt;a href=&quot;tentang.html&quot;&gt;Tentang&lt;/a&gt;
+  &lt;a href=&quot;artikel/html.html&quot;&gt;Artikel HTML&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre>
+<p>Jika file saat ini berada di dalam folder dan ingin naik satu tingkat, gunakan <code>../</code>.</p>
+<pre><code class="language-html">&lt;a href=&quot;../index.html&quot;&gt;Kembali ke beranda&lt;/a&gt;
+</code></pre>
+<h2>3. Membuka Tab Baru dengan Aman</h2>
+<pre><code class="language-html">&lt;a
+  href=&quot;https://example.com&quot;
+  target=&quot;_blank&quot;
+  rel=&quot;noopener noreferrer&quot;
+&gt;
+  Buka Example di tab baru
+&lt;/a&gt;
+</code></pre>
+<p>Gunakan <code>target=&quot;_blank&quot;</code> hanya jika memang bermanfaat. <code>rel=&quot;noopener noreferrer&quot;</code> mencegah halaman baru memperoleh akses yang tidak diperlukan ke halaman asal.</p>
+<h2>4. Melompat ke Bagian Halaman</h2>
+<p>Beri elemen tujuan sebuah <code>id</code>, kemudian tulis <code>href</code> dengan tanda <code>#</code>.</p>
+<pre><code class="language-html">&lt;a href=&quot;#kontak&quot;&gt;Lompat ke kontak&lt;/a&gt;
+
+&lt;h2 id=&quot;kontak&quot;&gt;Kontak&lt;/h2&gt;
+&lt;p&gt;Email: halo@example.com&lt;/p&gt;
+</code></pre>
+<p>Setiap <code>id</code> harus unik dalam satu halaman.</p>
+<h2>5. Email dan Telepon</h2>
+<pre><code class="language-html">&lt;a href=&quot;mailto:halo@example.com&quot;&gt;Kirim email&lt;/a&gt;
+&lt;a href=&quot;tel:+628123456789&quot;&gt;Telepon kami&lt;/a&gt;
+</code></pre>
+<p>Link tersebut membuka aplikasi email atau telepon pengguna. Jangan menjanjikan bahwa semua perangkat akan membuka aplikasi yang sama.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Lupa menulis <code>https://</code> pada link eksternal.</li>
+<li>Menggunakan path lokal komputer seperti <code>C:\gambar\halaman.html</code>.</li>
+<li>Memakai <code>href=&quot;#&quot;</code> untuk tombol yang sebenarnya tidak melakukan navigasi.</li>
+<li>Memberikan <code>id</code> yang sama kepada beberapa elemen.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat navigasi berisi Beranda, Tentang, dan Kontak. Tambahkan satu link eksternal yang dibuka di tab baru serta anchor menuju bagian Kontak.</p>
+<h2>Rangkuman</h2>
+<p>Gunakan URL absolut untuk situs lain dan URL relatif untuk project sendiri. Tulis tujuan link dengan jelas, gunakan <code>id</code> unik untuk anchor, dan tambahkan atribut keamanan saat membuka tab baru.</p>

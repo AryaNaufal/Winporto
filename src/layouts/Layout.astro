@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  type?: 'website' | 'article';
+  /** Structured data objects rendered as JSON-LD. */
+  schema?: object[];
+  /** "doc" = a normal scrolling page (articles); default is the full-screen desktop. */
+  variant?: 'desktop' | 'doc';
+}
+const { title, description, type = 'website', schema = [], variant = 'desktop' } = Astro.props;
+
+// No trailing slash (except the root), matching the old site's URLs.
+const path = Astro.url.pathname.replace(/(.)\/$/, '$1');
+const canonical = new URL(path, Astro.site).href;
+const image = new URL('/og.png', Astro.site).href;
+---
+
+<!doctype html>
+<html lang="id" class={variant === 'doc' ? 'doc' : undefined}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#008080" />
+    <link rel="canonical" href={canonical} />
+    <!-- Restore saved preferences before first paint (see stores/preferencesStore.ts). -->
+    <script is:inline>
+      try {
+        var s = JSON.parse(localStorage.getItem('winporto:prefs-dom') || 'null');
+        if (s) {
+          var r = document.documentElement;
+          for (var k in s.vars) r.style.setProperty(k, s.vars[k]);
+          r.style.fontSize = s.fontSize;
+          for (var d in s.data) r.dataset[d] = s.data[d];
+          if (s.data.bg === 'custom') {
+            var img = localStorage.getItem('winporto:bg-image');
+            if (img) r.style.setProperty('--wall-image', 'url("' + img + '")');
+            else r.dataset.bg = 'solid';
+          }
+        }
+      } catch (e) {}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Arya Naufal" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Desktop retro Windows 98 portofolio Arya Naufal" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    {schema.map((s) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(s).replace(/</g, '\\u003c')} />
+    ))}
+
+    {variant === 'desktop' && (
+      <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" />
+      </>
+    )}
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>

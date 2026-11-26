@@ -1,0 +1,74 @@
+<p>Event adalah kejadian di halaman: klik, ketikan, pengiriman form, atau gulir layar. Dengan event listener, program Anda bereaksi terhadap pengguna.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Memasang event listener dengan <code>addEventListener</code>.</li>
+<li>Memakai object event.</li>
+<li>Memahami event delegation.</li>
+</ul>
+<h2>1. addEventListener</h2>
+<pre><code class="language-html">&lt;button id="tombol"&gt;Klik saya&lt;/button&gt;
+&lt;p id="pesan"&gt;&lt;/p&gt;
+</code></pre>
+<pre><code class="language-javascript">const tombol = document.querySelector("#tombol");
+const pesan = document.querySelector("#pesan");
+
+tombol.addEventListener("click", () =&gt; {
+  pesan.textContent = "Tombol diklik!";
+});
+</code></pre>
+<p>Argumen pertama adalah jenis event, argumen kedua adalah fungsi (callback) yang dijalankan setiap kali event terjadi.</p>
+<h2>2. Jenis Event yang Umum</h2>
+<ul>
+<li><code>click</code>: elemen diklik atau disentuh.</li>
+<li><code>input</code>: isi kolom berubah setiap ketikan.</li>
+<li><code>change</code>: nilai berubah dan fokus pindah.</li>
+<li><code>submit</code>: form dikirim.</li>
+<li><code>keydown</code>: tombol keyboard ditekan.</li>
+<li><code>mouseover</code>, <code>focus</code>, <code>scroll</code>, <code>DOMContentLoaded</code>.</li>
+</ul>
+<h2>3. Object Event</h2>
+<pre><code class="language-javascript">const kolom = document.querySelector("#nama");
+
+kolom.addEventListener("input", (event) =&gt; {
+  console.log(event.target.value);   // isi kolom saat ini
+});
+
+document.addEventListener("keydown", (event) =&gt; {
+  if (event.key === "Escape") console.log("Esc ditekan");
+});
+</code></pre>
+<p><code>event.target</code> adalah elemen yang memicu event. Properti lain: <code>event.key</code>, <code>event.clientX</code>, dan <code>event.type</code>.</p>
+<h2>4. preventDefault</h2>
+<pre><code class="language-javascript">const form = document.querySelector("form");
+
+form.addEventListener("submit", (event) =&gt; {
+  event.preventDefault();   // cegah halaman dimuat ulang
+  console.log("Form ditangani oleh JavaScript");
+});
+</code></pre>
+<h2>5. Event Delegation</h2>
+<p>Untuk daftar yang itemnya sering bertambah, pasang <strong>satu</strong> listener di induknya, bukan satu per item.</p>
+<pre><code class="language-javascript">const daftar = document.querySelector(".daftar");
+
+daftar.addEventListener("click", (event) =&gt; {
+  const item = event.target.closest("li");
+  if (!item) return;                 // klik bukan pada li
+  item.classList.toggle("selesai");
+});
+</code></pre>
+<p>Cara ini tetap berfungsi pada item yang dibuat belakangan, dan lebih hemat memori.</p>
+<h2>6. Menghapus Listener</h2>
+<pre><code class="language-javascript">function sapa() { console.log("Halo"); }
+tombol.addEventListener("click", sapa);
+tombol.removeEventListener("click", sapa); // butuh referensi fungsi yang sama
+</code></pre>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menulis <code>addEventListener("click", sapa())</code> sehingga fungsi langsung dipanggil; tulis <code>sapa</code> tanpa kurung.</li>
+<li>Lupa <code>preventDefault()</code> pada form.</li>
+<li>Memasang listener di dalam loop pada banyak elemen, padahal delegation lebih sederhana.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat penghitung dengan tombol tambah dan kurang yang memperbarui angka di halaman. Tambahkan tombol reset, dan cegah angka menjadi negatif.</p>
+<h2>Rangkuman</h2>
+<p><code>addEventListener</code> menghubungkan kejadian dengan fungsi. Object event memberi detail kejadian, <code>preventDefault</code> membatalkan perilaku bawaan, dan delegation menangani banyak elemen dengan satu listener.</p>

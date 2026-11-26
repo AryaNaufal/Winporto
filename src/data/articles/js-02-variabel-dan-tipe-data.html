@@ -1,0 +1,55 @@
+<p>Variabel adalah <strong>kotak bernama</strong> untuk menyimpan nilai agar dapat dipakai lagi. Setiap nilai memiliki tipe, misalnya teks, angka, atau benar/salah.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Membuat variabel dengan <code>let</code> dan <code>const</code>.</li>
+<li>Mengenal tipe data dasar JavaScript.</li>
+<li>Memeriksa dan mengubah tipe data.</li>
+</ul>
+<h2>1. let dan const</h2>
+<pre><code class="language-javascript">const nama = "Sinta";   // nilai tidak akan diganti
+let umur = 20;           // nilai boleh diganti
+
+umur = 21;               // boleh
+// nama = "Budi";        // Error: const tidak bisa diisi ulang
+
+console.log(nama, umur);
+</code></pre>
+<p>Gunakan <code>const</code> sebagai pilihan awal. Pakai <code>let</code> hanya bila nilainya memang akan berubah. Hindari <code>var</code> karena aturannya membingungkan dan sudah jarang dipakai.</p>
+<h2>2. Aturan Penamaan</h2>
+<ul>
+<li>Boleh berisi huruf, angka, <code>_</code>, dan <code>$</code>, tetapi tidak boleh diawali angka.</li>
+<li>Huruf besar-kecil dibedakan: <code>nama</code> dan <code>Nama</code> adalah dua variabel.</li>
+<li>Gunakan gaya <strong>camelCase</strong>: <code>namaLengkap</code>, <code>totalHarga</code>.</li>
+<li>Pilih nama yang menjelaskan isi, bukan <code>x</code> atau <code>data1</code>.</li>
+</ul>
+<h2>3. Tipe Data Dasar</h2>
+<pre><code class="language-javascript">const teks = "Halo";        // string
+const harga = 15000;        // number
+const desimal = 3.14;       // number juga
+const aktif = true;         // boolean
+const kosong = null;        // sengaja dikosongkan
+let belumDiisi;             // undefined
+
+console.log(typeof teks);   // "string"
+console.log(typeof harga);  // "number"
+console.log(typeof aktif);  // "boolean"
+console.log(typeof belumDiisi); // "undefined"
+</code></pre>
+<p><code>typeof</code> memberi tahu tipe sebuah nilai. <code>undefined</code> berarti variabel belum diberi nilai, sedangkan <code>null</code> berarti Anda sengaja mengosongkannya.</p>
+<h2>4. Mengubah Tipe Data</h2>
+<pre><code class="language-javascript">console.log(Number("42") + 8);   // 50
+console.log("42" + 8);           // "428" (digabung sebagai teks!)
+console.log(String(123));        // "123"
+console.log(Number("abc"));      // NaN (bukan angka)
+</code></pre>
+<p>Nilai dari input form selalu berupa teks, sehingga sering perlu diubah dengan <code>Number()</code> sebelum dihitung.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Mengubah variabel <code>const</code>.</li>
+<li>Menjumlahkan angka dengan teks dan mendapatkan penggabungan, bukan penjumlahan.</li>
+<li>Menulis angka dalam tanda kutip lalu heran saat hasilnya teks.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat variabel untuk nama, umur, dan status mahasiswa. Cetak ketiganya beserta <code>typeof</code>-nya. Lalu hitung <code>"10" + 5</code> dan <code>Number("10") + 5</code>, dan jelaskan perbedaannya.</p>
+<h2>Rangkuman</h2>
+<p>Gunakan <code>const</code> secara default dan <code>let</code> bila perlu mengganti nilai. Tipe dasar: string, number, boolean, null, dan undefined. Periksa dengan <code>typeof</code> dan ubah dengan <code>Number()</code> atau <code>String()</code>.</p>

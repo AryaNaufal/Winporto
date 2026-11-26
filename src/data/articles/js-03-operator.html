@@ -1,0 +1,56 @@
+<p>Operator adalah simbol yang melakukan sesuatu pada nilai: menghitung, membandingkan, atau menggabungkan kondisi. Operator adalah dasar dari hampir setiap keputusan dalam program.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Menghitung dengan operator aritmetika.</li>
+<li>Membandingkan nilai dengan benar menggunakan <code>===</code>.</li>
+<li>Menggabungkan kondisi dengan operator logika.</li>
+</ul>
+<h2>1. Operator Aritmetika</h2>
+<pre><code class="language-javascript">console.log(10 + 3);   // 13
+console.log(10 - 3);   // 7
+console.log(10 * 3);   // 30
+console.log(10 / 3);   // 3.3333333333333335
+console.log(10 % 3);   // 1  (sisa bagi)
+console.log(2 ** 3);   // 8  (pangkat)
+</code></pre>
+<p>Operator <code>%</code> (modulus) berguna untuk memeriksa bilangan genap: <code>angka % 2 === 0</code>.</p>
+<h2>2. Operator Penugasan</h2>
+<pre><code class="language-javascript">let skor = 10;
+skor += 5;   // sama dengan skor = skor + 5  -> 15
+skor -= 2;   // 13
+skor *= 2;   // 26
+skor++;      // 27 (tambah 1)
+skor--;      // 26 (kurang 1)
+</code></pre>
+<h2>3. Operator Perbandingan</h2>
+<pre><code class="language-javascript">console.log(5 &gt; 3);        // true
+console.log(5 &lt;= 3);       // false
+console.log(5 === 5);      // true
+console.log(5 === "5");    // false (tipe berbeda)
+console.log(5 == "5");     // true  (JavaScript mengubah tipe diam-diam)
+console.log(5 !== 6);      // true
+</code></pre>
+<p>Selalu gunakan <code>===</code> dan <code>!==</code>. Operator <code>==</code> mengubah tipe secara otomatis dan sering memberi hasil yang mengejutkan.</p>
+<h2>4. Operator Logika</h2>
+<pre><code class="language-javascript">const umur = 20;
+const punyaKtp = true;
+
+console.log(umur &gt;= 17 &amp;&amp; punyaKtp);  // true  (keduanya harus benar)
+console.log(umur &lt; 17 || punyaKtp);   // true  (salah satu cukup)
+console.log(!punyaKtp);               // false (kebalikan)
+</code></pre>
+<ul>
+<li><code>&amp;&amp;</code> (DAN): benar bila kedua sisi benar.</li>
+<li><code>||</code> (ATAU): benar bila salah satu benar.</li>
+<li><code>!</code> (BUKAN): membalik benar menjadi salah.</li>
+</ul>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Memakai <code>=</code> (penugasan) padahal maksudnya <code>===</code> (perbandingan).</li>
+<li>Memakai <code>==</code> sehingga <code>0 == ""</code> bernilai true.</li>
+<li>Lupa kurung pada ekspresi panjang sehingga urutan hitung tidak sesuai harapan.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Tulis ekspresi yang bernilai <code>true</code> jika sebuah angka genap <em>dan</em> lebih besar dari 10. Uji dengan beberapa angka di Console.</p>
+<h2>Rangkuman</h2>
+<p>Aritmetika menghitung, <code>+=</code> dan <code>++</code> memperbarui nilai, <code>===</code> membandingkan dengan aman, dan <code>&amp;&amp;</code>, <code>||</code>, <code>!</code> menggabungkan kondisi.</p>

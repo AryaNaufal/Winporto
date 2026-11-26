@@ -1,0 +1,104 @@
+<p>Selector menentukan elemen HTML mana yang menerima sebuah aturan. Selector yang baik cukup spesifik untuk tujuan kita, tetapi tetap mudah digunakan ulang.</p>
+<h2>1. Selector Elemen, Class, dan ID</h2>
+<p>Jalankan contoh berikut dan cocokkan setiap selector dengan elemen pada bagian <code>&lt;body&gt;</code>.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 24px;
+      color: #334155;
+    }
+
+    /* Selector elemen: memilih semua paragraf */
+    p {
+      line-height: 1.7;
+    }
+
+    /* Selector class: dapat digunakan berulang kali */
+    .peringatan {
+      padding: 12px;
+      color: #991b1b;
+      background-color: #fee2e2;
+      border-radius: 8px;
+    }
+
+    /* Selector ID: hanya untuk identitas unik */
+    #kontak {
+      margin-top: 24px;
+      padding: 16px;
+      background-color: #ccfbf1;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Jenis Selector&lt;/h1&gt;
+  &lt;p&gt;Paragraf biasa dipilih oleh selector elemen.&lt;/p&gt;
+  &lt;p class=&quot;peringatan&quot;&gt;Data akan dihapus permanen.&lt;/p&gt;
+  &lt;p class=&quot;peringatan&quot;&gt;Tindakan tidak dapat dibatalkan.&lt;/p&gt;
+
+  &lt;section id=&quot;kontak&quot;&gt;
+    &lt;h2&gt;Kontak&lt;/h2&gt;
+    &lt;p&gt;Email: halo@example.com&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Class diawali titik dan dapat digunakan pada banyak elemen. ID diawali <code>#</code> dan harus unik dalam satu halaman. Untuk styling yang dapat digunakan ulang, class biasanya lebih fleksibel.</p>
+<h2>2. Grouping, Descendant, dan Child</h2>
+<p>Koma berarti memilih beberapa selector. Spasi memilih semua keturunan, sedangkan <code>&gt;</code> hanya memilih anak langsung.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 24px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, serif;
+      color: #0f766e;
+    }
+
+    .artikel p {
+      color: #475569;
+    }
+
+    .artikel &gt; h2 {
+      padding-bottom: 8px;
+      border-bottom: 2px solid #5eead4;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Blog Belajar&lt;/h1&gt;
+
+  &lt;article class=&quot;artikel&quot;&gt;
+    &lt;h2&gt;Memahami Selector&lt;/h2&gt;
+    &lt;p&gt;Paragraf ini adalah anak langsung artikel.&lt;/p&gt;
+    &lt;div&gt;
+      &lt;h3&gt;Catatan Tambahan&lt;/h3&gt;
+      &lt;p&gt;Paragraf ini tetap keturunan artikel walaupun berada di dalam div.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Perhatikan bahwa <code>.artikel p</code> mengenai kedua paragraf. <code>.artikel &gt; h2</code> hanya mengenai <code>h2</code> yang menjadi anak langsung <code>.artikel</code>.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Lupa titik pada class atau pagar pada ID.</li>
+<li>Menamai class berdasarkan warna seperti <code>.teks-merah</code>, padahal fungsi komponennya mungkin berubah.</li>
+<li>Membuat selector sangat panjang dan sulit digunakan ulang.</li>
+<li>Menggunakan ID untuk setiap elemen hanya agar selector terasa kuat.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Tambahkan tiga kartu dengan class <code>.kartu</code>. Beri satu kartu class tambahan <code>.unggulan</code>. Gunakan grouping untuk menyamakan font heading, lalu gunakan descendant selector untuk paragraf di dalam kartu.</p>
+<h2>Rangkuman</h2>
+<p>Mulailah dari selector paling sederhana. Class adalah pilihan utama untuk pola berulang, ID untuk identitas unik, dan combinator untuk menjelaskan hubungan struktur. Konflik antarselector dibahas pada pelajaran CSS 8: Cascade, Inheritance, dan Specificity.</p>

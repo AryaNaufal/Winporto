@@ -1,0 +1,81 @@
+<p>Tipografi adalah cara teks disusun agar nyaman dibaca. Font yang menarik tidak akan membantu jika ukuran terlalu kecil, baris terlalu rapat, atau paragraf terlalu lebar.</p>
+<h2>1. Contoh Tipografi Artikel</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+
+  &lt;style&gt;
+    body {
+      margin: 0;
+      padding: 32px 20px;
+      font-family: Inter, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #334155;
+      background-color: #f8fafc;
+    }
+
+    .artikel {
+      max-width: 68ch;
+      margin-inline: auto;
+      padding: 28px;
+      background-color: white;
+      border-radius: 16px;
+    }
+
+    .label {
+      color: #0f766e;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin-block: 8px 16px;
+      color: #0f172a;
+      font-size: 2.25rem;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;article class=&quot;artikel&quot;&gt;
+    &lt;span class=&quot;label&quot;&gt;Web Development&lt;/span&gt;
+    &lt;h1&gt;Tipografi yang Nyaman Dibaca&lt;/h1&gt;
+    &lt;p&gt;
+      Panjang baris dan jarak antarbaris membantu mata mengikuti teks.
+      Font yang baik harus mendukung isi, bukan mengalahkan isi.
+    &lt;/p&gt;
+    &lt;p&gt;
+      Kecilkan dan lebarkan viewport untuk melihat bagaimana batas 68ch
+      menjaga paragraf agar tidak terlalu panjang.
+    &lt;/p&gt;
+  &lt;/article&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Browser mencoba font pada <code>font-family</code> dari kiri ke kanan. Jika Inter gagal dimuat, Arial digunakan, lalu font sans-serif bawaan sistem.</p>
+<h2>2. Ukuran, Ketebalan, dan Line Height</h2>
+<p><code>line-height</code> tanpa unit mudah menyesuaikan ukuran font turunannya. Paragraf biasanya membutuhkan jarak baris lebih longgar daripada heading. Tidak semua font menyediakan semua <code>font-weight</code>, jadi muat hanya weight yang benar-benar digunakan.</p>
+<h2>3. Panjang Baris</h2>
+<p>Unit <code>ch</code> mendekati lebar karakter. <code>max-width: 68ch</code> menjaga paragraf agar tidak membentang selebar monitor. Teks panjang rata kiri umumnya juga lebih mudah diikuti daripada rata tengah.</p>
+<h2>4. Web Font</h2>
+<p>Elemen <code>&lt;link&gt;</code> pada contoh memuat Inter dari Google Fonts. Web font membutuhkan koneksi internet, sehingga fallback tetap wajib. Terlalu banyak family dan weight dapat memperlambat halaman; font sistem sering cukup untuk desain sederhana.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Tidak menyediakan fallback.</li>
+<li>Memakai font tipis untuk paragraf panjang.</li>
+<li>Membuat paragraf terlalu lebar.</li>
+<li>Memuat banyak family dan weight yang tidak digunakan.</li>
+<li>Menggunakan ukuran teks yang terlalu kecil.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Ubah <code>line-height</code> menjadi <code>1</code> lalu bandingkan keterbacaannya. Kembalikan ke <code>1.7</code>, ubah batas artikel menjadi <code>40ch</code>, dan coba font fallback dengan menghapus elemen Google Fonts.</p>
+<h2>Rangkuman</h2>
+<p>Tipografi yang baik mengutamakan keterbacaan. Gunakan font stack, hirarki ukuran, line-height yang cukup, panjang baris terkendali, dan web font secukupnya.</p>

@@ -1,0 +1,68 @@
+<p>Seiring bertambahnya fitur, satu file JavaScript menjadi panjang dan membingungkan. Module memungkinkan Anda memecah kode menjadi file-file kecil yang masing-masing punya tugas jelas dan saling mengimpor.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Mengekspor dan mengimpor fungsi antarfile.</li>
+<li>Membedakan named export dan default export.</li>
+<li>Memuat module di HTML.</li>
+</ul>
+<h2>1. Struktur Project</h2>
+<pre><code class="language-javascript">proyek/
+  index.html
+  main.js
+  utils/
+    format.js
+    storage.js
+</code></pre>
+<h2>2. Named Export</h2>
+<pre><code class="language-javascript">// utils/format.js
+export function formatRupiah(angka) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0,
+  }).format(angka);
+}
+
+export const PPN = 0.11;
+</code></pre>
+<pre><code class="language-javascript">// main.js
+import { formatRupiah, PPN } from "./utils/format.js";
+
+console.log(formatRupiah(15000 * (1 + PPN))); // Rp16.650
+</code></pre>
+<p>Nama yang diimpor harus sama dengan yang diekspor, dan wajib ditulis di dalam kurung kurawal. Sertakan ekstensi <code>.js</code> pada path.</p>
+<h2>3. Default Export</h2>
+<pre><code class="language-javascript">// utils/storage.js
+export default function simpan(kunci, nilai) {
+  localStorage.setItem(kunci, JSON.stringify(nilai));
+}
+</code></pre>
+<pre><code class="language-javascript">// main.js
+import simpan from "./utils/storage.js";   // tanpa kurung kurawal, nama bebas
+simpan("tema", "gelap");
+</code></pre>
+<p>Satu file hanya boleh memiliki satu default export, tetapi boleh memiliki banyak named export.</p>
+<h2>4. Mengganti Nama dan Mengimpor Semua</h2>
+<pre><code class="language-javascript">import { formatRupiah as rupiah } from "./utils/format.js";
+import * as format from "./utils/format.js";
+
+console.log(rupiah(5000), format.PPN);
+</code></pre>
+<h2>5. Memuat Module di HTML</h2>
+<pre><code class="language-html">&lt;script type="module" src="main.js"&gt;&lt;/script&gt;
+</code></pre>
+<ul>
+<li>Skrip <code>type="module"</code> otomatis ditunda seperti <code>defer</code>.</li>
+<li>Setiap module punya scope sendiri: variabelnya tidak bocor ke global.</li>
+<li>Module <strong>tidak berjalan</strong> bila HTML dibuka langsung lewat <code>file://</code>. Gunakan server lokal, misalnya ekstensi <em>Live Server</em> di VS Code.</li>
+</ul>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Lupa <code>type="module"</code> sehingga muncul error <em>Cannot use import statement outside a module</em>.</li>
+<li>Lupa ekstensi <code>.js</code> atau salah path relatif (<code>./</code>).</li>
+<li>Membuka file langsung tanpa server lokal.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Pecah proyek daftar tugas menjadi tiga file: <code>storage.js</code> (simpan dan muat), <code>ui.js</code> (render daftar), dan <code>main.js</code> (menyambungkan semuanya).</p>
+<h2>Rangkuman</h2>
+<p>Module memecah kode ke banyak file. Gunakan <code>export</code> dan <code>import</code>, tulis <code>type="module"</code> di HTML, dan jalankan lewat server lokal.</p>

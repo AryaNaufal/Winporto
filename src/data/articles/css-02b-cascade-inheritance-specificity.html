@@ -1,0 +1,86 @@
+<p>Ketika beberapa aturan menargetkan elemen yang sama, browser harus memilih pemenang. Proses inilah yang menjadi bagian dari <em>cascade</em>.</p>
+<h2>1. Urutan Aturan dan Inheritance</h2>
+<p>Jika kekuatan selector sama, aturan yang ditulis paling akhir menang. Beberapa property teks juga diwariskan dari induk ke anak.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 24px;
+      color: #334155;
+    }
+
+    p {
+      color: blue;
+    }
+
+    /* Selector sama kuat dan ditulis terakhir */
+    p {
+      color: green;
+    }
+
+    .panel {
+      padding: 16px;
+      border: 2px solid #cbd5e1;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Contoh Cascade&lt;/h1&gt;
+  &lt;div class=&quot;panel&quot;&gt;
+    &lt;p&gt;Paragraf menjadi hijau karena aturan terakhir menang.&lt;/p&gt;
+    &lt;span&gt;Teks span mewarisi warna body.&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Property seperti <code>color</code> dan <code>font-family</code> umumnya diwariskan. <code>margin</code>, <code>padding</code>, dan <code>border</code> umumnya tidak diwariskan.</p>
+<h2>2. Specificity</h2>
+<p>Urutan kekuatan sederhana adalah selector elemen, class, ID, kemudian inline style.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 24px;
+    }
+
+    p {
+      color: gray;
+    }
+
+    .info {
+      color: blue;
+    }
+
+    #pesan {
+      color: red;
+      padding: 16px;
+      background-color: #fee2e2;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id=&quot;pesan&quot; class=&quot;info&quot;&gt;Teks ini merah karena selector ID lebih spesifik.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Jangan sengaja memakai ID hanya untuk memenangkan konflik. Selector yang terlalu kuat akan menyulitkan perawatan.</p>
+<h2>3. Hindari <code>!important</code> sebagai Jalan Pintas</h2>
+<p>Penulisan <code>color: blue !important;</code> mengubah prioritas cascade dan sering memicu perang aturan. Gunakan hanya untuk kasus yang benar-benar terkendali, bukan untuk memperbaiki selector yang belum dipahami.</p>
+<h2>Strategi Debugging</h2>
+<ol>
+<li>Pilih elemen melalui DevTools.</li>
+<li>Cari deklarasi yang dicoret.</li>
+<li>Periksa selector pemenang dan sumber aturannya.</li>
+<li>Sederhanakan selector atau susun ulang aturan.</li>
+<li>Hindari menambah <code>!important</code> sebelum memahami penyebabnya.</li>
+</ol>
+<h2>Latihan</h2>
+<p>Pada contoh specificity, hapus selector ID lalu perhatikan warna yang menang. Setelah itu, balik urutan selector elemen dan class. Gunakan DevTools untuk melihat deklarasi yang dicoret.</p>
+<h2>Rangkuman</h2>
+<p>Cascade mempertimbangkan asal, kepentingan, specificity, dan urutan. Inheritance menyebarkan sebagian nilai dari induk. Memahami ketiganya jauh lebih baik daripada mengandalkan <code>!important</code>.</p>

@@ -1,0 +1,7 @@
+{
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
+    { "source": "/CV%20Arya%20Naufal.pdf", "destination": "/resume.pdf", "permanent": true }
+  ]
+}

@@ -1,0 +1,119 @@
+<p>Pilihan warna, ukuran, fokus, dan gerakan menentukan apakah halaman dapat digunakan banyak orang. Aksesibilitas sebaiknya diperiksa sejak awal.</p>
+<h2>1. Demo Styling yang Lebih Aksesibel</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;style&gt;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 20px;
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #f8fafc;
+    }
+
+    .artikel {
+      max-width: 65ch;
+      margin-inline: auto;
+    }
+
+    .formulir {
+      display: grid;
+      gap: 12px;
+      padding: 24px;
+      background-color: white;
+      border-radius: 12px;
+    }
+
+    input {
+      min-height: 44px;
+      padding: 10px;
+      font: inherit;
+      border: 1px solid #64748b;
+      border-radius: 6px;
+    }
+
+    .tombol {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 10px 16px;
+      color: white;
+      background-color: #0f766e;
+      border: 0;
+      border-radius: 8px;
+      transition: transform 180ms ease;
+    }
+
+    .tombol:hover {
+      transform: translateY(-2px);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #0d9488;
+      outline-offset: 3px;
+    }
+
+    .pesan-error {
+      color: #991b1b;
+      font-weight: 700;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tombol {
+        transition: none;
+      }
+
+      .tombol:hover {
+        transform: none;
+      }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main class=&quot;artikel&quot;&gt;
+    &lt;h1&gt;Form yang Mudah Digunakan&lt;/h1&gt;
+    &lt;form class=&quot;formulir&quot;&gt;
+      &lt;label for=&quot;email&quot;&gt;Alamat email&lt;/label&gt;
+      &lt;input id=&quot;email&quot; type=&quot;email&quot; aria-describedby=&quot;error-email&quot;&gt;
+      &lt;p class=&quot;pesan-error&quot; id=&quot;error-email&quot;&gt;Error: masukkan alamat email yang valid.&lt;/p&gt;
+      &lt;button class=&quot;tombol&quot; type=&quot;submit&quot;&gt;Kirim&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2>2. Hal yang Diperbaiki Contoh</h2>
+<ul>
+<li>Teks memiliki kontras kuat terhadap latar.</li>
+<li>Pesan tidak mengandalkan warna saja; kata “Error” tetap menjelaskan keadaan.</li>
+<li>Fokus keyboard terlihat melalui <code>:focus-visible</code>.</li>
+<li>Input dan tombol memiliki tinggi minimal <code>44px</code>.</li>
+<li>Ukuran teks memakai <code>rem</code> dan line-height tanpa satuan.</li>
+<li>Container tidak memiliki tinggi tetap sehingga teks dapat membesar.</li>
+<li>Gerakan dikurangi melalui <code>prefers-reduced-motion</code>.</li>
+</ul>
+<h2>3. Jangan Menyembunyikan Isi Penting</h2>
+<p><code>display: none</code> menghapus elemen dari tampilan dan umumnya dari pohon aksesibilitas. Jika label perlu disembunyikan secara visual tetapi tetap dibaca pembaca layar, gunakan pola visually-hidden yang tepat, bukan <code>display: none</code>.</p>
+<h2>Pemeriksaan Singkat</h2>
+<ul>
+<li>Dapatkah semua kontrol dicapai dengan tombol Tab?</li>
+<li>Apakah fokus selalu terlihat?</li>
+<li>Apakah teks masih terbaca pada zoom 200%?</li>
+<li>Apakah informasi tetap jelas tanpa membedakan warna?</li>
+<li>Apakah konten tidak terpotong pada layar sempit?</li>
+<li>Apakah gerakan dapat dikurangi?</li>
+</ul>
+<h2>Latihan</h2>
+<p>Jalankan contoh hanya dengan keyboard. Zoom browser hingga 200%, lalu periksa apakah tombol, input, dan pesan masih terlihat utuh. Coba hapus outline untuk memahami mengapa fokus menjadi sulit ditemukan.</p>
+<h2>Ringkasan</h2>
+<p>CSS yang aksesibel memiliki kontras memadai, fokus terlihat, target interaksi cukup besar, teks yang dapat membesar, serta gerakan yang menghormati preferensi pengguna.</p>

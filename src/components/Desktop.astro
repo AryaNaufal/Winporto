@@ -1,0 +1,44 @@
+---
+import { APPS, DESKTOP_ORDER } from '../data/apps';
+import { profile } from '../data/portfolio';
+import DesktopIcon from './DesktopIcon.astro';
+import WindowLayer from './WindowLayer';
+import Taskbar from './Taskbar';
+import Clippy from './Clippy';
+---
+
+<div class="wallpaper" aria-hidden="true"></div>
+
+<h1 class="sr-only">{profile.name} — {profile.role}</h1>
+
+<nav aria-label="Desktop programs">
+  <ul class="desktop-icons" style="margin:0;list-style:none">
+    {DESKTOP_ORDER.map((id) => <DesktopIcon app={APPS[id]} />)}
+  </ul>
+</nav>
+
+<WindowLayer client:load />
+<Taskbar client:load />
+<Clippy client:idle />
+
+<script>
+  import { openWindow } from '../stores/windowStore';
+  import type { AppId } from '../data/apps';
+
+  // Double-click (or Enter) opens a program; on touch devices a single tap is enough.
+  const coarse = window.matchMedia('(pointer: coarse)');
+  document.querySelectorAll<HTMLButtonElement>('.desktop-icon').forEach((btn) => {
+    const open = () => openWindow(btn.dataset.app as AppId);
+    btn.addEventListener('dblclick', open);
+    btn.addEventListener('click', () => {
+      btn.focus(); // Safari doesn't focus buttons on click
+      if (coarse.matches) open();
+    });
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        open();
+      }
+    });
+  });
+</script>

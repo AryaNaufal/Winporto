@@ -1,0 +1,71 @@
+<p>Sebelum belajar layout CSS, Anda perlu memahami bagaimana elemen ditempatkan dalam aliran normal dokumen. Secara sederhana, ada elemen yang memulai baris baru dan ada yang mengalir bersama teks.</p>
+<h2>1. Elemen Block</h2>
+<p>Elemen block biasanya memulai baris baru dan menggunakan ruang horizontal yang tersedia.</p>
+<pre><code class="language-html">&lt;h2&gt;Judul Bagian&lt;/h2&gt;
+&lt;p&gt;Paragraf pertama.&lt;/p&gt;
+&lt;p&gt;Paragraf kedua.&lt;/p&gt;
+</code></pre>
+<p>Contoh umum: <code>div</code>, <code>p</code>, heading, <code>ul</code>, <code>ol</code>, <code>section</code>, <code>article</code>, dan <code>form</code>.</p>
+<p>“Block” adalah perilaku tampilan bawaan, bukan berarti elemen tersebut selalu berbentuk kotak yang terlihat.</p>
+<h2>2. Elemen Inline</h2>
+<p>Elemen inline mengalir di dalam baris teks dan hanya memakai ruang sesuai isinya.</p>
+<pre><code class="language-html">&lt;p&gt;
+  Pelajari &lt;strong&gt;HTML&lt;/strong&gt; lalu baca
+  &lt;a href=&quot;css.html&quot;&gt;materi CSS&lt;/a&gt;.
+&lt;/p&gt;
+</code></pre>
+<p>Contoh umum: <code>a</code>, <code>span</code>, <code>strong</code>, <code>em</code>, <code>mark</code>, dan <code>code</code>.</p>
+<p>Jangan menaruh elemen block seperti <code>div</code> di dalam elemen inline seperti <code>span</code> hanya untuk mendapatkan tampilan tertentu.</p>
+<h2>3. <code>div</code> dan <code>span</code></h2>
+<p>Keduanya tidak membawa makna khusus.</p>
+<pre><code class="language-html">&lt;div class=&quot;kartu&quot;&gt;
+  &lt;h2&gt;Kursus HTML&lt;/h2&gt;
+  &lt;p&gt;Mulai dari dasar.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Harga: &lt;span class=&quot;harga&quot;&gt;Rp99.000&lt;/span&gt;&lt;/p&gt;
+</code></pre>
+<p><code>div</code> cocok sebagai pembungkus block untuk layout. <code>span</code> cocok untuk bagian kecil di dalam teks. Jika ada elemen semantik yang tepat, gunakan elemen tersebut terlebih dahulu.</p>
+<h2>4. CSS Dapat Mengubah Tampilan</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Block dan Inline&lt;/title&gt;
+  &lt;style&gt;
+    a {
+      display: block;
+      margin-block: 8px;
+    }
+
+    li {
+      display: inline;
+      margin-right: 12px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a href=&quot;#html&quot;&gt;Link HTML ditampilkan sebagai block&lt;/a&gt;
+  &lt;a href=&quot;#css&quot;&gt;Link CSS ditampilkan sebagai block&lt;/a&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Beranda&lt;/li&gt;
+    &lt;li&gt;Artikel&lt;/li&gt;
+    &lt;li&gt;Kontak&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>CSS dapat mengubah nilai <code>display</code>, tetapi makna HTML tidak ikut berubah. Link tetap link meskipun ditampilkan sebagai block.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menggunakan banyak <code>&lt;br&gt;</code> agar elemen inline turun baris.</li>
+<li>Membungkus semua hal dengan <code>div</code> tanpa memeriksa elemen semantik.</li>
+<li>Menganggap block selalu memiliki lebar tetap.</li>
+<li>Mengubah struktur HTML hanya untuk mengejar tampilan sementara.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat sebuah kartu menggunakan <code>article</code>, <code>h2</code>, dan <code>p</code>. Gunakan <code>span</code> hanya untuk menandai harga di dalam paragraf. Perhatikan elemen mana yang memulai baris baru.</p>
+<h2>Rangkuman</h2>
+<p>Block dan inline menjelaskan perilaku awal elemen dalam aliran dokumen. Gunakan HTML berdasarkan makna, kemudian gunakan CSS jika tampilannya perlu diubah.</p>

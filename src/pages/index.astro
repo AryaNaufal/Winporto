@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Desktop from '../components/Desktop.astro';
+import { site, profile, experience, education, projects, contact } from '../data/portfolio';
+import { articles } from '../data/articles';
+import { articlePath, personSchema } from '../data/seo';
+---
+
+<Layout title={site.title} description={site.description} schema={[personSchema(Astro.site!)]}>
+  <Desktop />
+  <noscript>
+    <p class="noscript-note"><a href="/article">Baca artikel</a> · <a href={site.resume}>Resume (PDF)</a></p>
+  </noscript>
+  <!--
+    Text version of what the desktop windows show, for crawlers and screen readers.
+    Links are skipped by Tab (tabindex -1) because they are visually hidden.
+  -->
+  <section class="sr-only" aria-label="Ringkasan portofolio">
+    <h2>Tentang {profile.name}</h2>
+    {profile.summary.map((p) => <p>{p}</p>)}
+    <p>Keahlian: {profile.skills.join(', ')}.</p>
+    <h2>Pengalaman</h2>
+    <ul>{experience.map((e) => <li>{e.role}, {e.company} ({e.period}). {e.bullets.join(' ')}</li>)}</ul>
+    <h2>Pendidikan</h2>
+    <ul>{education.map((e) => <li>{e.degree}, {e.school} ({e.period})</li>)}</ul>
+    <h2>Proyek</h2>
+    <ul>
+      {projects.map((p) => (
+        <li>{p.url ? <a href={p.url} tabindex="-1">{p.name}</a> : p.name}: {p.description} ({p.stack.join(', ')})</li>
+      ))}
+    </ul>
+    <h2>Kontak</h2>
+    <ul>
+      <li><a href={`mailto:${contact.email}`} tabindex="-1">{contact.email}</a></li>
+      {contact.links.map((l) => <li><a href={l.url} rel="me" tabindex="-1">{l.name}</a></li>)}
+      <li><a href={site.resume} tabindex="-1">Resume (PDF)</a></li>
+    </ul>
+    <h2>Artikel</h2>
+    <p><a href="/article" tabindex="-1">Semua artikel HTML, CSS, dan JavaScript</a></p>
+    <ul>{articles.map((a) => <li><a href={articlePath(a.slug)} tabindex="-1">{a.title}</a></li>)}</ul>
+  </section>
+</Layout>

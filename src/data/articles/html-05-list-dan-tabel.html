@@ -1,0 +1,63 @@
+<p>List digunakan ketika beberapa informasi merupakan satu kelompok, misalnya daftar belanja, langkah memasak, atau menu navigasi.</p>
+<h2>Tujuan Belajar</h2>
+<ul>
+<li>Memilih <code>ul</code> atau <code>ol</code> berdasarkan makna.</li>
+<li>Menulis item dengan <code>li</code>.</li>
+<li>Membuat list bersarang dengan struktur yang valid.</li>
+<li>Menggunakan description list untuk pasangan istilah dan penjelasan.</li>
+</ul>
+<h2>1. Unordered List</h2>
+<p>Gunakan <code>&lt;ul&gt;</code> jika urutan item tidak mengubah makna.</p>
+<pre><code class="language-html">&lt;h2&gt;Bahan&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Tepung&lt;/li&gt;
+  &lt;li&gt;Gula&lt;/li&gt;
+  &lt;li&gt;Telur&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>Bullet hanyalah tampilan bawaan. Bentuk bullet dapat diubah dengan CSS tanpa mengganti makna list.</p>
+<h2>2. Ordered List</h2>
+<p>Gunakan <code>&lt;ol&gt;</code> jika urutan penting.</p>
+<pre><code class="language-html">&lt;h2&gt;Langkah Membuat Teh&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Didihkan air.&lt;/li&gt;
+  &lt;li&gt;Masukkan teh ke cangkir.&lt;/li&gt;
+  &lt;li&gt;Tuangkan air panas.&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+<p>Jangan menggunakan <code>ul</code> lalu mengetik angka secara manual. Jika item ditambah, nomor manual mudah menjadi salah.</p>
+<h2>3. List Bersarang</h2>
+<p>List anak harus berada di dalam sebuah <code>li</code>.</p>
+<pre><code class="language-html">&lt;ul&gt;
+  &lt;li&gt;
+    Front-end
+    &lt;ul&gt;
+      &lt;li&gt;HTML&lt;/li&gt;
+      &lt;li&gt;CSS&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Back-end&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>Hindari terlalu banyak tingkat karena pembaca akan kesulitan mengikuti struktur.</p>
+<h2>4. Description List</h2>
+<p>Gunakan <code>&lt;dl&gt;</code> untuk pasangan istilah dan deskripsi.</p>
+<pre><code class="language-html">&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;Bahasa untuk menyusun struktur halaman.&lt;/dd&gt;
+
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;Bahasa untuk mengatur tampilan halaman.&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+<p><code>dt</code> adalah istilah dan <code>dd</code> adalah penjelasannya. Description list bukan pengganti tabel data.</p>
+<h2>Kesalahan Umum</h2>
+<ul>
+<li>Menulis <code>li</code> tanpa pembungkus <code>ul</code> atau <code>ol</code>.</li>
+<li>Memakai list hanya untuk membuat indentasi.</li>
+<li>Meletakkan list anak sebagai saudara <code>li</code>, bukan di dalamnya.</li>
+</ul>
+<h2>Latihan</h2>
+<p>Buat halaman resep dengan unordered list untuk bahan, ordered list untuk langkah, dan description list untuk menjelaskan tiga istilah memasak.</p>
+<h2>Rangkuman</h2>
+<p>Pilih list berdasarkan hubungan antaritem: <code>ul</code> untuk kelompok tanpa urutan, <code>ol</code> untuk langkah berurutan, dan <code>dl</code> untuk istilah beserta penjelasan. Tabel data dibahas terpisah pada pelajaran HTML 7.</p>
